@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Fraud Signal Triage — TransUnion × Conquer AI</title>
+
+  <!-- TransUnion Favicon -->
+  <link rel="icon" type="image/x-icon"
+    href="https://www.transunion.com/etc.clientlibs/transunion/clientlibs/clientlib-trubrand/resources/images/favicons/favicon.ico" />
+
+  <!-- Google Fonts fallback (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ── NAVIGATION ─────────────────────────────────────────────────────── -->
+  <nav class="nav">
+    <div class="nav-brand">
+      <img
+        class="nav-logo"
+        src="https://www.transunion.com/content/dam/transunion/global/common/logos/logo.svg"
+        alt="TransUnion"
+        onerror="this.style.display='none';document.getElementById('tuFallback').style.display='block'"
+      />
+      <span id="tuFallback" style="display:none;font-weight:700;font-size:13px;color:#00A8CB;letter-spacing:0.05em;font-family:monospace">TRANSUNION</span>
+      <div class="nav-divider"></div>
+      <span class="nav-conquer">Conquer AI</span>
+    </div>
+
+    <div id="navTabs" class="nav-tabs"></div>
+
+    <div class="nav-right">
+      <span class="nav-badge">POC · Fraud Triage</span>
+      <button class="btn-settings" onclick="showView('settings')" title="Settings">⚙</button>
+    </div>
+  </nav>
+
+  <!-- ── MAIN CONTENT ───────────────────────────────────────────────────── -->
+  <main class="main">
+
+    <!-- DASHBOARD VIEW -->
+    <div id="view-dashboard" class="view active"></div>
+
+    <!-- DETAIL VIEW -->
+    <div id="view-detail" class="view"></div>
+
+    <!-- AUDIT LOG VIEW -->
+    <div id="view-audit" class="view"></div>
+
+    <!-- SETTINGS VIEW -->
+    <div id="view-settings" class="view">
+      <div class="settings-view">
+        <div class="page-header">
+          <h1>Settings</h1>
+          <p>Configure your API key and manage POC data</p>
+        </div>
+
+        <div class="settings-card">
+          <h2>Anthropic API Key</h2>
+          <p>
+            This POC uses the Anthropic Claude API to classify fraud alerts in real-time.
+            Your key is stored locally in your browser and never sent anywhere except directly to Anthropic.
+            Get a key at <a href="https://console.anthropic.com" target="_blank" style="color:var(--tu-blue)">console.anthropic.com</a>.
+          </p>
+          <div class="form-group">
+            <label class="form-label">API Key</label>
+            <div class="api-key-row">
+              <input
+                id="apiKeyInput"
+                class="form-input"
+                type="password"
+                placeholder="sk-ant-api03-…"
+                autocomplete="off"
+              />
+              <button class="btn btn-classify" onclick="saveApiKey()">Save</button>
+              <button class="btn btn-cancel" onclick="clearApiKey()">Clear</button>
+            </div>
+            <div id="saveStatus" class="save-status"></div>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h2>About This POC</h2>
+          <p>
+            This is Conquer AI's Proof of Concept for TransUnion's Fraud Signal Triage Agent.
+            It demonstrates the <strong>confirm-or-correct</strong> workflow:
+            AI classifies incoming fraud alerts, analysts confirm or correct the classification,
+            and every decision is logged to a full audit trail.
+            <br><br>
+            <strong>8 sample alerts</strong> are pre-loaded across 5 fraud types:
+            Card Not Present, Account Takeover, Synthetic Identity,
+            Identity Verification Failure, and First Party Fraud.
+            <br><br>
+            Model: <span style="font-family:monospace;color:var(--tu-blue)">claude-sonnet-4-20250514</span>
+          </p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-cancel" onclick="resetData()">↺ Reset to sample data</button>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h2>How It Works</h2>
+          <p style="margin-bottom:0">
+            <strong>1. Alert Queue</strong> — incoming signals from fraud detection engines, sorted by priority.<br><br>
+            <strong>2. AI Classification</strong> — click any alert, then hit "Classify with AI". Claude analyses all signal fields and returns a risk type, urgency, confidence score, rationale, and suggested action.<br><br>
+            <strong>3. Confirm or Correct</strong> — you confirm the AI is right, or override with your own classification. The reason you provide becomes a training signal.<br><br>
+            <strong>4. Audit Trail</strong> — every decision is logged with full detail. Exportable as CSV for regulatory review.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── CORRECTION MODAL ───────────────────────────────────────────────── -->
+  <div id="correctModal" class="modal-overlay hidden" onclick="if(event.target===this)closeCorrectModal()">
+    <div class="modal">
+      <h2>Correct Classification</h2>
+      <p>Override the AI's classification. Your correction is logged as a training signal and will improve future accuracy.</p>
+      <input type="hidden" id="correctAlertId" />
+
+      <div class="form-group">
+        <label class="form-label">Correct Risk Type</label>
+        <select id="correctType" class="form-select">
+          <option value="Card Not Present Fraud">Card Not Present Fraud</option>
+          <option value="Account Takeover">Account Takeover</option>
+          <option value="Synthetic Identity Fraud">Synthetic Identity Fraud</option>
+          <option value="First Party Fraud">First Party Fraud</option>
+          <option value="Identity Verification Failure">Identity Verification Failure</option>
+          <option value="False Positive">False Positive — Not Fraud</option>
+          <option value="Requires Investigation">Requires Further Investigation</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Correct Urgency</label>
+        <select id="correctUrgency" class="form-select">
+          <option value="CRITICAL">CRITICAL</option>
+          <option value="HIGH">HIGH</option>
+          <option value="MEDIUM" selected>MEDIUM</option>
+          <option value="LOW">LOW</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Reason for Correction <span style="color:var(--danger)">*</span></label>
+        <textarea
+          id="correctReason"
+          class="form-textarea"
+          placeholder="Explain why the AI classification was wrong — e.g. 'Customer confirmed legitimate travel, IP location mismatch is expected'"
+        ></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-cancel" onclick="closeCorrectModal()">Cancel</button>
+        <button class="btn btn-correct" onclick="submitCorrection()">✏ Submit Correction</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TOAST CONTAINER ────────────────────────────────────────────────── -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- ── SCRIPTS ────────────────────────────────────────────────────────── -->
+  <script src="js/data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Boot
+    window.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>
