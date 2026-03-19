@@ -6,1815 +6,439 @@
   <title>Fraud Signal Triage — TransUnion × Conquer AI</title>
   <link rel="icon" type="image/x-icon" href="https://www.transunion.com/etc.clientlibs/transunion/clientlibs/clientlib-trubrand/resources/images/favicons/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-/* ─────────────────────────────────────────────────────────────────────────────
-   TransUnion × Conquer AI — Fraud Signal Triage Agent
-   Brand: TransUnion Blue #00A8CB | Conquer Blue #515FFC | Dark Mode
-   ───────────────────────────────────────────────────────────────────────────── */
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg:           #08080E;
-  --surface-1:    #0F0F18;
-  --surface-2:    #141420;
-  --surface-3:    #1A1A2A;
-  --border:       rgba(255,255,255,0.07);
-  --border-hover: rgba(255,255,255,0.15);
-
-  --tu-blue:      #00A8CB;
-  --tu-dark:      #007A95;
-  --tu-light:     #33BCDA;
-  --tu-tint:      rgba(0,168,203,0.10);
-  --tu-glow:      rgba(0,168,203,0.20);
-
-  --brand:        #515FFC;
-  --brand-tint:   rgba(81,95,252,0.10);
-
-  --text-1:       #F0F0F8;
-  --text-2:       #8A8AA8;
-  --text-3:       #50505E;
-
-  --success:      #38BB94;
-  --success-tint: rgba(56,187,148,0.12);
-  --alert:        #FFA030;
-  --alert-tint:   rgba(255,160,48,0.12);
-  --danger:       #F13C47;
-  --danger-tint:  rgba(241,60,71,0.12);
-
-  --radius:       10px;
-  --radius-sm:    6px;
-  --nav-h:        58px;
-}
-
-html { height: 100%; }
-body {
-  min-height: 100%;
-  background: var(--bg);
-  color: var(--text-1);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ── TYPOGRAPHY ── */
-h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
-h2 { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
-h3 { font-size: 13px; font-weight: 600; }
-.mono { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
-.label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-family: monospace;
-}
-
-/* ── NAV BAR ── */
-.nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: var(--nav-h);
-  background: rgba(8,8,14,0.94);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  z-index: 100;
-  gap: 12px;
-}
-
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-.nav-logo {
-  height: 22px;
-  filter: brightness(0) invert(1);
-}
-
-.nav-divider {
-  width: 1px;
-  height: 20px;
-  background: var(--border);
-}
-
-.nav-conquer {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--brand);
-  font-family: monospace;
-}
-
-.nav-tabs {
-  display: flex;
-  gap: 4px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.nav-tabs::-webkit-scrollbar { display: none; }
-
-.nav-tab {
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-2);
-  cursor: pointer;
-  border: none;
-  background: transparent;
-  white-space: nowrap;
-  transition: color 150ms, background 150ms;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.nav-tab:hover { color: var(--text-1); background: var(--surface-2); }
-.nav-tab.active {
-  color: var(--tu-blue);
-  background: var(--tu-tint);
-  font-weight: 600;
-}
-.nav-tab .tab-count {
-  background: var(--danger);
-  color: #fff;
-  font-size: 9px;
-  font-weight: 700;
-  padding: 1px 5px;
-  border-radius: 10px;
-  font-family: monospace;
-  min-width: 16px;
-  text-align: center;
-}
-.nav-tab .tab-count.muted {
-  background: var(--surface-3);
-  color: var(--text-2);
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-.nav-badge {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--tu-blue);
-  background: var(--tu-tint);
-  border: 1px solid rgba(0,168,203,0.30);
-  border-radius: 4px;
-  padding: 3px 8px;
-  font-family: monospace;
-}
-
-.btn-settings {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text-2);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  transition: border-color 150ms, color 150ms;
-}
-.btn-settings:hover { border-color: var(--border-hover); color: var(--text-1); }
-
-/* ── MAIN LAYOUT ── */
-.main {
-  margin-top: var(--nav-h);
-  min-height: calc(100vh - var(--nav-h));
-}
-
-.view { display: none; }
-.view.active { display: block; }
-
-/* ── DASHBOARD ── */
-.dashboard { padding: 24px 20px; max-width: 1200px; margin: 0 auto; }
-
-.page-header {
-  margin-bottom: 24px;
-}
-.page-header h1 { margin-bottom: 4px; }
-.page-header p { color: var(--text-2); font-size: 13px; }
-
-/* Metrics row */
-.metrics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
-  margin-bottom: 28px;
-}
-
-.metric-card {
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px 18px;
-  transition: border-color 180ms;
-}
-.metric-card:hover { border-color: var(--border-hover); }
-
-.metric-value {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin-bottom: 6px;
-}
-.metric-label {
-  font-size: 11px;
-  color: var(--text-2);
-  font-weight: 500;
-}
-.metric-sub {
-  font-size: 10px;
-  color: var(--text-3);
-  margin-top: 4px;
-  font-family: monospace;
-}
-
-.metric-card.tu   .metric-value { color: var(--tu-blue); }
-.metric-card.warn .metric-value { color: var(--alert); }
-.metric-card.ok   .metric-value { color: var(--success); }
-.metric-card.crit .metric-value { color: var(--danger); }
-.metric-card.brand .metric-value { color: var(--brand); }
-
-/* Alert queue */
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-.section-header h2 { font-size: 14px; }
-
-.filter-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  padding: 4px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text-2);
-  font-size: 11px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 150ms;
-}
-.filter-btn:hover { border-color: var(--border-hover); color: var(--text-1); }
-.filter-btn.active {
-  background: var(--tu-tint);
-  border-color: var(--tu-blue);
-  color: var(--tu-blue);
-  font-weight: 600;
-}
-
-/* Alert list */
-.alert-list { display: flex; flex-direction: column; gap: 8px; }
-
-.alert-row {
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  cursor: pointer;
-  transition: border-color 180ms, transform 120ms, background 150ms;
-  display: grid;
-  grid-template-columns: auto 1fr auto auto;
-  align-items: center;
-  gap: 14px;
-}
-.alert-row:hover {
-  border-color: var(--border-hover);
-  background: var(--surface-2);
-  transform: translateX(2px);
-}
-.alert-row.status-auto_resolved { opacity: 0.55; }
-.alert-row.status-confirmed { border-left: 3px solid var(--success); }
-.alert-row.status-corrected  { border-left: 3px solid var(--alert); }
-.alert-row.status-escalated  { border-left: 3px solid var(--danger); }
-
-.alert-priority-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.alert-main { min-width: 0; }
-.alert-id {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-2);
-  font-family: monospace;
-  margin-bottom: 2px;
-}
-.alert-type { font-weight: 600; font-size: 13px; }
-.alert-meta { font-size: 11px; color: var(--text-3); margin-top: 2px; }
-
-.alert-badges { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
-
-.badge {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-family: monospace;
-  white-space: nowrap;
-}
-
-.alert-time { font-size: 11px; color: var(--text-3); font-family: monospace; white-space: nowrap; }
-
-/* ── ALERT DETAIL ── */
-.detail-view { padding: 24px 20px; max-width: 900px; margin: 0 auto; }
-
-.back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--text-2);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  margin-bottom: 20px;
-  transition: color 150ms;
-}
-.back-btn:hover { color: var(--text-1); }
-
-.detail-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-}
-.detail-title h1 { margin-bottom: 6px; }
-.detail-meta { display: flex; gap: 8px; flex-wrap: wrap; }
-
-/* Signal grid */
-.signal-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 8px;
-  margin-bottom: 24px;
-}
-
-.signal-card {
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 10px 12px;
-}
-.signal-key {
-  font-size: 10px;
-  color: var(--text-3);
-  font-family: monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 3px;
-}
-.signal-val {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-1);
-  font-family: monospace;
-}
-.signal-val.high-risk { color: var(--danger); }
-.signal-val.med-risk  { color: var(--alert); }
-.signal-val.low-risk  { color: var(--success); }
-
-/* AI result */
-.ai-section {
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-
-.ai-section-header {
-  padding: 14px 18px;
-  background: var(--surface-2);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.ai-loading {
-  padding: 40px;
-  text-align: center;
-  color: var(--text-2);
-}
-
-.ai-spinner {
-  width: 32px;
-  height: 32px;
-  border: 2px solid var(--border);
-  border-top-color: var(--tu-blue);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin: 0 auto 12px;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.ai-result { padding: 18px; }
-
-.confidence-bar {
-  height: 6px;
-  background: var(--surface-3);
-  border-radius: 3px;
-  overflow: hidden;
-  margin: 8px 0 4px;
-}
-.confidence-fill {
-  height: 100%;
-  border-radius: 3px;
-  background: linear-gradient(90deg, var(--brand), var(--tu-blue));
-  transition: width 800ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.ai-row { display: flex; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; }
-.ai-field { flex: 1; min-width: 140px; }
-.ai-field-label { font-size: 10px; color: var(--text-3); font-family: monospace; text-transform: uppercase; margin-bottom: 4px; }
-.ai-field-val { font-weight: 600; font-size: 14px; }
-
-.rationale-box {
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--tu-blue);
-  border-radius: var(--radius-sm);
-  padding: 12px 14px;
-  font-size: 13px;
-  color: var(--text-1);
-  line-height: 1.6;
-  margin-bottom: 14px;
-}
-
-.signals-list { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
-.signal-tag {
-  background: var(--tu-tint);
-  border: 1px solid rgba(0,168,203,0.25);
-  color: var(--tu-light);
-  font-size: 11px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-family: monospace;
-}
-
-.suggested-action {
-  background: var(--brand-tint);
-  border: 1px solid rgba(81,95,252,0.25);
-  border-radius: var(--radius-sm);
-  padding: 10px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-1);
-}
-.suggested-action .action-label {
-  font-size: 9px;
-  color: var(--brand);
-  font-family: monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 4px;
-}
-
-.regulatory-note {
-  background: var(--alert-tint);
-  border: 1px solid rgba(255,160,48,0.25);
-  border-radius: var(--radius-sm);
-  padding: 10px 14px;
-  font-size: 12px;
-  color: var(--alert);
-  margin-top: 10px;
-}
-.regulatory-note::before { content: "⚠ REGULATORY: "; font-weight: 700; }
-
-/* Confirm / Correct */
-.decision-bar {
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.decision-label { font-size: 13px; color: var(--text-2); }
-.decision-label strong { color: var(--text-1); }
-
-.decision-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
-
-.btn {
-  padding: 9px 20px;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: all 150ms;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-.btn-confirm {
-  background: var(--success);
-  color: #000;
-}
-.btn-confirm:hover:not(:disabled) { background: #2fa07e; }
-
-.btn-correct {
-  background: var(--surface-2);
-  color: var(--alert);
-  border: 1px solid rgba(255,160,48,0.35);
-}
-.btn-correct:hover:not(:disabled) {
-  background: var(--alert-tint);
-  border-color: var(--alert);
-}
-
-.btn-classify {
-  background: var(--tu-blue);
-  color: #000;
-  font-weight: 700;
-}
-.btn-classify:hover:not(:disabled) { background: var(--tu-light); }
-
-.btn-primary {
-  background: var(--brand);
-  color: #fff;
-}
-.btn-primary:hover:not(:disabled) { background: var(--brand-tint); border: 1px solid var(--brand); }
-
-.decision-done {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  color: var(--text-2);
-}
-
-/* Correction modal */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 200;
-  padding: 20px;
-  backdrop-filter: blur(4px);
-}
-.modal-overlay.hidden { display: none; }
-
-.modal {
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  width: 100%;
-  max-width: 480px;
-  padding: 24px;
-}
-.modal h2 { margin-bottom: 6px; }
-.modal p { color: var(--text-2); font-size: 13px; margin-bottom: 20px; }
-
-.form-group { margin-bottom: 16px; }
-.form-label {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-2);
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  font-family: monospace;
-  margin-bottom: 6px;
-}
-.form-select, .form-textarea, .form-input {
-  width: 100%;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  color: var(--text-1);
-  font-size: 13px;
-  padding: 9px 12px;
-  font-family: inherit;
-  transition: border-color 150ms;
-  appearance: none;
-}
-.form-select:focus, .form-textarea:focus, .form-input:focus {
-  outline: none;
-  border-color: var(--tu-blue);
-}
-.form-textarea { resize: vertical; min-height: 80px; }
-
-.modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
-
-.btn-cancel {
-  background: var(--surface-2);
-  color: var(--text-2);
-  border: 1px solid var(--border);
-}
-.btn-cancel:hover { border-color: var(--border-hover); color: var(--text-1); }
-
-/* ── AUDIT LOG ── */
-.audit-view { padding: 24px 20px; max-width: 1000px; margin: 0 auto; }
-
-.audit-table { width: 100%; border-collapse: collapse; }
-.audit-table th {
-  text-align: left;
-  font-size: 10px;
-  color: var(--text-3);
-  font-family: monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--border);
-}
-.audit-table td {
-  padding: 12px;
-  border-bottom: 1px solid var(--border);
-  font-size: 12px;
-  vertical-align: top;
-}
-.audit-table tr:hover td { background: var(--surface-2); }
-.audit-table .td-id { font-family: monospace; color: var(--text-2); }
-.audit-table .td-action-confirm { color: var(--success); font-weight: 600; }
-.audit-table .td-action-correct  { color: var(--alert);   font-weight: 600; }
-.audit-table .td-action-auto     { color: var(--text-3);  }
-.audit-empty {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--text-3);
-}
-
-/* ── SETTINGS ── */
-.settings-view { padding: 24px 20px; max-width: 520px; margin: 0 auto; }
-
-.settings-card {
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  margin-bottom: 16px;
-}
-.settings-card h2 { margin-bottom: 6px; }
-.settings-card p { color: var(--text-2); font-size: 13px; margin-bottom: 20px; line-height: 1.6; }
-
-.api-key-row { display: flex; gap: 8px; }
-.api-key-row .form-input { flex: 1; font-family: monospace; letter-spacing: 0.05em; }
-
-.save-status {
-  margin-top: 10px;
-  font-size: 12px;
-  font-family: monospace;
-  min-height: 18px;
-}
-.save-status.ok  { color: var(--success); }
-.save-status.err { color: var(--danger); }
-
-/* ── TOAST ── */
-.toast-container {
-  position: fixed;
-  bottom: 24px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  z-index: 300;
-}
-
-.toast {
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 12px 16px;
-  font-size: 13px;
-  max-width: 320px;
-  animation: toast-in 200ms ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.toast.success { border-left: 3px solid var(--success); }
-.toast.error   { border-left: 3px solid var(--danger); }
-.toast.info    { border-left: 3px solid var(--tu-blue); }
-
-@keyframes toast-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── NO API KEY STATE ── */
-.no-key-banner {
-  background: var(--alert-tint);
-  border: 1px solid rgba(255,160,48,0.35);
-  border-radius: var(--radius);
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
-}
-.no-key-banner p { color: var(--text-1); font-size: 13px; flex: 1; }
-.no-key-banner strong { color: var(--alert); }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  .metrics { grid-template-columns: repeat(2, 1fr); }
-  .signal-grid { grid-template-columns: repeat(2, 1fr); }
-  .alert-row { grid-template-columns: auto 1fr; grid-template-rows: auto auto; }
-  .alert-badges { grid-column: 2; }
-  .alert-time { display: none; }
-  .detail-header { flex-direction: column; }
-  .ai-row { flex-direction: column; }
-  .decision-bar { flex-direction: column; align-items: flex-start; }
-  .nav-badge { display: none; }
-  .nav-conquer { display: none; }
-  h1 { font-size: 18px; }
-}
-
-@media (max-width: 480px) {
-  .metrics { grid-template-columns: repeat(2, 1fr); }
-  .signal-grid { grid-template-columns: 1fr 1fr; }
-  .dashboard { padding: 16px 14px; }
-  .detail-view { padding: 16px 14px; }
-  .nav { padding: 0 14px; }
-  .metric-value { font-size: 22px; }
-}
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(0,168,203,0.3); border-radius: 2px; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#08080E;--s1:#0F0F18;--s2:#141420;--s3:#1A1A2A;--bd:rgba(255,255,255,0.07);--bdh:rgba(255,255,255,0.15);--tu:#00A8CB;--tud:#007A95;--tul:#33BCDA;--tut:rgba(0,168,203,0.10);--tug:rgba(0,168,203,0.20);--br:#515FFC;--brt:rgba(81,95,252,0.10);--t1:#F0F0F8;--t2:#8A8AA8;--t3:#50505E;--ok:#38BB94;--okt:rgba(56,187,148,0.12);--al:#FFA030;--alt:rgba(255,160,48,0.12);--er:#F13C47;--ert:rgba(241,60,71,0.12);--r:10px;--rs:6px;--nh:58px}
+html,body{min-height:100%;background:var(--bg);color:var(--t1);font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1{font-size:22px;font-weight:700;letter-spacing:-.02em}h2{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nh);background:rgba(8,8,14,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:100;gap:12px}
+.nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-logo{height:22px;filter:brightness(0) invert(1)}
+.nav-div{width:1px;height:20px;background:var(--bd)}
+.nav-cq{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--br);font-family:monospace}
+.nav-tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}.nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{padding:6px 14px;border-radius:var(--rs);font-size:12px;font-weight:500;color:var(--t2);cursor:pointer;border:none;background:transparent;white-space:nowrap;transition:color 150ms,background 150ms;display:flex;align-items:center;gap:6px}
+.nav-tab:hover{color:var(--t1);background:var(--s2)}.nav-tab.active{color:var(--tu);background:var(--tut);font-weight:600}
+.tcnt{background:var(--er);color:#fff;font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;font-family:monospace;min-width:18px;text-align:center}.tcnt.m{background:var(--s3);color:var(--t2)}
+.nav-r{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-badge{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tu);background:var(--tut);border:1px solid rgba(0,168,203,.3);border-radius:4px;padding:3px 8px;font-family:monospace}
+.btn-ic{width:32px;height:32px;border-radius:var(--rs);border:1px solid var(--bd);background:transparent;color:var(--t2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:border-color 150ms,color 150ms}
+.btn-ic:hover{border-color:var(--bdh);color:var(--t1)}
+.main{margin-top:var(--nh);min-height:calc(100vh - var(--nh))}
+.view{display:none}.view.active{display:block}
+.wrap{padding:24px 20px;max-width:1100px;margin:0 auto}
+.ph{margin-bottom:22px}.ph h1{margin-bottom:4px}.ph p{color:var(--t2);font-size:13px}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:26px}
+.mc{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:16px 18px;transition:border-color 180ms}.mc:hover{border-color:var(--bdh)}
+.mv{font-size:30px;font-weight:700;letter-spacing:-.03em;line-height:1;margin-bottom:6px}.ml{font-size:11px;color:var(--t2);font-weight:500}.ms{font-size:10px;color:var(--t3);margin-top:3px;font-family:monospace}
+.mc.cr .mv{color:var(--er)}.mc.ok .mv{color:var(--ok)}.mc.tu .mv{color:var(--tu)}.mc.al .mv{color:var(--al)}.mc.br .mv{color:var(--br)}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:10px}
+.frow{display:flex;gap:6px;flex-wrap:wrap}
+.fb{padding:4px 12px;border-radius:20px;border:1px solid var(--bd);background:transparent;color:var(--t2);font-size:11px;font-weight:500;cursor:pointer;transition:all 150ms;white-space:nowrap}
+.fb:hover{border-color:var(--bdh);color:var(--t1)}.fb.active{background:var(--tut);border-color:var(--tu);color:var(--tu);font-weight:600}
+.alist{display:flex;flex-direction:column;gap:8px}
+.ar{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:14px 16px;cursor:pointer;transition:border-color 180ms,transform 120ms,background 150ms;display:grid;grid-template-columns:10px 1fr auto auto;align-items:center;gap:14px}
+.ar:hover{border-color:var(--bdh);background:var(--s2);transform:translateX(3px)}
+.ar.sc{border-left:3px solid var(--ok)}.ar.sx{border-left:3px solid var(--al)}.ar.sa{opacity:.5}
+.pdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.aid{font-size:10px;font-weight:600;color:var(--t3);font-family:monospace;margin-bottom:2px}.atype{font-weight:600;font-size:13px;margin-bottom:2px}.ameta{font-size:11px;color:var(--t3)}
+.abadges{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.atime{font-size:11px;color:var(--t3);font-family:monospace;white-space:nowrap}
+.badge{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:4px;font-family:monospace;white-space:nowrap}
+.empty{text-align:center;padding:60px 20px;color:var(--t3);font-size:13px}
+.dv{padding:24px 20px;max-width:860px;margin:0 auto}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--t2);background:none;border:none;cursor:pointer;padding:0;margin-bottom:20px;transition:color 150ms}.back:hover{color:var(--tu)}
+.dh{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+.dm{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:8px;margin-bottom:22px}
+.sc2{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rs);padding:10px 12px}
+.sk{font-size:10px;color:var(--t3);font-family:monospace;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.sv{font-size:13px;font-weight:600;font-family:monospace;color:var(--t1)}.sv.rh{color:var(--er)}.sv.rm{color:var(--al)}.sv.ro{color:var(--ok)}
+.ais{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.aih{padding:14px 18px;background:var(--s2);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ahl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-family:monospace;color:var(--tu);margin-bottom:3px}.ahp{font-size:12px;color:var(--t2)}
+.aipend{padding:36px;text-align:center}.aipend p{color:var(--t2);font-size:13px;margin-bottom:16px}
+.aiproc{padding:36px;text-align:center}
+.spin{width:36px;height:36px;border:2px solid var(--bd);border-top-color:var(--tu);border-radius:50%;animation:spin .75s linear infinite;margin:0 auto 14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pstep{font-size:11px;color:var(--t3);font-family:monospace;margin-top:10px;min-height:16px}
+.airec{padding:20px}
+.aigrid{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:18px}
+.af{flex:1;min-width:120px}.afl{font-size:10px;color:var(--t3);font-family:monospace;text-transform:uppercase;margin-bottom:4px}.afv{font-weight:600;font-size:14px}
+.cbar{height:5px;background:var(--s3);border-radius:3px;overflow:hidden;margin-top:6px}.cfill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--br),var(--tu));width:0;transition:width 900ms cubic-bezier(.4,0,.2,1)}
+.rat{background:var(--s2);border-left:3px solid var(--tu);border-radius:var(--rs);padding:12px 14px;font-size:13px;line-height:1.65;margin-bottom:14px;color:var(--t1)}
+.ksigs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.stag{background:var(--tut);border:1px solid rgba(0,168,203,.25);color:var(--tul);font-size:11px;padding:3px 10px;border-radius:20px;font-family:monospace}
+.acbox{background:var(--brt);border:1px solid rgba(81,95,252,.3);border-radius:var(--rs);padding:12px 14px}
+.acbox .alb{font-size:9px;font-weight:700;color:var(--br);font-family:monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}.acbox p{font-size:13px;font-weight:600;color:var(--t1)}
+.regnote{background:var(--alt);border:1px solid rgba(255,160,48,.3);border-radius:var(--rs);padding:10px 14px;font-size:12px;color:var(--al);margin-top:10px}.regnote::before{content:"⚠ REGULATORY: ";font-weight:700}
+.dbar{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.di{font-size:13px;color:var(--t2)}.di strong{color:var(--t1)}.di small{display:block;font-size:11px;color:var(--t3);margin-top:2px}
+.dbtns{display:flex;gap:10px;flex-wrap:wrap}.ddone{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--t2)}
+.btn{padding:9px 20px;border-radius:var(--rs);font-size:13px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:all 150ms;display:inline-flex;align-items:center;gap:6px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.b-cl{background:var(--tu);color:#000;font-weight:700}.b-cl:hover:not(:disabled){background:var(--tul)}
+.b-ok{background:var(--ok);color:#000}.b-ok:hover:not(:disabled){background:#2fa07e}
+.b-fx{background:var(--s2);color:var(--al);border-color:rgba(255,160,48,.35)}.b-fx:hover:not(:disabled){background:var(--alt);border-color:var(--al)}
+.b-cn{background:var(--s2);color:var(--t2);border-color:var(--bd)}.b-cn:hover{border-color:var(--bdh);color:var(--t1)}
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px;backdrop-filter:blur(6px)}
+.modal-ov.hidden{display:none}
+.modal{background:var(--s1);border:1px solid var(--bd);border-radius:14px;width:100%;max-width:460px;padding:24px}
+.modal h2{margin-bottom:6px}.modal>p{color:var(--t2);font-size:13px;margin-bottom:20px}
+.fg{margin-bottom:14px}
+.fl{display:block;font-size:10px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.07em;font-family:monospace;margin-bottom:6px}
+.fsel,.fta{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:var(--rs);color:var(--t1);font-size:13px;padding:9px 12px;font-family:inherit;transition:border-color 150ms;appearance:none}
+.fsel:focus,.fta:focus{outline:none;border-color:var(--tu)}.fta{resize:vertical;min-height:80px}
+.mact{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
+.av{padding:24px 20px;max-width:1000px;margin:0 auto}
+.atw{overflow-x:auto;border-radius:var(--r);border:1px solid var(--bd)}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:10px;color:var(--t3);font-family:monospace;text-transform:uppercase;letter-spacing:.07em;padding:10px 14px;border-bottom:1px solid var(--bd);background:var(--s2);white-space:nowrap}
+td{padding:12px 14px;border-bottom:1px solid var(--bd);font-size:12px;vertical-align:top}
+tr:last-child td{border-bottom:none}tr:hover td{background:var(--s2)}
+.tm{font-family:monospace;color:var(--t2)}.tco{color:var(--ok);font-weight:700}.tcx{color:var(--al);font-weight:700}.tca{color:var(--t3)}
+.aftr{display:flex;gap:10px;align-items:center;margin-top:14px}.aftr span{font-size:12px;color:var(--t3);font-family:monospace}
+.tow{position:fixed;bottom:24px;right:20px;display:flex;flex-direction:column;gap:8px;z-index:300}
+.toast{background:var(--s2);border:1px solid var(--bd);border-radius:var(--rs);padding:12px 16px;font-size:13px;max-width:300px;animation:tin 200ms ease}
+.toast.ok{border-left:3px solid var(--ok)}.toast.er{border-left:3px solid var(--er)}.toast.in{border-left:3px solid var(--tu)}
+@keyframes tin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sv2{padding:24px 20px;max-width:500px;margin:0 auto}
+.scard{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:22px;margin-bottom:14px}
+.scard h2{margin-bottom:8px}.scard p{color:var(--t2);font-size:13px;line-height:1.65;margin-bottom:12px}
+.irow{display:flex;align-items:center;gap:8px;background:var(--s2);border-radius:var(--rs);padding:10px 14px;margin-bottom:6px}
+.idot{width:8px;height:8px;border-radius:50%;flex-shrink:0}.irow span{font-size:12px;color:var(--t2)}
+@media(max-width:768px){.metrics{grid-template-columns:repeat(2,1fr)}.sgrid{grid-template-columns:repeat(2,1fr)}.ar{grid-template-columns:10px 1fr auto}.atime{display:none}.aigrid{flex-direction:column}.dbar{flex-direction:column;align-items:flex-start}.nav-badge,.nav-cq{display:none}}
+@media(max-width:480px){.wrap,.dv,.av,.sv2{padding:16px 14px}.nav{padding:0 14px}.mv{font-size:24px}h1{font-size:18px}}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-thumb{background:rgba(0,168,203,.3);border-radius:2px}
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-brand">
-      <img class="nav-logo" src="https://www.transunion.com/content/dam/transunion/global/common/logos/logo.svg" alt="TransUnion" onerror="this.style.display='none';document.getElementById('tuFallback').style.display='block'" />
-      <span id="tuFallback" style="display:none;font-weight:700;font-size:13px;color:#00A8CB;letter-spacing:0.05em;font-family:monospace">TRANSUNION</span>
-      <div class="nav-divider"></div>
-      <span class="nav-conquer">Conquer AI</span>
-    </div>
-    <div id="navTabs" class="nav-tabs"></div>
-    <div class="nav-right">
-      <span class="nav-badge">POC · Fraud Triage</span>
-      <button class="btn-settings" onclick="showView('settings')" title="Settings">⚙</button>
-    </div>
-  </nav>
-
-  <main class="main">
-    <div id="view-dashboard" class="view active"></div>
-    <div id="view-detail" class="view"></div>
-    <div id="view-audit" class="view"></div>
-    <div id="view-settings" class="view">
-      <div class="settings-view">
-        <div class="page-header">
-          <h1>Settings</h1>
-          <p>Configure your API key and manage POC data</p>
-        </div>
-        <div class="settings-card">
-          <h2>Anthropic API Key</h2>
-          <p>This POC uses the Anthropic Claude API to classify fraud alerts in real-time. Your key is stored locally in your browser only. Get a key at <a href="https://console.anthropic.com" target="_blank" style="color:var(--tu-blue)">console.anthropic.com</a>.</p>
-          <div class="form-group">
-            <label class="form-label">API Key</label>
-            <div class="api-key-row">
-              <input id="apiKeyInput" class="form-input" type="password" placeholder="sk-ant-api03-…" autocomplete="off" />
-              <button class="btn btn-classify" onclick="saveApiKey()">Save</button>
-              <button class="btn btn-cancel" onclick="clearApiKey()">Clear</button>
-            </div>
-            <div id="saveStatus" class="save-status"></div>
-          </div>
-        </div>
-        <div class="settings-card">
-          <h2>About This POC</h2>
-          <p>Conquer AI's Proof of Concept for TransUnion's Fraud Signal Triage Agent. Demonstrates the <strong>confirm-or-correct</strong> workflow — AI classifies fraud alerts, analysts confirm or override, every decision logs to a full audit trail.<br><br><strong>8 sample alerts</strong> pre-loaded across 5 fraud types. Model: <span style="font-family:monospace;color:var(--tu-blue)">claude-sonnet-4-20250514</span></p>
-          <button class="btn btn-cancel" onclick="resetData()">↺ Reset to sample data</button>
-        </div>
-        <div class="settings-card">
-          <h2>How It Works</h2>
-          <p style="margin-bottom:0"><strong>1. Alert Queue</strong> — incoming signals sorted by priority.<br><br><strong>2. AI Classification</strong> — click any alert, hit Classify with AI. Claude returns risk type, confidence, rationale, and suggested action.<br><br><strong>3. Confirm or Correct</strong> — confirm the AI is right, or override with your own classification and reason.<br><br><strong>4. Audit Trail</strong> — every decision logged. Exportable as CSV.</p>
-        </div>
+<nav class="nav">
+  <div class="nav-brand">
+    <img class="nav-logo" src="https://www.transunion.com/content/dam/transunion/global/common/logos/logo.svg" alt="TransUnion" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <span style="display:none;font-weight:700;font-size:13px;color:#00A8CB;letter-spacing:.06em;font-family:monospace">TRANSUNION</span>
+    <div class="nav-div"></div><span class="nav-cq">Conquer AI</span>
+  </div>
+  <div id="navTabs" class="nav-tabs"></div>
+  <div class="nav-r">
+    <span class="nav-badge">POC · Fraud Triage</span>
+    <button class="btn-ic" onclick="showView('settings')" title="About">⚙</button>
+  </div>
+</nav>
+<main class="main">
+  <div id="view-dashboard" class="view active"></div>
+  <div id="view-detail"    class="view"></div>
+  <div id="view-audit"     class="view"></div>
+  <div id="view-settings"  class="view">
+    <div class="sv2">
+      <div class="ph"><h1>About This POC</h1><p>Fraud Signal Triage Agent — Conquer AI × TransUnion</p></div>
+      <div class="scard">
+        <h2>What This Demonstrates</h2>
+        <p>This proof of concept shows the full <strong>confirm-or-correct</strong> workflow Conquer AI would build for TransUnion's fraud operations. AI classifies incoming fraud alerts, analysts review and confirm or override, and every decision logs to a full audit trail for regulatory review.</p>
+        <div class="irow"><div class="idot" style="background:var(--er)"></div><span>8 fraud alerts pre-loaded across 5 alert types</span></div>
+        <div class="irow"><div class="idot" style="background:var(--tu)"></div><span>AI classification with confidence score, rationale, and suggested action</span></div>
+        <div class="irow"><div class="idot" style="background:var(--ok)"></div><span>One-click confirm or structured correction with reason capture</span></div>
+        <div class="irow"><div class="idot" style="background:var(--br)"></div><span>Full audit trail — every decision logged and exportable as CSV</span></div>
       </div>
-    </div>
-  </main>
-
-  <div id="correctModal" class="modal-overlay hidden" onclick="if(event.target===this)closeCorrectModal()">
-    <div class="modal">
-      <h2>Correct Classification</h2>
-      <p>Override the AI's classification. Your correction is logged as a training signal.</p>
-      <input type="hidden" id="correctAlertId" />
-      <div class="form-group">
-        <label class="form-label">Correct Risk Type</label>
-        <select id="correctType" class="form-select">
-          <option value="Card Not Present Fraud">Card Not Present Fraud</option>
-          <option value="Account Takeover">Account Takeover</option>
-          <option value="Synthetic Identity Fraud">Synthetic Identity Fraud</option>
-          <option value="First Party Fraud">First Party Fraud</option>
-          <option value="Identity Verification Failure">Identity Verification Failure</option>
-          <option value="False Positive">False Positive — Not Fraud</option>
-          <option value="Requires Investigation">Requires Further Investigation</option>
-        </select>
+      <div class="scard">
+        <h2>Alert Types in Queue</h2>
+        <p style="margin-bottom:10px">Five fraud patterns representative of TransUnion's environment:</p>
+        <div class="irow"><div class="idot" style="background:var(--er)"></div><span>Card Not Present Fraud — geographic mismatch, high IP risk, new device</span></div>
+        <div class="irow"><div class="idot" style="background:var(--er)"></div><span>Account Takeover — credential compromise, MFA bypass, unusual location</span></div>
+        <div class="irow"><div class="idot" style="background:var(--al)"></div><span>Synthetic Identity Fraud — thin file, SSN anomalies, failed verification</span></div>
+        <div class="irow"><div class="idot" style="background:var(--al)"></div><span>Identity Verification Failure — liveness check fail, low face match</span></div>
+        <div class="irow"><div class="idot" style="background:var(--tu)"></div><span>First Party Fraud — high dispute velocity, chargeback pattern</span></div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Correct Urgency</label>
-        <select id="correctUrgency" class="form-select">
-          <option value="CRITICAL">CRITICAL</option>
-          <option value="HIGH">HIGH</option>
-          <option value="MEDIUM" selected>MEDIUM</option>
-          <option value="LOW">LOW</option>
-        </select>
+      <div class="scard">
+        <h2>Autonomy Level</h2>
+        <p style="margin-bottom:0">This POC runs at <strong style="color:var(--tu)">Level 2 — Augment</strong>. AI classifies and recommends. Human confirms or corrects. No autonomous action without analyst sign-off, except explicit auto-routing of very high confidence, low false-positive alerts. Level 3 is the next phase.</p>
       </div>
-      <div class="form-group">
-        <label class="form-label">Reason for Correction <span style="color:var(--danger)">*</span></label>
-        <textarea id="correctReason" class="form-textarea" placeholder="Explain why the AI classification was wrong…"></textarea>
-      </div>
-      <div class="modal-actions">
-        <button class="btn btn-cancel" onclick="closeCorrectModal()">Cancel</button>
-        <button class="btn btn-correct" onclick="submitCorrection()">✏ Submit Correction</button>
-      </div>
+      <button class="btn b-cn" onclick="resetData()">↺ Reset all alerts to sample data</button>
     </div>
   </div>
+</main>
+<div id="correctModal" class="modal-ov hidden" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h2>Correct Classification</h2>
+    <p>Override the AI's assessment. Your reason is logged as a training signal and improves future accuracy.</p>
+    <input type="hidden" id="mId"/>
+    <div class="fg"><label class="fl">Correct Risk Type</label>
+      <select id="mType" class="fsel">
+        <option>Card Not Present Fraud</option><option>Account Takeover</option>
+        <option>Synthetic Identity Fraud</option><option>First Party Fraud</option>
+        <option>Identity Verification Failure</option><option>False Positive — Not Fraud</option>
+        <option>Requires Further Investigation</option>
+      </select></div>
+    <div class="fg"><label class="fl">Correct Urgency</label>
+      <select id="mUrg" class="fsel"><option>CRITICAL</option><option>HIGH</option><option selected>MEDIUM</option><option>LOW</option></select></div>
+    <div class="fg"><label class="fl">Reason for Correction <span style="color:var(--er)">*</span></label>
+      <textarea id="mReason" class="fta" placeholder="e.g. Customer confirmed legitimate travel — IP mismatch expected, not fraud"></textarea></div>
+    <div class="mact">
+      <button class="btn b-cn" onclick="closeModal()">Cancel</button>
+      <button class="btn b-fx" onclick="submitCorrection()">✏ Submit Correction</button>
+    </div>
+  </div>
+</div>
+<div id="toasts" class="tow"></div>
+<script>
+const P={CRITICAL:{c:"#F13C47",b:"rgba(241,60,71,0.12)"},HIGH:{c:"#FFA030",b:"rgba(255,160,48,0.12)"},MEDIUM:{c:"#00A8CB",b:"rgba(0,168,203,0.12)"},LOW:{c:"#38BB94",b:"rgba(56,187,148,0.12)"}};
+const TL={cnp:"Card Not Present Fraud",ato:"Account Takeover",synth:"Synthetic Identity Fraud",idv:"Identity Verification Failure",fp:"First Party Fraud"};
 
-  <div id="toastContainer" class="toast-container"></div>
+const MOCK={
+"ALT-0041":{risk_type:"Card Not Present Fraud",urgency:"HIGH",confidence:.93,recommendation:"BLOCK",rationale:"IP risk score of 0.91 combined with a geographic mismatch — cardholder in GB, transaction routed through Nigeria — is a strong CNP fraud indicator. The device fingerprint is unrecognised (NEW_DEVICE) and the transaction amount of £4,750 is 32× the customer's average spend of £145.50. 3DS authentication failed and billing/shipping addresses do not match. Nine transactions in 24 hours against a 7-day baseline suggests active card testing.",key_signals:["IP risk score: 0.91","GB cardholder → NG merchant","NEW_DEVICE fingerprint","£4,750 vs £145.50 avg","3DS: not authenticated"],suggested_action:"Block transaction immediately. Place temporary hold on card. Contact cardholder on registered mobile to verify. Escalate to senior fraud analyst if unreachable within 2 hours.",false_positive_probability:.06,regulatory_note:"Cross-border transaction over £3,000 — document decision rationale for AML record-keeping obligations."},
+"ALT-0042":{risk_type:"Account Takeover",urgency:"CRITICAL",confidence:.97,recommendation:"BLOCK",rationale:"Textbook account takeover. Access from a Russian IP (risk score 0.95) despite US registration. MFA bypassed entirely, password and email both changed, and a $2,100 transaction initiated just 4 minutes after account modification — a classic fraud window. Seven failed logins in the prior 24 hours indicate a brute-force credential attack preceding the takeover.",key_signals:["Login from RU vs registered US","MFA bypassed","Password + email changed simultaneously","Transaction 4 mins after change","7 failed logins in 24h"],suggested_action:"Lock account immediately. Reverse password and email changes. Notify customer via secondary contact. File ATO incident report. Do not allow transactions until customer identity re-verified via KYC.",false_positive_probability:.02,regulatory_note:"Account takeover involving credential compromise must be reported under breach notification obligations if PII was accessed. Escalate to compliance within 24 hours."},
+"ALT-0043":{risk_type:"Synthetic Identity Fraud",urgency:"MEDIUM",confidence:.81,recommendation:"INVESTIGATE",rationale:"Multiple indicators consistent with a synthetic identity application. SSN first used in adulthood (not childhood), issued in Wyoming but applicant is in New York — common in SSN farming. Credit file is only 11 days old with 8 inquiries in 30 days. Employer verification failed and phone number is just 9 days old. Confidence is 81% rather than higher because income of $95K against $15K credit request is not implausible.",key_signals:["SSN first used as adult","Credit file age: 11 days","8 inquiries in 30 days","Employer verification failed","Phone number age: 9 days"],suggested_action:"Request enhanced KYC documentation — government-issued ID, proof of address dated within 30 days, and employer confirmation letter. Do not approve credit line until documents reviewed.",false_positive_probability:.19,regulatory_note:null},
+"ALT-0044":{risk_type:"False Positive — Not Fraud",urgency:"LOW",confidence:.91,recommendation:"AUTO_RESOLVE",rationale:"Signal profile is highly consistent with a legitimate transaction. IP risk score 0.08, recognised device, both cardholder and merchant in Canada, transaction value of CAD 89.99 within normal range for this customer (average CAD 92.00), 3DS authenticated, and billing/shipping addresses match. Netflix Canada is a well-known, low-risk merchant. This alert was likely triggered by a minor velocity threshold.",key_signals:["IP risk score: 0.08","KNOWN_DEVICE","CA → CA no mismatch","Amount within avg spend","3DS: authenticated"],suggested_action:"Auto-resolve as false positive. Consider adjusting velocity threshold for subscription merchant category to reduce false positive volume.",false_positive_probability:.91,regulatory_note:null},
+"ALT-0045":{risk_type:"Identity Verification Failure",urgency:"HIGH",confidence:.88,recommendation:"ESCALATE",rationale:"The liveness check failed outright and the face match score of 0.41 is well below the 0.70 minimum threshold — indicating the presented document does not correspond to the person completing verification. Document authenticity score of 0.62 also below threshold, suggesting the passport may be altered or counterfeit. Address verification returned only partial match.",key_signals:["Liveness check: FAIL","Face match score: 0.41 (min 0.70)","Document authenticity: 0.62","Address verification: PARTIAL","New account + overdraft requested"],suggested_action:"Decline application and request in-branch verification with two forms of original ID. Flag customer ID for 90-day enhanced monitoring. Do not onboard until identity confirmed via alternative channel.",false_positive_probability:.10,regulatory_note:"Failed identity verification on a new account application must be documented per KYC/AML obligations. Retain all verification attempt records for 5 years."},
+"ALT-0046":{risk_type:"First Party Fraud",urgency:"MEDIUM",confidence:.78,recommendation:"INVESTIGATE",rationale:"The customer has filed 4 disputes and 3 chargebacks in 12 months with a 92% win rate — a pattern consistent with deliberate first-party fraud. The most recent dispute was just 18 days ago and the current transaction of $520 matches the average dispute amount of $340. The pattern_flag field flagged high_dispute_velocity. Confidence is 78% because the account is 712 days old with no prior fraud flag.",key_signals:["4 disputes + 3 chargebacks in 12m","Win rate: 92%","Last dispute: 18 days ago","Transaction ≈ avg dispute amount","Pattern: high_dispute_velocity"],suggested_action:"Place manual review hold on transaction. Review full dispute history in case management system. If pattern confirmed, restrict chargeback rights on account and flag for enhanced monitoring.",false_positive_probability:.22,regulatory_note:null},
+"ALT-0047":{risk_type:"False Positive — Not Fraud",urgency:"LOW",confidence:.94,recommendation:"AUTO_RESOLVE",rationale:"All signal indicators point to a legitimate transaction. IP risk score 0.05, recognised device, US cardholder purchasing from US Apple Store via in-app channel, 3DS authenticated, and transaction amount of $1,250 is in line with the customer's average spend of $980. Premium customer segment with no adverse indicators.",key_signals:["IP risk score: 0.05","KNOWN_DEVICE","In-app purchase Apple US","3DS: authenticated","Amount near customer avg $980"],suggested_action:"Auto-resolve as false positive. No action required. Recommend whitelisting Apple Store in-app purchases for Premium segment to reduce false positive noise.",false_positive_probability:.94,regulatory_note:null},
+"ALT-0048":{risk_type:"Account Takeover",urgency:"HIGH",confidence:.84,recommendation:"ESCALATE",rationale:"Login from a Chinese IP (risk score 0.78) for a UK-registered Business account using a new unrecognised device, followed immediately by an attempted transfer of £8,900. Customer's last login was 4 days ago from a UK IP. MFA was not bypassed and no account changes were made — reducing certainty vs ALT-0042 — but the combination of high-risk foreign IP, new device, and immediate high-value transaction warrants escalation.",key_signals:["Login from CN, registered GB","IP risk score: 0.78","NEW_DEVICE","£8,900 transaction immediately after login","Business account segment"],suggested_action:"Step-up authentication required before transaction proceeds. Send OTP to registered mobile. If OTP not completed within 10 minutes, block transaction and contact account holder directly.",false_positive_probability:.14,regulatory_note:"Business account ATO attempts over £5,000 require escalation to the fraud operations team within 1 hour per internal policy."}
+};
 
-  <script>
-// ─────────────────────────────────────────────────────────────────────────────
-// TransUnion × Conquer AI — Sample Fraud Alert Data
-// Represents the incoming signal stream the triage agent processes
-// ─────────────────────────────────────────────────────────────────────────────
-
-const SAMPLE_ALERTS = [
-  {
-    id: "ALT-2026-0041",
-    timestamp: new Date(Date.now() - 4 * 60000).toISOString(),
-    source: "FDE-Primary v3.1",
-    alertType: "card_not_present",
-    priority: "HIGH",
-    status: "pending",
-    customer: { id: "CUS-887234", segment: "Premium", country: "GB" },
-    signal: {
-      transaction_amount: 4750.00,
-      currency: "GBP",
-      merchant: "TechStore International",
-      merchant_country: "NG",
-      card_holder_country: "GB",
-      transaction_channel: "Online",
-      device_fingerprint: "NEW_DEVICE",
-      ip_address_country: "NG",
-      ip_risk_score: 0.91,
-      velocity_24h: 9,
-      velocity_7d: 11,
-      avg_transaction_size: 145.50,
-      time_since_last_transaction_mins: 12,
-      3ds_authenticated: false,
-      billing_shipping_match: false,
-    }
-  },
-  {
-    id: "ALT-2026-0042",
-    timestamp: new Date(Date.now() - 11 * 60000).toISOString(),
-    source: "FDE-Primary v3.1",
-    alertType: "account_takeover",
-    priority: "CRITICAL",
-    status: "pending",
-    customer: { id: "CUS-223419", segment: "Standard", country: "US" },
-    signal: {
-      event_type: "Password reset + email change",
-      login_ip_country: "RU",
-      registered_country: "US",
-      device_fingerprint: "NEW_DEVICE",
-      ip_risk_score: 0.95,
-      logins_failed_24h: 7,
-      password_changed: true,
-      email_changed: true,
-      mfa_bypassed: true,
-      time_to_transaction_after_change_mins: 4,
-      transaction_amount: 2100.00,
-      currency: "USD",
-    }
-  },
-  {
-    id: "ALT-2026-0043",
-    timestamp: new Date(Date.now() - 18 * 60000).toISOString(),
-    source: "FDE-Secondary v2.4",
-    alertType: "synthetic_identity",
-    priority: "MEDIUM",
-    status: "pending",
-    customer: { id: "CUS-991122", segment: "New", country: "US" },
-    signal: {
-      ssn_issued_state: "WY",
-      applicant_address_state: "NY",
-      credit_file_age_days: 11,
-      number_of_inquiries_30d: 8,
-      thin_file: true,
-      ssn_first_use_age: "adult",
-      name_address_mismatch: true,
-      phone_number_age_days: 9,
-      credit_requested: 15000,
-      income_stated: 95000,
-      employer_verification_failed: true,
-    }
-  },
-  {
-    id: "ALT-2026-0044",
-    timestamp: new Date(Date.now() - 27 * 60000).toISOString(),
-    source: "FDE-Primary v3.1",
-    alertType: "card_not_present",
-    priority: "LOW",
-    status: "pending",
-    customer: { id: "CUS-445567", segment: "Premium", country: "CA" },
-    signal: {
-      transaction_amount: 89.99,
-      currency: "CAD",
-      merchant: "Netflix Canada",
-      merchant_country: "CA",
-      card_holder_country: "CA",
-      transaction_channel: "Online",
-      device_fingerprint: "KNOWN_DEVICE",
-      ip_address_country: "CA",
-      ip_risk_score: 0.08,
-      velocity_24h: 2,
-      velocity_7d: 8,
-      avg_transaction_size: 92.00,
-      3ds_authenticated: true,
-      billing_shipping_match: true,
-    }
-  },
-  {
-    id: "ALT-2026-0045",
-    timestamp: new Date(Date.now() - 35 * 60000).toISOString(),
-    source: "Identity Engine v1.9",
-    alertType: "identity_verification_fail",
-    priority: "HIGH",
-    status: "pending",
-    customer: { id: "CUS-778843", segment: "New", country: "GB" },
-    signal: {
-      document_type: "Passport",
-      document_country: "GB",
-      document_expiry: "2027-08-14",
-      liveness_check: "FAIL",
-      face_match_score: 0.41,
-      document_authenticity_score: 0.62,
-      address_verification: "PARTIAL",
-      pep_sanction_hit: false,
-      device_fingerprint: "NEW_DEVICE",
-      application_type: "Current Account",
-      requested_overdraft: 2500,
-    }
-  },
-  {
-    id: "ALT-2026-0046",
-    timestamp: new Date(Date.now() - 52 * 60000).toISOString(),
-    source: "FDE-Primary v3.1",
-    alertType: "first_party_fraud",
-    priority: "MEDIUM",
-    status: "pending",
-    customer: { id: "CUS-332211", segment: "Standard", country: "US" },
-    signal: {
-      dispute_count_12m: 4,
-      chargeback_count_12m: 3,
-      dispute_win_rate: 0.92,
-      avg_dispute_amount: 340,
-      most_recent_dispute_days_ago: 18,
-      transaction_amount: 520.00,
-      merchant: "Electronics Depot",
-      pattern_match: "high_dispute_velocity",
-      account_age_days: 712,
-      previous_fraud_flag: false,
-    }
-  },
-  {
-    id: "ALT-2026-0047",
-    timestamp: new Date(Date.now() - 68 * 60000).toISOString(),
-    source: "FDE-Secondary v2.4",
-    alertType: "card_not_present",
-    priority: "LOW",
-    status: "pending",
-    customer: { id: "CUS-112358", segment: "Premium", country: "US" },
-    signal: {
-      transaction_amount: 1250.00,
-      currency: "USD",
-      merchant: "Apple Store",
-      merchant_country: "US",
-      card_holder_country: "US",
-      transaction_channel: "In-App",
-      device_fingerprint: "KNOWN_DEVICE",
-      ip_address_country: "US",
-      ip_risk_score: 0.05,
-      velocity_24h: 1,
-      avg_transaction_size: 980.00,
-      3ds_authenticated: true,
-      billing_shipping_match: true,
-    }
-  },
-  {
-    id: "ALT-2026-0048",
-    timestamp: new Date(Date.now() - 89 * 60000).toISOString(),
-    source: "FDE-Primary v3.1",
-    alertType: "account_takeover",
-    priority: "HIGH",
-    status: "pending",
-    customer: { id: "CUS-567890", segment: "Business", country: "GB" },
-    signal: {
-      event_type: "Unusual login location",
-      login_ip_country: "CN",
-      registered_country: "GB",
-      device_fingerprint: "NEW_DEVICE",
-      ip_risk_score: 0.78,
-      logins_failed_24h: 3,
-      password_changed: false,
-      email_changed: false,
-      mfa_bypassed: false,
-      time_since_last_login_days: 4,
-      transaction_amount: 8900.00,
-      currency: "GBP",
-    }
-  }
+const SAMPLE=[
+{id:"ALT-0041",ts:new Date(Date.now()-4*60000).toISOString(),type:"cnp",priority:"HIGH",status:"pending",source:"FDE-Primary v3.1",cust:{seg:"Premium",cc:"GB"},sig:{transaction_amount:"£4,750",currency:"GBP",merchant:"TechStore International",merchant_country:"Nigeria",cardholder_country:"GB",channel:"Online",device:"NEW_DEVICE",ip_country:"Nigeria",ip_risk_score:"0.91",velocity_24h:"9 transactions",avg_spend:"£145.50","3ds_auth":"NO",billing_shipping_match:"NO"}},
+{id:"ALT-0042",ts:new Date(Date.now()-11*60000).toISOString(),type:"ato",priority:"CRITICAL",status:"pending",source:"FDE-Primary v3.1",cust:{seg:"Standard",cc:"US"},sig:{event_type:"Password + email change",login_ip_country:"Russia",registered_country:"US",device:"NEW_DEVICE",ip_risk_score:"0.95",failed_logins_24h:"7",password_changed:"YES",email_changed:"YES",mfa_bypassed:"YES",mins_to_transaction:"4",transaction_amount:"$2,100"}},
+{id:"ALT-0043",ts:new Date(Date.now()-18*60000).toISOString(),type:"synth",priority:"MEDIUM",status:"pending",source:"FDE-Secondary v2.4",cust:{seg:"New",cc:"US"},sig:{ssn_first_used_as:"Adult",ssn_issued_state:"Wyoming",applicant_state:"New York",credit_file_age:"11 days",inquiries_30d:"8",employer_verification:"FAILED",phone_age_days:"9",income_stated:"$95,000",credit_requested:"$15,000"}},
+{id:"ALT-0044",ts:new Date(Date.now()-27*60000).toISOString(),type:"cnp",priority:"LOW",status:"pending",source:"FDE-Primary v3.1",cust:{seg:"Premium",cc:"CA"},sig:{transaction_amount:"CAD 89.99",merchant:"Netflix Canada",merchant_country:"Canada",cardholder_country:"Canada",channel:"Online",device:"KNOWN_DEVICE",ip_country:"Canada",ip_risk_score:"0.08",velocity_24h:"2 transactions",avg_spend:"CAD 92.00","3ds_auth":"YES",billing_shipping_match:"YES"}},
+{id:"ALT-0045",ts:new Date(Date.now()-35*60000).toISOString(),type:"idv",priority:"HIGH",status:"pending",source:"Identity Engine v1.9",cust:{seg:"New",cc:"GB"},sig:{document_type:"Passport (GB)",liveness_check:"FAIL",face_match_score:"0.41 / 1.00",document_authenticity:"0.62 / 1.00",address_verification:"PARTIAL",pep_sanction_hit:"NO",application_type:"Current Account",overdraft_requested:"£2,500"}},
+{id:"ALT-0046",ts:new Date(Date.now()-52*60000).toISOString(),type:"fp",priority:"MEDIUM",status:"pending",source:"FDE-Primary v3.1",cust:{seg:"Standard",cc:"US"},sig:{disputes_12m:"4",chargebacks_12m:"3",dispute_win_rate:"92%",avg_dispute_amount:"$340",last_dispute_days_ago:"18",transaction_amount:"$520",merchant:"Electronics Depot",pattern_flag:"high_dispute_velocity",account_age:"712 days"}},
+{id:"ALT-0047",ts:new Date(Date.now()-68*60000).toISOString(),type:"cnp",priority:"LOW",status:"pending",source:"FDE-Secondary v2.4",cust:{seg:"Premium",cc:"US"},sig:{transaction_amount:"$1,250",merchant:"Apple Store USA",merchant_country:"United States",cardholder_country:"US",channel:"In-App",device:"KNOWN_DEVICE",ip_country:"US",ip_risk_score:"0.05",velocity_24h:"1 transaction",avg_spend:"$980","3ds_auth":"YES"}},
+{id:"ALT-0048",ts:new Date(Date.now()-89*60000).toISOString(),type:"ato",priority:"HIGH",status:"pending",source:"FDE-Primary v3.1",cust:{seg:"Business",cc:"GB"},sig:{event_type:"Unusual login location",login_ip_country:"China",registered_country:"GB",device:"NEW_DEVICE",ip_risk_score:"0.78",failed_logins_24h:"3",password_changed:"NO",mfa_bypassed:"NO",last_login_days_ago:"4",transaction_amount:"£8,900"}}
 ];
 
-const ALERT_TYPE_LABELS = {
-  card_not_present: "Card Not Present",
-  account_takeover: "Account Takeover",
-  synthetic_identity: "Synthetic Identity",
-  identity_verification_fail: "Identity Verification Fail",
-  first_party_fraud: "First Party Fraud",
-};
+const S={alerts:[],log:[],filter:"all",cid:null};
+function dc(x){return JSON.parse(JSON.stringify(x))}
+function save(){localStorage.setItem("tu_a",JSON.stringify(S.alerts));localStorage.setItem("tu_l",JSON.stringify(S.log))}
+function resetData(){if(!confirm("Reset all alerts to sample data?"))return;S.alerts=dc(SAMPLE);S.log=[];save();updateCounts();showView("dashboard");toast("Alerts reset","in")}
 
-const PRIORITY_CONFIG = {
-  CRITICAL: { color: "#F13C47", bg: "rgba(241,60,71,0.12)", label: "CRITICAL" },
-  HIGH:     { color: "#FFA030", bg: "rgba(255,160,48,0.12)", label: "HIGH" },
-  MEDIUM:   { color: "#00A8CB", bg: "rgba(0,168,203,0.12)", label: "MEDIUM" },
-  LOW:      { color: "#38BB94", bg: "rgba(56,187,148,0.12)", label: "LOW" },
-};
-// ─────────────────────────────────────────────────────────────────────────────
-// TransUnion × Conquer AI — Anthropic API Integration
-// Fraud Signal Classification Engine
-// ─────────────────────────────────────────────────────────────────────────────
-
-const API = {
-  async classifyAlert(alert, apiKey) {
-    const signalJson = JSON.stringify(alert.signal, null, 2);
-    const prompt = `You are a fraud detection AI for TransUnion, one of the world's largest consumer credit reporting agencies. Your job is to classify incoming fraud alerts with precision and provide clear, actionable guidance to human analysts.
-
-ALERT DETAILS:
-- Alert ID: ${alert.id}
-- Alert Type: ${ALERT_TYPE_LABELS[alert.alertType] || alert.alertType}
-- Source System: ${alert.source}
-- Customer Segment: ${alert.customer.segment}
-- Customer Country: ${alert.customer.country}
-
-RAW SIGNAL DATA:
-${signalJson}
-
-Analyse this alert and return ONLY a valid JSON object with exactly this structure (no markdown, no explanation, just the JSON):
-
-{
-  "risk_type": "string — specific fraud type (e.g. 'Card Not Present Fraud', 'Account Takeover', 'Synthetic Identity Fraud', 'First Party Fraud', 'False Positive')",
-  "urgency": "CRITICAL | HIGH | MEDIUM | LOW",
-  "confidence": number between 0.00 and 1.00,
-  "recommendation": "AUTO_RESOLVE | ESCALATE | INVESTIGATE | BLOCK",
-  "rationale": "2-3 clear sentences explaining exactly why you classified it this way, referencing specific signal values",
-  "key_signals": ["array of 3-5 specific signal values that most influenced this classification"],
-  "suggested_action": "One specific, actionable instruction for the analyst — what to do right now",
-  "false_positive_probability": number between 0.00 and 1.00,
-  "regulatory_note": "null or a short note if there are regulatory/compliance implications the analyst must be aware of"
+function init(){
+  try{S.alerts=JSON.parse(localStorage.getItem("tu_a"))||dc(SAMPLE)}catch{S.alerts=dc(SAMPLE)}
+  try{S.log=JSON.parse(localStorage.getItem("tu_l"))||[]}catch{S.log=[]}
+  buildNav();renderDash();showView("dashboard");
 }
 
-Be precise. Reference actual numbers from the signal data. If ip_risk_score is 0.91, say so. If velocity is 9 in 24h against an average of 2, flag that. Analysts trust you when you cite your evidence.`;
-
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-        "anthropic-dangerous-direct-browser-access": "true"
-      },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        messages: [{ role: "user", content: prompt }]
-      })
-    });
-
-    if (!response.ok) {
-      const err = await response.json().catch(() => ({}));
-      if (response.status === 401) throw new Error("Invalid API key. Please check your Anthropic API key in Settings.");
-      if (response.status === 429) throw new Error("Rate limit reached. Please wait a moment and try again.");
-      throw new Error(err.error?.message || `API error: ${response.status}`);
-    }
-
-    const data = await response.json();
-    const raw = data.content[0]?.text || "";
-
-    // Strip any markdown fences if present
-    const clean = raw.replace(/```json
-?/g, "").replace(/```
-?/g, "").trim();
-
-    try {
-      return JSON.parse(clean);
-    } catch {
-      throw new Error("AI returned an unexpected response format. Please try again.");
-    }
-  }
-};
-// ─────────────────────────────────────────────────────────────────────────────
-// TransUnion × Conquer AI — Fraud Signal Triage Agent
-// Main Application Logic
-// ─────────────────────────────────────────────────────────────────────────────
-
-// ── STATE ────────────────────────────────────────────────────────────────────
-const STATE = {
-  alerts: [],
-  auditLog: [],
-  currentAlertId: null,
-  currentClassification: null,
-  currentFilter: "all",
-  apiKey: "",
-  classifying: false,
-  view: "dashboard", // dashboard | detail | audit | settings
-};
-
-// ── INIT ─────────────────────────────────────────────────────────────────────
-function init() {
-  // Load persisted data
-  STATE.apiKey = localStorage.getItem("tu_api_key") || "";
-  const savedLog = localStorage.getItem("tu_audit_log");
-  if (savedLog) {
-    try { STATE.auditLog = JSON.parse(savedLog); } catch { STATE.auditLog = []; }
-  }
-  const savedAlerts = localStorage.getItem("tu_alerts");
-  if (savedAlerts) {
-    try {
-      STATE.alerts = JSON.parse(savedAlerts);
-    } catch {
-      STATE.alerts = SAMPLE_ALERTS.map(a => ({ ...a }));
-    }
-  } else {
-    STATE.alerts = SAMPLE_ALERTS.map(a => ({ ...a }));
-    saveAlerts();
-  }
-
-  // Build tabs + render
-  buildNavTabs();
-  renderDashboard();
-  showView("dashboard");
-  updateNavCounts();
-
-  // Prefill API key field if present
-  const keyInput = document.getElementById("apiKeyInput");
-  if (keyInput && STATE.apiKey) {
-    keyInput.value = STATE.apiKey;
-  }
+function buildNav(){
+  document.getElementById("navTabs").innerHTML=[
+    {v:"dashboard",l:"Alert Queue",c:"cq"},{v:"audit",l:"Audit Log",c:"ca"},{v:"settings",l:"⚙ About",c:null}
+  ].map(t=>`<button class="nav-tab" data-view="${t.v}" onclick="showView('${t.v}')">${t.l}${t.c?`<span class="tcnt m" id="${t.c}">0</span>`:""}</button>`).join("");
+  updateCounts();
 }
 
-// ── NAVIGATION ────────────────────────────────────────────────────────────────
-function showView(name) {
-  STATE.view = name;
-  document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
-  const el = document.getElementById(`view-${name}`);
-  if (el) el.classList.add("active");
-
-  document.querySelectorAll(".nav-tab").forEach(t => {
-    t.classList.toggle("active", t.dataset.view === name);
-  });
-
-  if (name === "dashboard") renderDashboard();
-  if (name === "audit") renderAuditLog();
+function updateCounts(){
+  const p=S.alerts.filter(a=>a.status==="pending").length;
+  const qe=document.getElementById("cq"),ae=document.getElementById("ca");
+  if(qe){qe.textContent=p;qe.className="tcnt"+(p>0?"":" m")}
+  if(ae){ae.textContent=S.log.length;ae.className="tcnt m"}
 }
 
-function buildNavTabs() {
-  const container = document.getElementById("navTabs");
-  const tabs = [
-    { view: "dashboard", label: "Alert Queue", countId: "count-queue" },
-    { view: "audit",     label: "Audit Log",   countId: "count-audit" },
-    { view: "settings",  label: "⚙ Settings",  countId: null },
-  ];
-  container.innerHTML = tabs.map(t => `
-    <button class="nav-tab" data-view="${t.view}" onclick="showView('${t.view}')">
-      ${t.label}
-      ${t.countId ? `<span class="tab-count muted" id="${t.countId}">0</span>` : ""}
-    </button>
-  `).join("");
+function showView(n){
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  document.getElementById("view-"+n).classList.add("active");
+  document.querySelectorAll(".nav-tab").forEach(t=>t.classList.toggle("active",t.dataset.view===n));
+  if(n==="audit")renderAudit();
+  if(n==="dashboard")renderDash();
 }
 
-function updateNavCounts() {
-  const pending = STATE.alerts.filter(a => a.status === "pending").length;
-  const qEl = document.getElementById("count-queue");
-  const aEl = document.getElementById("count-audit");
-  if (qEl) {
-    qEl.textContent = pending;
-    qEl.className = "tab-count" + (pending > 0 ? "" : " muted");
-  }
-  if (aEl) {
-    aEl.textContent = STATE.auditLog.length;
-    aEl.className = "tab-count muted";
-  }
+function renderDash(){
+  const p=S.alerts.filter(a=>a.status==="pending").length;
+  const r=S.alerts.filter(a=>a.status!=="pending").length;
+  const co=S.log.filter(e=>e.action==="confirmed").length;
+  const cx=S.log.filter(e=>e.action==="corrected").length;
+  const tot=co+cx;
+  const acc=tot>0?Math.round(co/tot*100)+"%":"—";
+  const ts=(S.log.length*4.2).toFixed(0)+"m";
+  const fl=getFiltered();
+  document.getElementById("view-dashboard").innerHTML=`
+<div class="wrap">
+  <div class="ph"><h1>Fraud Signal Queue</h1><p>Incoming alerts from fraud detection engines — classified by AI, reviewed by your team</p></div>
+  <div class="metrics">
+    <div class="mc cr"><div class="mv">${p}</div><div class="ml">Pending Review</div><div class="ms">Awaiting analyst</div></div>
+    <div class="mc ok"><div class="mv">${r}</div><div class="ml">Resolved</div><div class="ms">Confirmed or corrected</div></div>
+    <div class="mc tu"><div class="mv">${acc}</div><div class="ml">AI Accuracy</div><div class="ms">${tot} decisions made</div></div>
+    <div class="mc br"><div class="mv">${ts}</div><div class="ml">Time Saved</div><div class="ms">Est. vs manual triage</div></div>
+    <div class="mc al"><div class="mv">${cx}</div><div class="ml">Corrections</div><div class="ms">Training signals</div></div>
+  </div>
+  <div class="sh">
+    <h2>Alert Queue (${fl.length})</h2>
+    <div class="frow">${["all","pending","confirmed","corrected","auto_resolved"].map(f=>`<button class="fb ${S.filter===f?"active":""}" onclick="setFilter('${f}')">${f.replace("_"," ")}</button>`).join("")}</div>
+  </div>
+  <div class="alist">${fl.length===0?`<div class="empty">No alerts matching this filter</div>`:fl.map(aRow).join("")}</div>
+</div>`;
 }
 
-// ── DASHBOARD ─────────────────────────────────────────────────────────────────
-function renderDashboard() {
-  const container = document.getElementById("view-dashboard");
-  const filtered = filterAlerts(STATE.alerts, STATE.currentFilter);
-  const pending = STATE.alerts.filter(a => a.status === "pending").length;
-  const resolved = STATE.alerts.filter(a => a.status !== "pending").length;
-  const confirmed = STATE.auditLog.filter(e => e.action === "confirmed").length;
-  const corrected = STATE.auditLog.filter(e => e.action === "corrected").length;
-  const totalDecisions = confirmed + corrected;
-  const accuracy = totalDecisions > 0
-    ? Math.round((confirmed / totalDecisions) * 100)
-    : "—";
-  const timeSaved = (STATE.auditLog.length * 4.2).toFixed(0);
+function getFiltered(){
+  const all=[...S.alerts].sort((a,b)=>{const o={CRITICAL:0,HIGH:1,MEDIUM:2,LOW:3};if(a.status==="pending"&&b.status!=="pending")return -1;if(a.status!=="pending"&&b.status==="pending")return 1;return(o[a.priority]??9)-(o[b.priority]??9)});
+  return S.filter==="all"?all:all.filter(a=>a.status===S.filter);
+}
+function setFilter(f){S.filter=f;renderDash()}
 
-  container.innerHTML = `
-    <div class="dashboard">
-      <div class="page-header">
-        <h1>Fraud Signal Queue</h1>
-        <p>Incoming alerts from fraud detection engines — classified by AI, reviewed by your team</p>
-      </div>
+function aRow(a){
+  const pc=P[a.priority]||P.LOW;
+  const amt=a.sig.transaction_amount||a.sig.credit_requested||"";
+  const sc=a.status==="confirmed"?"sc":a.status==="corrected"?"sx":a.status==="auto_resolved"?"sa":"";
+  return`<div class="ar ${sc}" onclick="openAlert('${a.id}')">
+  <div class="pdot" style="background:${pc.c};box-shadow:0 0 6px ${pc.c}55"></div>
+  <div><div class="aid">${a.id}</div><div class="atype">${TL[a.type]||a.type}</div><div class="ameta">${a.source} · ${a.cust.seg} · ${a.cust.cc}${amt?" · "+amt:""}</div></div>
+  <div class="abadges">
+    ${a.status==="pending"?`<span class="badge" style="background:${pc.b};color:${pc.c}">${a.priority}</span>`:`<span class="badge" style="background:var(--s3);color:var(--t2)">${a.status.replace("_"," ")}</span>`}
+    ${a.ai?`<span class="badge" style="background:var(--tut);color:var(--tu)">${Math.round(a.ai.confidence*100)}%</span>`:""}
+  </div>
+  <div class="atime">${ago(a.ts)}</div>
+</div>`;
+}
 
-      ${!STATE.apiKey ? `
-      <div class="no-key-banner">
-        <div>
-          <p><strong>API key required</strong> — Enter your Anthropic API key in Settings to enable AI classification.</p>
-        </div>
-        <button class="btn btn-correct" onclick="showView('settings')">Go to Settings →</button>
-      </div>` : ""}
-
-      <div class="metrics">
-        <div class="metric-card crit">
-          <div class="metric-value" id="m-pending">${pending}</div>
-          <div class="metric-label">Pending Review</div>
-          <div class="metric-sub">Awaiting analyst decision</div>
-        </div>
-        <div class="metric-card ok">
-          <div class="metric-value">${resolved}</div>
-          <div class="metric-label">Resolved</div>
-          <div class="metric-sub">Confirmed or corrected</div>
-        </div>
-        <div class="metric-card tu">
-          <div class="metric-value">${accuracy}${accuracy !== "—" ? "%" : ""}</div>
-          <div class="metric-label">AI Accuracy</div>
-          <div class="metric-sub">${totalDecisions} decisions made</div>
-        </div>
-        <div class="metric-card brand">
-          <div class="metric-value">${timeSaved}m</div>
-          <div class="metric-label">Time Saved</div>
-          <div class="metric-sub">Est. vs manual triage</div>
-        </div>
-        <div class="metric-card warn">
-          <div class="metric-value">${corrected}</div>
-          <div class="metric-label">Corrections</div>
-          <div class="metric-sub">AI overrides — training signals</div>
-        </div>
-      </div>
-
-      <div class="section-header">
-        <h2>Alert Queue (${filtered.length})</h2>
-        <div class="filter-row">
-          ${["all","pending","confirmed","corrected","auto_resolved"].map(f => `
-            <button class="filter-btn ${STATE.currentFilter === f ? "active" : ""}"
-              onclick="setFilter('${f}')">${f.replace("_"," ")}</button>
-          `).join("")}
-        </div>
-      </div>
-
-      <div class="alert-list">
-        ${filtered.length === 0
-          ? `<div style="text-align:center;padding:48px;color:var(--text-3)">No alerts matching this filter</div>`
-          : filtered.map(a => renderAlertRow(a)).join("")
-        }
+function openAlert(id){
+  S.cid=id;const a=S.alerts.find(x=>x.id===id);if(!a)return;
+  const pc=P[a.priority]||P.LOW;
+  document.getElementById("view-detail").innerHTML=`
+<div class="dv">
+  <button class="back" onclick="showView('dashboard')">← Back to Queue</button>
+  <div class="dh">
+    <div><h1>${TL[a.type]||a.type}</h1>
+      <div class="dm">
+        <span class="badge" style="background:${pc.b};color:${pc.c}">${a.priority}</span>
+        <span class="badge" style="background:var(--s2);color:var(--t2)">${a.id}</span>
+        <span class="badge" style="background:var(--s2);color:var(--t2)">${a.source}</span>
+        <span class="badge" style="background:var(--s2);color:var(--t2)">${a.cust.seg} · ${a.cust.cc}</span>
       </div>
     </div>
-  `;
-}
-
-function setFilter(f) {
-  STATE.currentFilter = f;
-  renderDashboard();
-}
-
-function filterAlerts(alerts, filter) {
-  if (filter === "all") return [...alerts].sort((a, b) => {
-    const order = { CRITICAL: 0, HIGH: 1, MEDIUM: 2, LOW: 3 };
-    if (a.status === "pending" && b.status !== "pending") return -1;
-    if (a.status !== "pending" && b.status === "pending") return 1;
-    return (order[a.priority] ?? 9) - (order[b.priority] ?? 9);
-  });
-  return alerts.filter(a => a.status === filter);
-}
-
-function renderAlertRow(alert) {
-  const pc = PRIORITY_CONFIG[alert.priority] || PRIORITY_CONFIG.LOW;
-  const typeLabel = ALERT_TYPE_LABELS[alert.alertType] || alert.alertType;
-  const ago = timeAgo(alert.timestamp);
-  const statusBadge = alert.status === "pending"
-    ? `<span class="badge" style="background:${pc.bg};color:${pc.color}">${pc.label}</span>`
-    : `<span class="badge" style="background:var(--surface-3);color:var(--text-2)">${alert.status.replace("_"," ")}</span>`;
-
-  const amount = alert.signal?.transaction_amount
-    ? `${alert.signal.currency || "$"}${alert.signal.transaction_amount?.toLocaleString()}`
-    : alert.signal?.credit_requested
-    ? `$${alert.signal.credit_requested?.toLocaleString()} credit`
-    : "";
-
-  return `
-    <div class="alert-row status-${alert.status}" onclick="openAlert('${alert.id}')">
-      <div class="alert-priority-dot" style="background:${pc.color};box-shadow:0 0 6px ${pc.color}40"></div>
-      <div class="alert-main">
-        <div class="alert-id">${alert.id}</div>
-        <div class="alert-type">${typeLabel}</div>
-        <div class="alert-meta">${alert.source}${amount ? " · " + amount : ""} · ${alert.customer.segment} · ${alert.customer.country}</div>
-      </div>
-      <div class="alert-badges">
-        ${statusBadge}
-        ${alert.aiResult ? `<span class="badge" style="background:var(--tu-tint);color:var(--tu-blue)">${Math.round(alert.aiResult.confidence * 100)}% conf</span>` : ""}
-      </div>
-      <div class="alert-time">${ago}</div>
+    <div style="font-size:11px;color:var(--t3);font-family:monospace;flex-shrink:0">${new Date(a.ts).toLocaleString()}</div>
+  </div>
+  <h2 style="margin-bottom:12px">Raw Signal Data</h2>
+  <div class="sgrid">${sigCards(a.sig)}</div>
+  <div class="ais" id="aiS">
+    <div class="aih">
+      <div><div class="ahl">AI Classification</div><p class="ahp">Conquer AI Fraud Triage Agent · claude-sonnet-4</p></div>
+      ${a.status==="pending"&&!a.ai?`<button class="btn b-cl" id="cBtn" onclick="runClassify('${a.id}')">⚡ Classify with AI</button>`:""}
     </div>
-  `;
-}
-
-// ── ALERT DETAIL ──────────────────────────────────────────────────────────────
-function openAlert(id) {
-  const alert = STATE.alerts.find(a => a.id === id);
-  if (!alert) return;
-  STATE.currentAlertId = id;
-  STATE.currentClassification = alert.aiResult || null;
-  renderDetailView(alert);
+    <div id="aiB">${a.ai?aiHTML(a.ai):`<div class="aipend"><p>Click <strong>Classify with AI</strong> to analyse this alert's signal data.</p></div>`}</div>
+  </div>
+  <div class="dbar" id="dBar">${dbarHTML(a)}</div>
+</div>`;
   showView("detail");
 }
 
-function renderDetailView(alert) {
-  const container = document.getElementById("view-detail");
-  const pc = PRIORITY_CONFIG[alert.priority] || PRIORITY_CONFIG.LOW;
-  const typeLabel = ALERT_TYPE_LABELS[alert.alertType] || alert.alertType;
-
-  container.innerHTML = `
-    <div class="detail-view">
-      <button class="back-btn" onclick="showView('dashboard')">← Back to Queue</button>
-
-      <div class="detail-header">
-        <div class="detail-title">
-          <h1>${typeLabel}</h1>
-          <div class="detail-meta">
-            <span class="badge" style="background:${pc.bg};color:${pc.color}">${pc.label}</span>
-            <span class="badge" style="background:var(--surface-2);color:var(--text-2)">${alert.id}</span>
-            <span class="badge" style="background:var(--surface-2);color:var(--text-2)">${alert.source}</span>
-            <span class="badge" style="background:var(--surface-2);color:var(--text-2)">${alert.customer.segment} · ${alert.customer.country}</span>
-          </div>
-        </div>
-        <div style="font-size:12px;color:var(--text-3);font-family:monospace">
-          ${new Date(alert.timestamp).toLocaleString()}
-        </div>
-      </div>
-
-      <!-- Signal Data -->
-      <h2 style="margin-bottom:12px">Signal Data</h2>
-      <div class="signal-grid">
-        ${renderSignalCards(alert.signal)}
-      </div>
-
-      <!-- AI Classification -->
-      <div class="ai-section" id="aiSection">
-        <div class="ai-section-header">
-          <div>
-            <div class="label" style="color:var(--tu-blue);margin-bottom:4px">AI Classification</div>
-            <div style="font-size:12px;color:var(--text-2)">Powered by Claude · Conquer AI Triage Agent</div>
-          </div>
-          ${alert.status === "pending" && !alert.aiResult ? `
-            <button class="btn btn-classify" id="classifyBtn" onclick="classifyAlert('${alert.id}')"
-              ${!STATE.apiKey ? "disabled title='Add API key in Settings'" : ""}>
-              ⚡ Classify with AI
-            </button>` : ""}
-        </div>
-        <div id="aiResultArea">
-          ${alert.aiResult ? renderAIResult(alert.aiResult) : `
-            <div class="ai-loading" style="padding:30px;text-align:center;color:var(--text-3)">
-              ${STATE.apiKey
-                ? "Click <strong>Classify with AI</strong> to analyse this alert"
-                : `<span style="color:var(--alert)">Add your Anthropic API key in <a href="#" onclick="showView('settings')" style="color:var(--tu-blue)">Settings</a> to enable classification</span>`
-              }
-            </div>
-          `}
-        </div>
-      </div>
-
-      <!-- Decision bar -->
-      <div class="decision-bar" id="decisionBar">
-        ${renderDecisionBar(alert)}
-      </div>
-    </div>
-  `;
-}
-
-function renderSignalCards(signal) {
-  if (!signal) return '<div class="signal-card"><div class="signal-val">No signal data</div></div>';
-  return Object.entries(signal).map(([key, val]) => {
-    let riskClass = "";
-    if (key.includes("risk_score") || key.includes("ip_risk")) {
-      riskClass = val > 0.7 ? "high-risk" : val > 0.4 ? "med-risk" : "low-risk";
-    }
-    if (key === "velocity_24h" && val > 6) riskClass = "high-risk";
-    if (key === "mfa_bypassed" && val === true) riskClass = "high-risk";
-    if (key === "3ds_authenticated" && val === false) riskClass = "med-risk";
-    if (key === "face_match_score" && val < 0.5) riskClass = "high-risk";
-    const display = typeof val === "boolean"
-      ? (val ? "YES" : "NO")
-      : typeof val === "number" && val % 1 !== 0
-      ? val.toFixed(2)
-      : String(val);
-    return `
-      <div class="signal-card">
-        <div class="signal-key">${key.replace(/_/g, " ")}</div>
-        <div class="signal-val ${riskClass}">${display}</div>
-      </div>
-    `;
+function sigCards(sig){
+  return Object.entries(sig).map(([k,v])=>{
+    const sv=String(v).toLowerCase();
+    let rc="";
+    if(["fail","0.91","0.95","0.78","new_device"].some(x=>sv===x||sv.startsWith(x)))rc="rh";
+    else if(["partial","0.41","0.62","failed"].some(x=>sv===x||sv.includes(x)))rc="rm";
+    else if(["known_device","yes","0.05","0.08"].some(x=>sv===x||sv.startsWith(x)))rc="ro";
+    return`<div class="sc2"><div class="sk">${k.replace(/_/g," ")}</div><div class="sv ${rc}">${v}</div></div>`;
   }).join("");
 }
 
-function renderAIResult(result) {
-  if (!result) return "";
-  const rec = result.recommendation || "INVESTIGATE";
-  const recColour = {
-    BLOCK: "var(--danger)", ESCALATE: "var(--alert)",
-    INVESTIGATE: "var(--tu-blue)", AUTO_RESOLVE: "var(--success)"
-  }[rec] || "var(--text-2)";
-
-  return `
-    <div class="ai-result">
-      <div class="ai-row">
-        <div class="ai-field">
-          <div class="ai-field-label">Risk Type</div>
-          <div class="ai-field-val">${result.risk_type}</div>
-        </div>
-        <div class="ai-field">
-          <div class="ai-field-label">Urgency</div>
-          <div class="ai-field-val" style="color:${PRIORITY_CONFIG[result.urgency]?.color || "var(--text-1)"}">${result.urgency}</div>
-        </div>
-        <div class="ai-field">
-          <div class="ai-field-label">Recommendation</div>
-          <div class="ai-field-val" style="color:${recColour}">${rec}</div>
-        </div>
-        <div class="ai-field">
-          <div class="ai-field-label">Confidence</div>
-          <div class="ai-field-val">${Math.round(result.confidence * 100)}%</div>
-          <div class="confidence-bar">
-            <div class="confidence-fill" style="width:${result.confidence * 100}%"></div>
-          </div>
-        </div>
-        <div class="ai-field">
-          <div class="ai-field-label">False Positive Risk</div>
-          <div class="ai-field-val" style="color:${result.false_positive_probability > 0.4 ? "var(--alert)" : "var(--success)"}">
-            ${Math.round((result.false_positive_probability || 0) * 100)}%
-          </div>
-        </div>
-      </div>
-
-      <div class="ai-field-label" style="margin-bottom:6px">AI Rationale</div>
-      <div class="rationale-box">${result.rationale}</div>
-
-      <div class="ai-field-label" style="margin-bottom:6px">Key Signals Identified</div>
-      <div class="signals-list">
-        ${(result.key_signals || []).map(s => `<span class="signal-tag">${s}</span>`).join("")}
-      </div>
-
-      <div class="suggested-action">
-        <div class="action-label">Suggested Action</div>
-        ${result.suggested_action}
-      </div>
-
-      ${result.regulatory_note ? `<div class="regulatory-note">${result.regulatory_note}</div>` : ""}
-    </div>
-  `;
+function aiHTML(r){
+  const rc={BLOCK:"var(--er)",ESCALATE:"var(--al)",INVESTIGATE:"var(--tu)",AUTO_RESOLVE:"var(--ok)"}[r.recommendation]||"var(--t2)";
+  const pc=P[r.urgency]||P.LOW;
+  return`<div class="airec" id="airec">
+  <div class="aigrid">
+    <div class="af"><div class="afl">Risk Type</div><div class="afv">${r.risk_type}</div></div>
+    <div class="af"><div class="afl">Urgency</div><div class="afv" style="color:${pc.c}">${r.urgency}</div></div>
+    <div class="af"><div class="afl">Recommendation</div><div class="afv" style="color:${rc}">${r.recommendation}</div></div>
+    <div class="af"><div class="afl">Confidence</div><div class="afv">${Math.round(r.confidence*100)}%</div><div class="cbar"><div class="cfill" id="cf" style="width:0"></div></div></div>
+    <div class="af"><div class="afl">False Positive Risk</div><div class="afv" style="color:${r.false_positive_probability>.4?"var(--al)":"var(--ok)"}">${Math.round(r.false_positive_probability*100)}%</div></div>
+  </div>
+  <div class="afl" style="margin-bottom:6px">AI Rationale</div>
+  <div class="rat">${r.rationale}</div>
+  <div class="afl" style="margin-bottom:6px">Key Signals Identified</div>
+  <div class="ksigs">${r.key_signals.map(s=>`<span class="stag">${s}</span>`).join("")}</div>
+  <div class="acbox"><div class="alb">Suggested Action</div><p>${r.suggested_action}</p></div>
+  ${r.regulatory_note?`<div class="regnote">${r.regulatory_note}</div>`:""}
+</div>`;
 }
 
-function renderDecisionBar(alert) {
-  if (alert.status === "confirmed") {
-    return `<div class="decision-done">✓ <strong style="color:var(--success)">Confirmed</strong> — AI classification accepted. Logged to audit trail.</div>`;
-  }
-  if (alert.status === "corrected") {
-    return `<div class="decision-done">✏ <strong style="color:var(--alert)">Corrected</strong> — Your classification has been logged. Feeds back as training signal.</div>`;
-  }
-  if (alert.status === "auto_resolved") {
-    return `<div class="decision-done">⚡ <strong style="color:var(--text-2)">Auto-resolved</strong> — High confidence, low risk. Logged automatically.</div>`;
-  }
-  if (!alert.aiResult) {
-    return `<div class="decision-label">Run AI classification first, then confirm or correct the result.</div>`;
-  }
-  return `
-    <div class="decision-label">
-      AI says: <strong>${alert.aiResult.risk_type}</strong> (${Math.round(alert.aiResult.confidence * 100)}% confidence)
-      <br><span style="font-size:12px;color:var(--text-3)">Review the classification above, then confirm or correct.</span>
-    </div>
-    <div class="decision-buttons">
-      <button class="btn btn-confirm" onclick="confirmAlert('${alert.id}')">✓ Confirm</button>
-      <button class="btn btn-correct" onclick="openCorrectModal('${alert.id}')">✏ Correct</button>
-    </div>
-  `;
+function dbarHTML(a){
+  if(a.status==="confirmed")return`<div class="ddone">✓ <strong style="color:var(--ok)">Confirmed</strong> — AI classification accepted and logged to audit trail.</div>`;
+  if(a.status==="corrected")return`<div class="ddone">✏ <strong style="color:var(--al)">Corrected</strong> — Your classification logged as a training signal.</div>`;
+  if(a.status==="auto_resolved")return`<div class="ddone">⚡ <strong style="color:var(--t2)">Auto-resolved</strong> — High confidence, low false positive risk. Logged automatically.</div>`;
+  if(!a.ai)return`<div class="di">Run AI classification first, then confirm or correct the result.</div>`;
+  return`<div class="di"><strong>AI says: ${a.ai.risk_type}</strong> — ${Math.round(a.ai.confidence*100)}% confidence<small>Review the classification above. Confirm if correct, or override with your assessment.</small></div>
+  <div class="dbtns"><button class="btn b-ok" onclick="confirmAlert('${a.id}')">✓ Confirm</button><button class="btn b-fx" onclick="openModal('${a.id}')">✏ Correct</button></div>`;
 }
 
-// ── AI CLASSIFICATION ──────────────────────────────────────────────────────────
-async function classifyAlert(alertId) {
-  if (STATE.classifying) return;
-  if (!STATE.apiKey) { showToast("Add your API key in Settings first", "error"); return; }
-
-  const alert = STATE.alerts.find(a => a.id === alertId);
-  if (!alert) return;
-
-  STATE.classifying = true;
-
-  // Show spinner
-  const classifyBtn = document.getElementById("classifyBtn");
-  if (classifyBtn) { classifyBtn.disabled = true; classifyBtn.textContent = "Classifying…"; }
-
-  const resultArea = document.getElementById("aiResultArea");
-  if (resultArea) {
-    resultArea.innerHTML = `
-      <div class="ai-loading">
-        <div class="ai-spinner"></div>
-        <div>Analysing signal data…</div>
-        <div style="font-size:11px;color:var(--text-3);margin-top:6px;font-family:monospace">Claude is reviewing ${Object.keys(alert.signal).length} signal fields</div>
-      </div>`;
-  }
-
-  try {
-    const result = await API.classifyAlert(alert, STATE.apiKey);
-    alert.aiResult = result;
-
-    // Auto-resolve if very high confidence and low false positive risk
-    if (result.confidence >= 0.95 && result.false_positive_probability <= 0.05
-        && result.recommendation === "AUTO_RESOLVE") {
-      alert.status = "auto_resolved";
-      logAudit(alert, "auto_resolved", result, null);
-      showToast(`${alertId} auto-resolved (${Math.round(result.confidence * 100)}% confidence)`, "info");
-    }
-
-    saveAlerts();
-    if (resultArea) resultArea.innerHTML = renderAIResult(result);
-
-    // Update decision bar
-    const decisionBar = document.getElementById("decisionBar");
-    if (decisionBar) decisionBar.innerHTML = renderDecisionBar(alert);
-
-    // Hide classify button
-    const btn = document.getElementById("classifyBtn");
-    if (btn) btn.style.display = "none";
-
-    updateNavCounts();
-  } catch (err) {
-    showToast(err.message || "Classification failed", "error");
-    if (resultArea) {
-      resultArea.innerHTML = `<div class="ai-loading" style="color:var(--danger)">${err.message}</div>`;
-    }
-    if (classifyBtn) { classifyBtn.disabled = false; classifyBtn.textContent = "⚡ Classify with AI"; }
-  } finally {
-    STATE.classifying = false;
-  }
+function runClassify(id){
+  const a=S.alerts.find(x=>x.id===id);if(!a)return;
+  const btn=document.getElementById("cBtn");if(btn){btn.disabled=true;btn.textContent="Analysing…"}
+  document.getElementById("aiB").innerHTML=`<div class="aiproc"><div class="spin"></div><p style="color:var(--t2);font-size:13px">Analysing ${Object.keys(a.sig).length} signal fields…</p><div class="pstep" id="ps">Initialising triage agent…</div></div>`;
+  const steps=["Ingesting signal fields…","Checking IP risk database…","Analysing velocity patterns…","Cross-referencing device fingerprint…","Evaluating geographic signals…","Generating risk classification…","Calculating confidence score…","Writing rationale…"];
+  let i=0;const iv=setInterval(()=>{const e=document.getElementById("ps");if(e&&i<steps.length)e.textContent=steps[i++]},220);
+  setTimeout(()=>{
+    clearInterval(iv);
+    const r=MOCK[id];if(!r)return;
+    a.ai=r;
+    if(r.recommendation==="AUTO_RESOLVE"&&r.confidence>=.90){a.status="auto_resolved";logEntry(a,"auto_resolved",null);toast(id+" auto-resolved ("+Math.round(r.confidence*100)+"% confidence)","in")}
+    save();updateCounts();
+    document.getElementById("aiB").innerHTML=aiHTML(r);
+    document.getElementById("dBar").innerHTML=dbarHTML(a);
+    setTimeout(()=>{const f=document.getElementById("cf");if(f)f.style.width=(r.confidence*100)+"%"},50);
+    const b=document.getElementById("cBtn");if(b)b.style.display="none";
+  },1800);
 }
 
-// ── CONFIRM / CORRECT ─────────────────────────────────────────────────────────
-function confirmAlert(alertId) {
-  const alert = STATE.alerts.find(a => a.id === alertId);
-  if (!alert || !alert.aiResult) return;
-  alert.status = "confirmed";
-  logAudit(alert, "confirmed", alert.aiResult, null);
-  saveAlerts();
-  updateNavCounts();
-  showToast(`${alertId} confirmed — logged to audit trail`, "success");
-
-  // Re-render decision bar
-  const db = document.getElementById("decisionBar");
-  if (db) db.innerHTML = renderDecisionBar(alert);
+function confirmAlert(id){
+  const a=S.alerts.find(x=>x.id===id);if(!a||!a.ai)return;
+  a.status="confirmed";logEntry(a,"confirmed",null);save();updateCounts();
+  document.getElementById("dBar").innerHTML=dbarHTML(a);
+  toast(id+" confirmed — logged to audit trail","ok");
 }
 
-function openCorrectModal(alertId) {
-  document.getElementById("correctAlertId").value = alertId;
-  document.getElementById("correctModal").classList.remove("hidden");
+function openModal(id){document.getElementById("mId").value=id;document.getElementById("mReason").value="";document.getElementById("correctModal").classList.remove("hidden")}
+function closeModal(){document.getElementById("correctModal").classList.add("hidden")}
+function submitCorrection(){
+  const id=document.getElementById("mId").value;
+  const ty=document.getElementById("mType").value;
+  const ur=document.getElementById("mUrg").value;
+  const re=document.getElementById("mReason").value.trim();
+  if(!re){toast("Please provide a reason for the correction","er");return}
+  const a=S.alerts.find(x=>x.id===id);if(!a)return;
+  a.status="corrected";a.correction={ty,ur,re};
+  logEntry(a,"corrected",{ty,ur,re});save();updateCounts();closeModal();
+  document.getElementById("dBar").innerHTML=dbarHTML(a);
+  toast(id+" corrected — training signal logged","in");
 }
 
-function closeCorrectModal() {
-  document.getElementById("correctModal").classList.add("hidden");
+function logEntry(a,action,corr){
+  S.log.unshift({ts:new Date().toISOString(),id:a.id,type:TL[a.type]||a.type,priority:a.priority,action,aiRisk:a.ai?.risk_type||"—",aiConf:a.ai?Math.round(a.ai.confidence*100)+"%":"—",aiRec:a.ai?.recommendation||"—",corrTo:corr?`${corr.ty} · ${corr.ur}`:null,corrReason:corr?.re||null});
+  localStorage.setItem("tu_l",JSON.stringify(S.log));updateCounts();
 }
 
-function submitCorrection() {
-  const alertId = document.getElementById("correctAlertId").value;
-  const newType = document.getElementById("correctType").value;
-  const newUrgency = document.getElementById("correctUrgency").value;
-  const reason = document.getElementById("correctReason").value.trim();
-
-  if (!reason) { showToast("Please provide a reason for the correction", "error"); return; }
-
-  const alert = STATE.alerts.find(a => a.id === alertId);
-  if (!alert) return;
-
-  const correction = { risk_type: newType, urgency: newUrgency, reason };
-  alert.status = "corrected";
-  alert.correction = correction;
-  logAudit(alert, "corrected", alert.aiResult, correction);
-  saveAlerts();
-  updateNavCounts();
-  closeCorrectModal();
-  showToast(`${alertId} corrected — training signal logged`, "info");
-
-  // Re-render decision bar
-  const db = document.getElementById("decisionBar");
-  if (db) db.innerHTML = renderDecisionBar(alert);
+function renderAudit(){
+  document.getElementById("view-audit").innerHTML=`
+<div class="av">
+  <div class="ph"><h1>Audit Log</h1><p>Complete record of every classification decision — AI and analyst. Full trail for regulatory review.</p></div>
+  ${S.log.length===0
+    ?`<div class="empty" style="border:1px solid var(--bd);border-radius:var(--r);padding:60px">📋 No decisions logged yet.<br>Classify and review alerts to build the audit trail.</div>`
+    :`<div class="atw"><table>
+  <thead><tr><th>Time</th><th>Alert ID</th><th>Type</th><th>AI Classification</th><th>Confidence</th><th>Recommendation</th><th>Analyst Action</th><th>Correction / Reason</th></tr></thead>
+  <tbody>${S.log.map(e=>`<tr>
+    <td class="tm">${new Date(e.ts).toLocaleTimeString()}<br><span style="color:var(--t3);font-size:10px">${new Date(e.ts).toLocaleDateString()}</span></td>
+    <td class="tm">${e.id}</td><td>${e.type}</td><td>${e.aiRisk}</td><td class="tm">${e.aiConf}</td>
+    <td><span class="badge" style="background:var(--s3);color:var(--t2)">${e.aiRec}</span></td>
+    <td class="t${e.action==="confirmed"?"co":e.action==="corrected"?"cx":"ca"}">${e.action.replace("_"," ")}</td>
+    <td style="font-size:11px;color:var(--t2)">${e.corrTo?`<strong style="color:var(--al)">${e.corrTo}</strong><br>`:""}${e.corrReason||(e.action==="confirmed"?"AI accepted":e.action==="auto_resolved"?"Auto-resolved by system":"")}</td>
+  </tr>`).join("")}</tbody>
+</table></div>
+<div class="aftr"><span>${S.log.length} entries</span>
+  <button class="btn b-cn" style="font-size:11px;padding:5px 12px" onclick="exportCSV()">⬇ Export CSV</button>
+  <button class="btn b-cn" style="font-size:11px;padding:5px 12px;color:var(--er)" onclick="clearLog()">Clear log</button>
+</div>`}
+</div>`;
 }
 
-// ── AUDIT LOG ─────────────────────────────────────────────────────────────────
-function logAudit(alert, action, aiResult, correction) {
-  STATE.auditLog.unshift({
-    id: alert.id,
-    timestamp: new Date().toISOString(),
-    alertType: ALERT_TYPE_LABELS[alert.alertType] || alert.alertType,
-    priority: alert.priority,
-    action,
-    aiRiskType: aiResult?.risk_type || "—",
-    aiConfidence: aiResult ? Math.round(aiResult.confidence * 100) : "—",
-    aiRecommendation: aiResult?.recommendation || "—",
-    correctedTo: correction ? `${correction.risk_type} · ${correction.urgency}` : null,
-    correctionReason: correction?.reason || null,
-  });
-  localStorage.setItem("tu_audit_log", JSON.stringify(STATE.auditLog));
-  updateNavCounts();
+function exportCSV(){
+  const h=["Time","Alert ID","Type","AI Classification","Confidence","Recommendation","Analyst Action","Corrected To","Reason"];
+  const r=S.log.map(e=>[new Date(e.ts).toISOString(),e.id,e.type,e.aiRisk,e.aiConf,e.aiRec,e.action,e.corrTo||"",e.corrReason||""]);
+  const csv=[h,...r].map(row=>row.map(v=>`"${v}"`).join(",")).join("\n");
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="transunion_audit_"+new Date().toISOString().split("T")[0]+".csv";a.click();
 }
+function clearLog(){if(!confirm("Clear the entire audit log?"))return;S.log=[];localStorage.removeItem("tu_l");updateCounts();renderAudit()}
 
-function renderAuditLog() {
-  const container = document.getElementById("view-audit");
-  container.innerHTML = `
-    <div class="audit-view">
-      <div class="page-header">
-        <h1>Audit Log</h1>
-        <p>Complete record of every classification decision — AI and analyst. Full trail for regulatory review.</p>
-      </div>
-      ${STATE.auditLog.length === 0
-        ? `<div class="audit-empty"><div style="font-size:32px;margin-bottom:12px">📋</div>No decisions logged yet. Classify and review alerts to build the audit trail.</div>`
-        : `
-        <div style="overflow-x:auto">
-          <table class="audit-table">
-            <thead>
-              <tr>
-                <th>Time</th>
-                <th>Alert ID</th>
-                <th>Type</th>
-                <th>AI Classification</th>
-                <th>Confidence</th>
-                <th>Recommendation</th>
-                <th>Analyst Action</th>
-                <th>Correction / Reason</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${STATE.auditLog.map(entry => `
-                <tr>
-                  <td class="td-id">${new Date(entry.timestamp).toLocaleTimeString()}<br><span style="color:var(--text-3)">${new Date(entry.timestamp).toLocaleDateString()}</span></td>
-                  <td class="td-id">${entry.id}</td>
-                  <td>${entry.alertType}</td>
-                  <td>${entry.aiRiskType}</td>
-                  <td style="font-family:monospace">${entry.aiConfidence}%</td>
-                  <td><span class="badge" style="background:var(--surface-2);color:var(--text-2)">${entry.aiRecommendation}</span></td>
-                  <td class="td-action-${entry.action}">${entry.action.replace("_"," ")}</td>
-                  <td style="color:var(--text-2);font-size:11px">
-                    ${entry.correctedTo ? `<strong style="color:var(--alert)">${entry.correctedTo}</strong><br>` : ""}
-                    ${entry.correctionReason || (entry.action === "confirmed" ? "AI accepted" : "")}
-                  </td>
-                </tr>
-              `).join("")}
-            </tbody>
-          </table>
-        </div>
-        <div style="margin-top:16px;display:flex;gap:12px;align-items:center">
-          <span style="font-size:12px;color:var(--text-3)">${STATE.auditLog.length} entries</span>
-          <button class="btn btn-cancel" style="font-size:11px;padding:5px 12px" onclick="exportAuditCSV()">⬇ Export CSV</button>
-          <button class="btn btn-cancel" style="font-size:11px;padding:5px 12px;color:var(--danger)" onclick="clearAuditLog()">Clear log</button>
-        </div>
-        `
-      }
-    </div>
-  `;
-}
+function ago(iso){const d=(Date.now()-new Date(iso))/1000;if(d<60)return Math.round(d)+"s ago";if(d<3600)return Math.round(d/60)+"m ago";return Math.round(d/3600)+"h ago"}
+function toast(msg,type="in"){const c=document.getElementById("toasts"),t=document.createElement("div");t.className="toast "+type;t.textContent=msg;c.appendChild(t);setTimeout(()=>{t.style.transition="opacity 300ms";t.style.opacity="0"},2800);setTimeout(()=>t.remove(),3200)}
 
-function exportAuditCSV() {
-  const headers = ["Time","Alert ID","Type","AI Classification","Confidence","Recommendation","Analyst Action","Corrected To","Reason"];
-  const rows = STATE.auditLog.map(e => [
-    new Date(e.timestamp).toISOString(),
-    e.id, e.alertType, e.aiRiskType, e.aiConfidence + "%",
-    e.aiRecommendation, e.action, e.correctedTo || "", e.correctionReason || ""
-  ]);
-  const csv = [headers, ...rows].map(r => r.map(v => `"${v}"`).join(",")).join("
-");
-  const blob = new Blob([csv], { type: "text/csv" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = `transunion_audit_log_${new Date().toISOString().split("T")[0]}.csv`;
-  a.click();
-}
-
-function clearAuditLog() {
-  if (!confirm("Clear the entire audit log? This cannot be undone.")) return;
-  STATE.auditLog = [];
-  localStorage.removeItem("tu_audit_log");
-  updateNavCounts();
-  renderAuditLog();
-}
-
-// ── SETTINGS ──────────────────────────────────────────────────────────────────
-function saveApiKey() {
-  const val = document.getElementById("apiKeyInput").value.trim();
-  if (!val) { setStatus("err", "API key cannot be empty"); return; }
-  if (!val.startsWith("sk-ant-")) { setStatus("err", "Key should start with sk-ant-…"); return; }
-  STATE.apiKey = val;
-  localStorage.setItem("tu_api_key", val);
-  setStatus("ok", "✓ Saved — ready to classify alerts");
-  updateNavCounts();
-}
-
-function clearApiKey() {
-  document.getElementById("apiKeyInput").value = "";
-  STATE.apiKey = "";
-  localStorage.removeItem("tu_api_key");
-  setStatus("ok", "API key cleared");
-}
-
-function resetData() {
-  if (!confirm("Reset all alerts and clear the audit log? This cannot be undone.")) return;
-  STATE.alerts = SAMPLE_ALERTS.map(a => ({ ...a, aiResult: undefined, correction: undefined }));
-  STATE.auditLog = [];
-  saveAlerts();
-  localStorage.removeItem("tu_audit_log");
-  updateNavCounts();
-  showToast("Data reset to sample alerts", "info");
-}
-
-function setStatus(type, msg) {
-  const el = document.getElementById("saveStatus");
-  if (el) { el.className = "save-status " + type; el.textContent = msg; }
-}
-
-// ── UTILS ─────────────────────────────────────────────────────────────────────
-function saveAlerts() {
-  localStorage.setItem("tu_alerts", JSON.stringify(STATE.alerts));
-}
-
-function timeAgo(iso) {
-  const diff = (Date.now() - new Date(iso)) / 1000;
-  if (diff < 60) return `${Math.round(diff)}s ago`;
-  if (diff < 3600) return `${Math.round(diff / 60)}m ago`;
-  return `${Math.round(diff / 3600)}h ago`;
-}
-
-function showToast(msg, type = "info") {
-  const container = document.getElementById("toastContainer");
-  if (!container) return;
-  const toast = document.createElement("div");
-  toast.className = `toast ${type}`;
-  toast.textContent = msg;
-  container.appendChild(toast);
-  setTimeout(() => { toast.style.opacity = "0"; toast.style.transition = "opacity 300ms"; }, 2800);
-  setTimeout(() => toast.remove(), 3200);
-}
-    window.addEventListener("DOMContentLoaded", init);
-  </script>
+window.addEventListener("DOMContentLoaded",init);
+</script>
 </body>
 </html>
