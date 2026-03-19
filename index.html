@@ -4,126 +4,844 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Fraud Signal Triage — TransUnion × Conquer AI</title>
-
-  <!-- TransUnion Favicon -->
-  <link rel="icon" type="image/x-icon"
-    href="https://www.transunion.com/etc.clientlibs/transunion/clientlibs/clientlib-trubrand/resources/images/favicons/favicon.ico" />
-
-  <!-- Google Fonts fallback (Inter) -->
+  <link rel="icon" type="image/x-icon" href="https://www.transunion.com/etc.clientlibs/transunion/clientlibs/clientlib-trubrand/resources/images/favicons/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+/* ─────────────────────────────────────────────────────────────────────────────
+   TransUnion × Conquer AI — Fraud Signal Triage Agent
+   Brand: TransUnion Blue #00A8CB | Conquer Blue #515FFC | Dark Mode
+   ───────────────────────────────────────────────────────────────────────────── */
 
-  <link rel="stylesheet" href="css/styles.css" />
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:           #08080E;
+  --surface-1:    #0F0F18;
+  --surface-2:    #141420;
+  --surface-3:    #1A1A2A;
+  --border:       rgba(255,255,255,0.07);
+  --border-hover: rgba(255,255,255,0.15);
+
+  --tu-blue:      #00A8CB;
+  --tu-dark:      #007A95;
+  --tu-light:     #33BCDA;
+  --tu-tint:      rgba(0,168,203,0.10);
+  --tu-glow:      rgba(0,168,203,0.20);
+
+  --brand:        #515FFC;
+  --brand-tint:   rgba(81,95,252,0.10);
+
+  --text-1:       #F0F0F8;
+  --text-2:       #8A8AA8;
+  --text-3:       #50505E;
+
+  --success:      #38BB94;
+  --success-tint: rgba(56,187,148,0.12);
+  --alert:        #FFA030;
+  --alert-tint:   rgba(255,160,48,0.12);
+  --danger:       #F13C47;
+  --danger-tint:  rgba(241,60,71,0.12);
+
+  --radius:       10px;
+  --radius-sm:    6px;
+  --nav-h:        58px;
+}
+
+html { height: 100%; }
+body {
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TYPOGRAPHY ── */
+h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+h2 { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+h3 { font-size: 13px; font-weight: 600; }
+.mono { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+.label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: monospace;
+}
+
+/* ── NAV BAR ── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: rgba(8,8,14,0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 100;
+  gap: 12px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.nav-logo {
+  height: 22px;
+  filter: brightness(0) invert(1);
+}
+
+.nav-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+}
+
+.nav-conquer {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand);
+  font-family: monospace;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-tabs::-webkit-scrollbar { display: none; }
+
+.nav-tab {
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  white-space: nowrap;
+  transition: color 150ms, background 150ms;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-tab:hover { color: var(--text-1); background: var(--surface-2); }
+.nav-tab.active {
+  color: var(--tu-blue);
+  background: var(--tu-tint);
+  font-weight: 600;
+}
+.nav-tab .tab-count {
+  background: var(--danger);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 10px;
+  font-family: monospace;
+  min-width: 16px;
+  text-align: center;
+}
+.nav-tab .tab-count.muted {
+  background: var(--surface-3);
+  color: var(--text-2);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.nav-badge {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tu-blue);
+  background: var(--tu-tint);
+  border: 1px solid rgba(0,168,203,0.30);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-family: monospace;
+}
+
+.btn-settings {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: border-color 150ms, color 150ms;
+}
+.btn-settings:hover { border-color: var(--border-hover); color: var(--text-1); }
+
+/* ── MAIN LAYOUT ── */
+.main {
+  margin-top: var(--nav-h);
+  min-height: calc(100vh - var(--nav-h));
+}
+
+.view { display: none; }
+.view.active { display: block; }
+
+/* ── DASHBOARD ── */
+.dashboard { padding: 24px 20px; max-width: 1200px; margin: 0 auto; }
+
+.page-header {
+  margin-bottom: 24px;
+}
+.page-header h1 { margin-bottom: 4px; }
+.page-header p { color: var(--text-2); font-size: 13px; }
+
+/* Metrics row */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.metric-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  transition: border-color 180ms;
+}
+.metric-card:hover { border-color: var(--border-hover); }
+
+.metric-value {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.metric-label {
+  font-size: 11px;
+  color: var(--text-2);
+  font-weight: 500;
+}
+.metric-sub {
+  font-size: 10px;
+  color: var(--text-3);
+  margin-top: 4px;
+  font-family: monospace;
+}
+
+.metric-card.tu   .metric-value { color: var(--tu-blue); }
+.metric-card.warn .metric-value { color: var(--alert); }
+.metric-card.ok   .metric-value { color: var(--success); }
+.metric-card.crit .metric-value { color: var(--danger); }
+.metric-card.brand .metric-value { color: var(--brand); }
+
+/* Alert queue */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.section-header h2 { font-size: 14px; }
+
+.filter-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-2);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 150ms;
+}
+.filter-btn:hover { border-color: var(--border-hover); color: var(--text-1); }
+.filter-btn.active {
+  background: var(--tu-tint);
+  border-color: var(--tu-blue);
+  color: var(--tu-blue);
+  font-weight: 600;
+}
+
+/* Alert list */
+.alert-list { display: flex; flex-direction: column; gap: 8px; }
+
+.alert-row {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: border-color 180ms, transform 120ms, background 150ms;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+}
+.alert-row:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-2);
+  transform: translateX(2px);
+}
+.alert-row.status-auto_resolved { opacity: 0.55; }
+.alert-row.status-confirmed { border-left: 3px solid var(--success); }
+.alert-row.status-corrected  { border-left: 3px solid var(--alert); }
+.alert-row.status-escalated  { border-left: 3px solid var(--danger); }
+
+.alert-priority-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.alert-main { min-width: 0; }
+.alert-id {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-2);
+  font-family: monospace;
+  margin-bottom: 2px;
+}
+.alert-type { font-weight: 600; font-size: 13px; }
+.alert-meta { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+
+.alert-badges { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+
+.badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+.alert-time { font-size: 11px; color: var(--text-3); font-family: monospace; white-space: nowrap; }
+
+/* ── ALERT DETAIL ── */
+.detail-view { padding: 24px 20px; max-width: 900px; margin: 0 auto; }
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-2);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 20px;
+  transition: color 150ms;
+}
+.back-btn:hover { color: var(--text-1); }
+
+.detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.detail-title h1 { margin-bottom: 6px; }
+.detail-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Signal grid */
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.signal-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+.signal-key {
+  font-size: 10px;
+  color: var(--text-3);
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 3px;
+}
+.signal-val {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-1);
+  font-family: monospace;
+}
+.signal-val.high-risk { color: var(--danger); }
+.signal-val.med-risk  { color: var(--alert); }
+.signal-val.low-risk  { color: var(--success); }
+
+/* AI result */
+.ai-section {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.ai-section-header {
+  padding: 14px 18px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ai-loading {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-2);
+}
+
+.ai-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--border);
+  border-top-color: var(--tu-blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 12px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.ai-result { padding: 18px; }
+
+.confidence-bar {
+  height: 6px;
+  background: var(--surface-3);
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 8px 0 4px;
+}
+.confidence-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--tu-blue));
+  transition: width 800ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ai-row { display: flex; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; }
+.ai-field { flex: 1; min-width: 140px; }
+.ai-field-label { font-size: 10px; color: var(--text-3); font-family: monospace; text-transform: uppercase; margin-bottom: 4px; }
+.ai-field-val { font-weight: 600; font-size: 14px; }
+
+.rationale-box {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--tu-blue);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--text-1);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.signals-list { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.signal-tag {
+  background: var(--tu-tint);
+  border: 1px solid rgba(0,168,203,0.25);
+  color: var(--tu-light);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-family: monospace;
+}
+
+.suggested-action {
+  background: var(--brand-tint);
+  border: 1px solid rgba(81,95,252,0.25);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+.suggested-action .action-label {
+  font-size: 9px;
+  color: var(--brand);
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.regulatory-note {
+  background: var(--alert-tint);
+  border: 1px solid rgba(255,160,48,0.25);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--alert);
+  margin-top: 10px;
+}
+.regulatory-note::before { content: "⚠ REGULATORY: "; font-weight: 700; }
+
+/* Confirm / Correct */
+.decision-bar {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.decision-label { font-size: 13px; color: var(--text-2); }
+.decision-label strong { color: var(--text-1); }
+
+.decision-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.btn {
+  padding: 9px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 150ms;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-confirm {
+  background: var(--success);
+  color: #000;
+}
+.btn-confirm:hover:not(:disabled) { background: #2fa07e; }
+
+.btn-correct {
+  background: var(--surface-2);
+  color: var(--alert);
+  border: 1px solid rgba(255,160,48,0.35);
+}
+.btn-correct:hover:not(:disabled) {
+  background: var(--alert-tint);
+  border-color: var(--alert);
+}
+
+.btn-classify {
+  background: var(--tu-blue);
+  color: #000;
+  font-weight: 700;
+}
+.btn-classify:hover:not(:disabled) { background: var(--tu-light); }
+
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+}
+.btn-primary:hover:not(:disabled) { background: var(--brand-tint); border: 1px solid var(--brand); }
+
+.decision-done {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+/* Correction modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.hidden { display: none; }
+
+.modal {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 480px;
+  padding: 24px;
+}
+.modal h2 { margin-bottom: 6px; }
+.modal p { color: var(--text-2); font-size: 13px; margin-bottom: 20px; }
+
+.form-group { margin-bottom: 16px; }
+.form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-family: monospace;
+  margin-bottom: 6px;
+}
+.form-select, .form-textarea, .form-input {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-1);
+  font-size: 13px;
+  padding: 9px 12px;
+  font-family: inherit;
+  transition: border-color 150ms;
+  appearance: none;
+}
+.form-select:focus, .form-textarea:focus, .form-input:focus {
+  outline: none;
+  border-color: var(--tu-blue);
+}
+.form-textarea { resize: vertical; min-height: 80px; }
+
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+
+.btn-cancel {
+  background: var(--surface-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+}
+.btn-cancel:hover { border-color: var(--border-hover); color: var(--text-1); }
+
+/* ── AUDIT LOG ── */
+.audit-view { padding: 24px 20px; max-width: 1000px; margin: 0 auto; }
+
+.audit-table { width: 100%; border-collapse: collapse; }
+.audit-table th {
+  text-align: left;
+  font-size: 10px;
+  color: var(--text-3);
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.audit-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  vertical-align: top;
+}
+.audit-table tr:hover td { background: var(--surface-2); }
+.audit-table .td-id { font-family: monospace; color: var(--text-2); }
+.audit-table .td-action-confirm { color: var(--success); font-weight: 600; }
+.audit-table .td-action-correct  { color: var(--alert);   font-weight: 600; }
+.audit-table .td-action-auto     { color: var(--text-3);  }
+.audit-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-3);
+}
+
+/* ── SETTINGS ── */
+.settings-view { padding: 24px 20px; max-width: 520px; margin: 0 auto; }
+
+.settings-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.settings-card h2 { margin-bottom: 6px; }
+.settings-card p { color: var(--text-2); font-size: 13px; margin-bottom: 20px; line-height: 1.6; }
+
+.api-key-row { display: flex; gap: 8px; }
+.api-key-row .form-input { flex: 1; font-family: monospace; letter-spacing: 0.05em; }
+
+.save-status {
+  margin-top: 10px;
+  font-size: 12px;
+  font-family: monospace;
+  min-height: 18px;
+}
+.save-status.ok  { color: var(--success); }
+.save-status.err { color: var(--danger); }
+
+/* ── TOAST ── */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 300;
+}
+
+.toast {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 13px;
+  max-width: 320px;
+  animation: toast-in 200ms ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toast.success { border-left: 3px solid var(--success); }
+.toast.error   { border-left: 3px solid var(--danger); }
+.toast.info    { border-left: 3px solid var(--tu-blue); }
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── NO API KEY STATE ── */
+.no-key-banner {
+  background: var(--alert-tint);
+  border: 1px solid rgba(255,160,48,0.35);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.no-key-banner p { color: var(--text-1); font-size: 13px; flex: 1; }
+.no-key-banner strong { color: var(--alert); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .metrics { grid-template-columns: repeat(2, 1fr); }
+  .signal-grid { grid-template-columns: repeat(2, 1fr); }
+  .alert-row { grid-template-columns: auto 1fr; grid-template-rows: auto auto; }
+  .alert-badges { grid-column: 2; }
+  .alert-time { display: none; }
+  .detail-header { flex-direction: column; }
+  .ai-row { flex-direction: column; }
+  .decision-bar { flex-direction: column; align-items: flex-start; }
+  .nav-badge { display: none; }
+  .nav-conquer { display: none; }
+  h1 { font-size: 18px; }
+}
+
+@media (max-width: 480px) {
+  .metrics { grid-template-columns: repeat(2, 1fr); }
+  .signal-grid { grid-template-columns: 1fr 1fr; }
+  .dashboard { padding: 16px 14px; }
+  .detail-view { padding: 16px 14px; }
+  .nav { padding: 0 14px; }
+  .metric-value { font-size: 22px; }
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,168,203,0.3); border-radius: 2px; }
+  </style>
 </head>
 <body>
-
-  <!-- ── NAVIGATION ─────────────────────────────────────────────────────── -->
   <nav class="nav">
     <div class="nav-brand">
-      <img
-        class="nav-logo"
-        src="https://www.transunion.com/content/dam/transunion/global/common/logos/logo.svg"
-        alt="TransUnion"
-        onerror="this.style.display='none';document.getElementById('tuFallback').style.display='block'"
-      />
+      <img class="nav-logo" src="https://www.transunion.com/content/dam/transunion/global/common/logos/logo.svg" alt="TransUnion" onerror="this.style.display='none';document.getElementById('tuFallback').style.display='block'" />
       <span id="tuFallback" style="display:none;font-weight:700;font-size:13px;color:#00A8CB;letter-spacing:0.05em;font-family:monospace">TRANSUNION</span>
       <div class="nav-divider"></div>
       <span class="nav-conquer">Conquer AI</span>
     </div>
-
     <div id="navTabs" class="nav-tabs"></div>
-
     <div class="nav-right">
       <span class="nav-badge">POC · Fraud Triage</span>
       <button class="btn-settings" onclick="showView('settings')" title="Settings">⚙</button>
     </div>
   </nav>
 
-  <!-- ── MAIN CONTENT ───────────────────────────────────────────────────── -->
   <main class="main">
-
-    <!-- DASHBOARD VIEW -->
     <div id="view-dashboard" class="view active"></div>
-
-    <!-- DETAIL VIEW -->
     <div id="view-detail" class="view"></div>
-
-    <!-- AUDIT LOG VIEW -->
     <div id="view-audit" class="view"></div>
-
-    <!-- SETTINGS VIEW -->
     <div id="view-settings" class="view">
       <div class="settings-view">
         <div class="page-header">
           <h1>Settings</h1>
           <p>Configure your API key and manage POC data</p>
         </div>
-
         <div class="settings-card">
           <h2>Anthropic API Key</h2>
-          <p>
-            This POC uses the Anthropic Claude API to classify fraud alerts in real-time.
-            Your key is stored locally in your browser and never sent anywhere except directly to Anthropic.
-            Get a key at <a href="https://console.anthropic.com" target="_blank" style="color:var(--tu-blue)">console.anthropic.com</a>.
-          </p>
+          <p>This POC uses the Anthropic Claude API to classify fraud alerts in real-time. Your key is stored locally in your browser only. Get a key at <a href="https://console.anthropic.com" target="_blank" style="color:var(--tu-blue)">console.anthropic.com</a>.</p>
           <div class="form-group">
             <label class="form-label">API Key</label>
             <div class="api-key-row">
-              <input
-                id="apiKeyInput"
-                class="form-input"
-                type="password"
-                placeholder="sk-ant-api03-…"
-                autocomplete="off"
-              />
+              <input id="apiKeyInput" class="form-input" type="password" placeholder="sk-ant-api03-…" autocomplete="off" />
               <button class="btn btn-classify" onclick="saveApiKey()">Save</button>
               <button class="btn btn-cancel" onclick="clearApiKey()">Clear</button>
             </div>
             <div id="saveStatus" class="save-status"></div>
           </div>
         </div>
-
         <div class="settings-card">
           <h2>About This POC</h2>
-          <p>
-            This is Conquer AI's Proof of Concept for TransUnion's Fraud Signal Triage Agent.
-            It demonstrates the <strong>confirm-or-correct</strong> workflow:
-            AI classifies incoming fraud alerts, analysts confirm or correct the classification,
-            and every decision is logged to a full audit trail.
-            <br><br>
-            <strong>8 sample alerts</strong> are pre-loaded across 5 fraud types:
-            Card Not Present, Account Takeover, Synthetic Identity,
-            Identity Verification Failure, and First Party Fraud.
-            <br><br>
-            Model: <span style="font-family:monospace;color:var(--tu-blue)">claude-sonnet-4-20250514</span>
-          </p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <button class="btn btn-cancel" onclick="resetData()">↺ Reset to sample data</button>
-          </div>
+          <p>Conquer AI's Proof of Concept for TransUnion's Fraud Signal Triage Agent. Demonstrates the <strong>confirm-or-correct</strong> workflow — AI classifies fraud alerts, analysts confirm or override, every decision logs to a full audit trail.<br><br><strong>8 sample alerts</strong> pre-loaded across 5 fraud types. Model: <span style="font-family:monospace;color:var(--tu-blue)">claude-sonnet-4-20250514</span></p>
+          <button class="btn btn-cancel" onclick="resetData()">↺ Reset to sample data</button>
         </div>
-
         <div class="settings-card">
           <h2>How It Works</h2>
-          <p style="margin-bottom:0">
-            <strong>1. Alert Queue</strong> — incoming signals from fraud detection engines, sorted by priority.<br><br>
-            <strong>2. AI Classification</strong> — click any alert, then hit "Classify with AI". Claude analyses all signal fields and returns a risk type, urgency, confidence score, rationale, and suggested action.<br><br>
-            <strong>3. Confirm or Correct</strong> — you confirm the AI is right, or override with your own classification. The reason you provide becomes a training signal.<br><br>
-            <strong>4. Audit Trail</strong> — every decision is logged with full detail. Exportable as CSV for regulatory review.
-          </p>
+          <p style="margin-bottom:0"><strong>1. Alert Queue</strong> — incoming signals sorted by priority.<br><br><strong>2. AI Classification</strong> — click any alert, hit Classify with AI. Claude returns risk type, confidence, rationale, and suggested action.<br><br><strong>3. Confirm or Correct</strong> — confirm the AI is right, or override with your own classification and reason.<br><br><strong>4. Audit Trail</strong> — every decision logged. Exportable as CSV.</p>
         </div>
       </div>
     </div>
-
   </main>
 
-  <!-- ── CORRECTION MODAL ───────────────────────────────────────────────── -->
   <div id="correctModal" class="modal-overlay hidden" onclick="if(event.target===this)closeCorrectModal()">
     <div class="modal">
       <h2>Correct Classification</h2>
-      <p>Override the AI's classification. Your correction is logged as a training signal and will improve future accuracy.</p>
+      <p>Override the AI's classification. Your correction is logged as a training signal.</p>
       <input type="hidden" id="correctAlertId" />
-
       <div class="form-group">
         <label class="form-label">Correct Risk Type</label>
         <select id="correctType" class="form-select">
@@ -136,7 +854,6 @@
           <option value="Requires Investigation">Requires Further Investigation</option>
         </select>
       </div>
-
       <div class="form-group">
         <label class="form-label">Correct Urgency</label>
         <select id="correctUrgency" class="form-select">
@@ -146,16 +863,10 @@
           <option value="LOW">LOW</option>
         </select>
       </div>
-
       <div class="form-group">
         <label class="form-label">Reason for Correction <span style="color:var(--danger)">*</span></label>
-        <textarea
-          id="correctReason"
-          class="form-textarea"
-          placeholder="Explain why the AI classification was wrong — e.g. 'Customer confirmed legitimate travel, IP location mismatch is expected'"
-        ></textarea>
+        <textarea id="correctReason" class="form-textarea" placeholder="Explain why the AI classification was wrong…"></textarea>
       </div>
-
       <div class="modal-actions">
         <button class="btn btn-cancel" onclick="closeCorrectModal()">Cancel</button>
         <button class="btn btn-correct" onclick="submitCorrection()">✏ Submit Correction</button>
@@ -163,15 +874,946 @@
     </div>
   </div>
 
-  <!-- ── TOAST CONTAINER ────────────────────────────────────────────────── -->
   <div id="toastContainer" class="toast-container"></div>
 
-  <!-- ── SCRIPTS ────────────────────────────────────────────────────────── -->
-  <script src="js/data.js"></script>
-  <script src="js/api.js"></script>
-  <script src="js/app.js"></script>
   <script>
-    // Boot
+// ─────────────────────────────────────────────────────────────────────────────
+// TransUnion × Conquer AI — Sample Fraud Alert Data
+// Represents the incoming signal stream the triage agent processes
+// ─────────────────────────────────────────────────────────────────────────────
+
+const SAMPLE_ALERTS = [
+  {
+    id: "ALT-2026-0041",
+    timestamp: new Date(Date.now() - 4 * 60000).toISOString(),
+    source: "FDE-Primary v3.1",
+    alertType: "card_not_present",
+    priority: "HIGH",
+    status: "pending",
+    customer: { id: "CUS-887234", segment: "Premium", country: "GB" },
+    signal: {
+      transaction_amount: 4750.00,
+      currency: "GBP",
+      merchant: "TechStore International",
+      merchant_country: "NG",
+      card_holder_country: "GB",
+      transaction_channel: "Online",
+      device_fingerprint: "NEW_DEVICE",
+      ip_address_country: "NG",
+      ip_risk_score: 0.91,
+      velocity_24h: 9,
+      velocity_7d: 11,
+      avg_transaction_size: 145.50,
+      time_since_last_transaction_mins: 12,
+      3ds_authenticated: false,
+      billing_shipping_match: false,
+    }
+  },
+  {
+    id: "ALT-2026-0042",
+    timestamp: new Date(Date.now() - 11 * 60000).toISOString(),
+    source: "FDE-Primary v3.1",
+    alertType: "account_takeover",
+    priority: "CRITICAL",
+    status: "pending",
+    customer: { id: "CUS-223419", segment: "Standard", country: "US" },
+    signal: {
+      event_type: "Password reset + email change",
+      login_ip_country: "RU",
+      registered_country: "US",
+      device_fingerprint: "NEW_DEVICE",
+      ip_risk_score: 0.95,
+      logins_failed_24h: 7,
+      password_changed: true,
+      email_changed: true,
+      mfa_bypassed: true,
+      time_to_transaction_after_change_mins: 4,
+      transaction_amount: 2100.00,
+      currency: "USD",
+    }
+  },
+  {
+    id: "ALT-2026-0043",
+    timestamp: new Date(Date.now() - 18 * 60000).toISOString(),
+    source: "FDE-Secondary v2.4",
+    alertType: "synthetic_identity",
+    priority: "MEDIUM",
+    status: "pending",
+    customer: { id: "CUS-991122", segment: "New", country: "US" },
+    signal: {
+      ssn_issued_state: "WY",
+      applicant_address_state: "NY",
+      credit_file_age_days: 11,
+      number_of_inquiries_30d: 8,
+      thin_file: true,
+      ssn_first_use_age: "adult",
+      name_address_mismatch: true,
+      phone_number_age_days: 9,
+      credit_requested: 15000,
+      income_stated: 95000,
+      employer_verification_failed: true,
+    }
+  },
+  {
+    id: "ALT-2026-0044",
+    timestamp: new Date(Date.now() - 27 * 60000).toISOString(),
+    source: "FDE-Primary v3.1",
+    alertType: "card_not_present",
+    priority: "LOW",
+    status: "pending",
+    customer: { id: "CUS-445567", segment: "Premium", country: "CA" },
+    signal: {
+      transaction_amount: 89.99,
+      currency: "CAD",
+      merchant: "Netflix Canada",
+      merchant_country: "CA",
+      card_holder_country: "CA",
+      transaction_channel: "Online",
+      device_fingerprint: "KNOWN_DEVICE",
+      ip_address_country: "CA",
+      ip_risk_score: 0.08,
+      velocity_24h: 2,
+      velocity_7d: 8,
+      avg_transaction_size: 92.00,
+      3ds_authenticated: true,
+      billing_shipping_match: true,
+    }
+  },
+  {
+    id: "ALT-2026-0045",
+    timestamp: new Date(Date.now() - 35 * 60000).toISOString(),
+    source: "Identity Engine v1.9",
+    alertType: "identity_verification_fail",
+    priority: "HIGH",
+    status: "pending",
+    customer: { id: "CUS-778843", segment: "New", country: "GB" },
+    signal: {
+      document_type: "Passport",
+      document_country: "GB",
+      document_expiry: "2027-08-14",
+      liveness_check: "FAIL",
+      face_match_score: 0.41,
+      document_authenticity_score: 0.62,
+      address_verification: "PARTIAL",
+      pep_sanction_hit: false,
+      device_fingerprint: "NEW_DEVICE",
+      application_type: "Current Account",
+      requested_overdraft: 2500,
+    }
+  },
+  {
+    id: "ALT-2026-0046",
+    timestamp: new Date(Date.now() - 52 * 60000).toISOString(),
+    source: "FDE-Primary v3.1",
+    alertType: "first_party_fraud",
+    priority: "MEDIUM",
+    status: "pending",
+    customer: { id: "CUS-332211", segment: "Standard", country: "US" },
+    signal: {
+      dispute_count_12m: 4,
+      chargeback_count_12m: 3,
+      dispute_win_rate: 0.92,
+      avg_dispute_amount: 340,
+      most_recent_dispute_days_ago: 18,
+      transaction_amount: 520.00,
+      merchant: "Electronics Depot",
+      pattern_match: "high_dispute_velocity",
+      account_age_days: 712,
+      previous_fraud_flag: false,
+    }
+  },
+  {
+    id: "ALT-2026-0047",
+    timestamp: new Date(Date.now() - 68 * 60000).toISOString(),
+    source: "FDE-Secondary v2.4",
+    alertType: "card_not_present",
+    priority: "LOW",
+    status: "pending",
+    customer: { id: "CUS-112358", segment: "Premium", country: "US" },
+    signal: {
+      transaction_amount: 1250.00,
+      currency: "USD",
+      merchant: "Apple Store",
+      merchant_country: "US",
+      card_holder_country: "US",
+      transaction_channel: "In-App",
+      device_fingerprint: "KNOWN_DEVICE",
+      ip_address_country: "US",
+      ip_risk_score: 0.05,
+      velocity_24h: 1,
+      avg_transaction_size: 980.00,
+      3ds_authenticated: true,
+      billing_shipping_match: true,
+    }
+  },
+  {
+    id: "ALT-2026-0048",
+    timestamp: new Date(Date.now() - 89 * 60000).toISOString(),
+    source: "FDE-Primary v3.1",
+    alertType: "account_takeover",
+    priority: "HIGH",
+    status: "pending",
+    customer: { id: "CUS-567890", segment: "Business", country: "GB" },
+    signal: {
+      event_type: "Unusual login location",
+      login_ip_country: "CN",
+      registered_country: "GB",
+      device_fingerprint: "NEW_DEVICE",
+      ip_risk_score: 0.78,
+      logins_failed_24h: 3,
+      password_changed: false,
+      email_changed: false,
+      mfa_bypassed: false,
+      time_since_last_login_days: 4,
+      transaction_amount: 8900.00,
+      currency: "GBP",
+    }
+  }
+];
+
+const ALERT_TYPE_LABELS = {
+  card_not_present: "Card Not Present",
+  account_takeover: "Account Takeover",
+  synthetic_identity: "Synthetic Identity",
+  identity_verification_fail: "Identity Verification Fail",
+  first_party_fraud: "First Party Fraud",
+};
+
+const PRIORITY_CONFIG = {
+  CRITICAL: { color: "#F13C47", bg: "rgba(241,60,71,0.12)", label: "CRITICAL" },
+  HIGH:     { color: "#FFA030", bg: "rgba(255,160,48,0.12)", label: "HIGH" },
+  MEDIUM:   { color: "#00A8CB", bg: "rgba(0,168,203,0.12)", label: "MEDIUM" },
+  LOW:      { color: "#38BB94", bg: "rgba(56,187,148,0.12)", label: "LOW" },
+};
+// ─────────────────────────────────────────────────────────────────────────────
+// TransUnion × Conquer AI — Anthropic API Integration
+// Fraud Signal Classification Engine
+// ─────────────────────────────────────────────────────────────────────────────
+
+const API = {
+  async classifyAlert(alert, apiKey) {
+    const signalJson = JSON.stringify(alert.signal, null, 2);
+    const prompt = `You are a fraud detection AI for TransUnion, one of the world's largest consumer credit reporting agencies. Your job is to classify incoming fraud alerts with precision and provide clear, actionable guidance to human analysts.
+
+ALERT DETAILS:
+- Alert ID: ${alert.id}
+- Alert Type: ${ALERT_TYPE_LABELS[alert.alertType] || alert.alertType}
+- Source System: ${alert.source}
+- Customer Segment: ${alert.customer.segment}
+- Customer Country: ${alert.customer.country}
+
+RAW SIGNAL DATA:
+${signalJson}
+
+Analyse this alert and return ONLY a valid JSON object with exactly this structure (no markdown, no explanation, just the JSON):
+
+{
+  "risk_type": "string — specific fraud type (e.g. 'Card Not Present Fraud', 'Account Takeover', 'Synthetic Identity Fraud', 'First Party Fraud', 'False Positive')",
+  "urgency": "CRITICAL | HIGH | MEDIUM | LOW",
+  "confidence": number between 0.00 and 1.00,
+  "recommendation": "AUTO_RESOLVE | ESCALATE | INVESTIGATE | BLOCK",
+  "rationale": "2-3 clear sentences explaining exactly why you classified it this way, referencing specific signal values",
+  "key_signals": ["array of 3-5 specific signal values that most influenced this classification"],
+  "suggested_action": "One specific, actionable instruction for the analyst — what to do right now",
+  "false_positive_probability": number between 0.00 and 1.00,
+  "regulatory_note": "null or a short note if there are regulatory/compliance implications the analyst must be aware of"
+}
+
+Be precise. Reference actual numbers from the signal data. If ip_risk_score is 0.91, say so. If velocity is 9 in 24h against an average of 2, flag that. Analysts trust you when you cite your evidence.`;
+
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": apiKey,
+        "anthropic-version": "2023-06-01",
+        "anthropic-dangerous-direct-browser-access": "true"
+      },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      if (response.status === 401) throw new Error("Invalid API key. Please check your Anthropic API key in Settings.");
+      if (response.status === 429) throw new Error("Rate limit reached. Please wait a moment and try again.");
+      throw new Error(err.error?.message || `API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const raw = data.content[0]?.text || "";
+
+    // Strip any markdown fences if present
+    const clean = raw.replace(/```json
+?/g, "").replace(/```
+?/g, "").trim();
+
+    try {
+      return JSON.parse(clean);
+    } catch {
+      throw new Error("AI returned an unexpected response format. Please try again.");
+    }
+  }
+};
+// ─────────────────────────────────────────────────────────────────────────────
+// TransUnion × Conquer AI — Fraud Signal Triage Agent
+// Main Application Logic
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+const STATE = {
+  alerts: [],
+  auditLog: [],
+  currentAlertId: null,
+  currentClassification: null,
+  currentFilter: "all",
+  apiKey: "",
+  classifying: false,
+  view: "dashboard", // dashboard | detail | audit | settings
+};
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+function init() {
+  // Load persisted data
+  STATE.apiKey = localStorage.getItem("tu_api_key") || "";
+  const savedLog = localStorage.getItem("tu_audit_log");
+  if (savedLog) {
+    try { STATE.auditLog = JSON.parse(savedLog); } catch { STATE.auditLog = []; }
+  }
+  const savedAlerts = localStorage.getItem("tu_alerts");
+  if (savedAlerts) {
+    try {
+      STATE.alerts = JSON.parse(savedAlerts);
+    } catch {
+      STATE.alerts = SAMPLE_ALERTS.map(a => ({ ...a }));
+    }
+  } else {
+    STATE.alerts = SAMPLE_ALERTS.map(a => ({ ...a }));
+    saveAlerts();
+  }
+
+  // Build tabs + render
+  buildNavTabs();
+  renderDashboard();
+  showView("dashboard");
+  updateNavCounts();
+
+  // Prefill API key field if present
+  const keyInput = document.getElementById("apiKeyInput");
+  if (keyInput && STATE.apiKey) {
+    keyInput.value = STATE.apiKey;
+  }
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────────
+function showView(name) {
+  STATE.view = name;
+  document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+  const el = document.getElementById(`view-${name}`);
+  if (el) el.classList.add("active");
+
+  document.querySelectorAll(".nav-tab").forEach(t => {
+    t.classList.toggle("active", t.dataset.view === name);
+  });
+
+  if (name === "dashboard") renderDashboard();
+  if (name === "audit") renderAuditLog();
+}
+
+function buildNavTabs() {
+  const container = document.getElementById("navTabs");
+  const tabs = [
+    { view: "dashboard", label: "Alert Queue", countId: "count-queue" },
+    { view: "audit",     label: "Audit Log",   countId: "count-audit" },
+    { view: "settings",  label: "⚙ Settings",  countId: null },
+  ];
+  container.innerHTML = tabs.map(t => `
+    <button class="nav-tab" data-view="${t.view}" onclick="showView('${t.view}')">
+      ${t.label}
+      ${t.countId ? `<span class="tab-count muted" id="${t.countId}">0</span>` : ""}
+    </button>
+  `).join("");
+}
+
+function updateNavCounts() {
+  const pending = STATE.alerts.filter(a => a.status === "pending").length;
+  const qEl = document.getElementById("count-queue");
+  const aEl = document.getElementById("count-audit");
+  if (qEl) {
+    qEl.textContent = pending;
+    qEl.className = "tab-count" + (pending > 0 ? "" : " muted");
+  }
+  if (aEl) {
+    aEl.textContent = STATE.auditLog.length;
+    aEl.className = "tab-count muted";
+  }
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────────────────────
+function renderDashboard() {
+  const container = document.getElementById("view-dashboard");
+  const filtered = filterAlerts(STATE.alerts, STATE.currentFilter);
+  const pending = STATE.alerts.filter(a => a.status === "pending").length;
+  const resolved = STATE.alerts.filter(a => a.status !== "pending").length;
+  const confirmed = STATE.auditLog.filter(e => e.action === "confirmed").length;
+  const corrected = STATE.auditLog.filter(e => e.action === "corrected").length;
+  const totalDecisions = confirmed + corrected;
+  const accuracy = totalDecisions > 0
+    ? Math.round((confirmed / totalDecisions) * 100)
+    : "—";
+  const timeSaved = (STATE.auditLog.length * 4.2).toFixed(0);
+
+  container.innerHTML = `
+    <div class="dashboard">
+      <div class="page-header">
+        <h1>Fraud Signal Queue</h1>
+        <p>Incoming alerts from fraud detection engines — classified by AI, reviewed by your team</p>
+      </div>
+
+      ${!STATE.apiKey ? `
+      <div class="no-key-banner">
+        <div>
+          <p><strong>API key required</strong> — Enter your Anthropic API key in Settings to enable AI classification.</p>
+        </div>
+        <button class="btn btn-correct" onclick="showView('settings')">Go to Settings →</button>
+      </div>` : ""}
+
+      <div class="metrics">
+        <div class="metric-card crit">
+          <div class="metric-value" id="m-pending">${pending}</div>
+          <div class="metric-label">Pending Review</div>
+          <div class="metric-sub">Awaiting analyst decision</div>
+        </div>
+        <div class="metric-card ok">
+          <div class="metric-value">${resolved}</div>
+          <div class="metric-label">Resolved</div>
+          <div class="metric-sub">Confirmed or corrected</div>
+        </div>
+        <div class="metric-card tu">
+          <div class="metric-value">${accuracy}${accuracy !== "—" ? "%" : ""}</div>
+          <div class="metric-label">AI Accuracy</div>
+          <div class="metric-sub">${totalDecisions} decisions made</div>
+        </div>
+        <div class="metric-card brand">
+          <div class="metric-value">${timeSaved}m</div>
+          <div class="metric-label">Time Saved</div>
+          <div class="metric-sub">Est. vs manual triage</div>
+        </div>
+        <div class="metric-card warn">
+          <div class="metric-value">${corrected}</div>
+          <div class="metric-label">Corrections</div>
+          <div class="metric-sub">AI overrides — training signals</div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h2>Alert Queue (${filtered.length})</h2>
+        <div class="filter-row">
+          ${["all","pending","confirmed","corrected","auto_resolved"].map(f => `
+            <button class="filter-btn ${STATE.currentFilter === f ? "active" : ""}"
+              onclick="setFilter('${f}')">${f.replace("_"," ")}</button>
+          `).join("")}
+        </div>
+      </div>
+
+      <div class="alert-list">
+        ${filtered.length === 0
+          ? `<div style="text-align:center;padding:48px;color:var(--text-3)">No alerts matching this filter</div>`
+          : filtered.map(a => renderAlertRow(a)).join("")
+        }
+      </div>
+    </div>
+  `;
+}
+
+function setFilter(f) {
+  STATE.currentFilter = f;
+  renderDashboard();
+}
+
+function filterAlerts(alerts, filter) {
+  if (filter === "all") return [...alerts].sort((a, b) => {
+    const order = { CRITICAL: 0, HIGH: 1, MEDIUM: 2, LOW: 3 };
+    if (a.status === "pending" && b.status !== "pending") return -1;
+    if (a.status !== "pending" && b.status === "pending") return 1;
+    return (order[a.priority] ?? 9) - (order[b.priority] ?? 9);
+  });
+  return alerts.filter(a => a.status === filter);
+}
+
+function renderAlertRow(alert) {
+  const pc = PRIORITY_CONFIG[alert.priority] || PRIORITY_CONFIG.LOW;
+  const typeLabel = ALERT_TYPE_LABELS[alert.alertType] || alert.alertType;
+  const ago = timeAgo(alert.timestamp);
+  const statusBadge = alert.status === "pending"
+    ? `<span class="badge" style="background:${pc.bg};color:${pc.color}">${pc.label}</span>`
+    : `<span class="badge" style="background:var(--surface-3);color:var(--text-2)">${alert.status.replace("_"," ")}</span>`;
+
+  const amount = alert.signal?.transaction_amount
+    ? `${alert.signal.currency || "$"}${alert.signal.transaction_amount?.toLocaleString()}`
+    : alert.signal?.credit_requested
+    ? `$${alert.signal.credit_requested?.toLocaleString()} credit`
+    : "";
+
+  return `
+    <div class="alert-row status-${alert.status}" onclick="openAlert('${alert.id}')">
+      <div class="alert-priority-dot" style="background:${pc.color};box-shadow:0 0 6px ${pc.color}40"></div>
+      <div class="alert-main">
+        <div class="alert-id">${alert.id}</div>
+        <div class="alert-type">${typeLabel}</div>
+        <div class="alert-meta">${alert.source}${amount ? " · " + amount : ""} · ${alert.customer.segment} · ${alert.customer.country}</div>
+      </div>
+      <div class="alert-badges">
+        ${statusBadge}
+        ${alert.aiResult ? `<span class="badge" style="background:var(--tu-tint);color:var(--tu-blue)">${Math.round(alert.aiResult.confidence * 100)}% conf</span>` : ""}
+      </div>
+      <div class="alert-time">${ago}</div>
+    </div>
+  `;
+}
+
+// ── ALERT DETAIL ──────────────────────────────────────────────────────────────
+function openAlert(id) {
+  const alert = STATE.alerts.find(a => a.id === id);
+  if (!alert) return;
+  STATE.currentAlertId = id;
+  STATE.currentClassification = alert.aiResult || null;
+  renderDetailView(alert);
+  showView("detail");
+}
+
+function renderDetailView(alert) {
+  const container = document.getElementById("view-detail");
+  const pc = PRIORITY_CONFIG[alert.priority] || PRIORITY_CONFIG.LOW;
+  const typeLabel = ALERT_TYPE_LABELS[alert.alertType] || alert.alertType;
+
+  container.innerHTML = `
+    <div class="detail-view">
+      <button class="back-btn" onclick="showView('dashboard')">← Back to Queue</button>
+
+      <div class="detail-header">
+        <div class="detail-title">
+          <h1>${typeLabel}</h1>
+          <div class="detail-meta">
+            <span class="badge" style="background:${pc.bg};color:${pc.color}">${pc.label}</span>
+            <span class="badge" style="background:var(--surface-2);color:var(--text-2)">${alert.id}</span>
+            <span class="badge" style="background:var(--surface-2);color:var(--text-2)">${alert.source}</span>
+            <span class="badge" style="background:var(--surface-2);color:var(--text-2)">${alert.customer.segment} · ${alert.customer.country}</span>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--text-3);font-family:monospace">
+          ${new Date(alert.timestamp).toLocaleString()}
+        </div>
+      </div>
+
+      <!-- Signal Data -->
+      <h2 style="margin-bottom:12px">Signal Data</h2>
+      <div class="signal-grid">
+        ${renderSignalCards(alert.signal)}
+      </div>
+
+      <!-- AI Classification -->
+      <div class="ai-section" id="aiSection">
+        <div class="ai-section-header">
+          <div>
+            <div class="label" style="color:var(--tu-blue);margin-bottom:4px">AI Classification</div>
+            <div style="font-size:12px;color:var(--text-2)">Powered by Claude · Conquer AI Triage Agent</div>
+          </div>
+          ${alert.status === "pending" && !alert.aiResult ? `
+            <button class="btn btn-classify" id="classifyBtn" onclick="classifyAlert('${alert.id}')"
+              ${!STATE.apiKey ? "disabled title='Add API key in Settings'" : ""}>
+              ⚡ Classify with AI
+            </button>` : ""}
+        </div>
+        <div id="aiResultArea">
+          ${alert.aiResult ? renderAIResult(alert.aiResult) : `
+            <div class="ai-loading" style="padding:30px;text-align:center;color:var(--text-3)">
+              ${STATE.apiKey
+                ? "Click <strong>Classify with AI</strong> to analyse this alert"
+                : `<span style="color:var(--alert)">Add your Anthropic API key in <a href="#" onclick="showView('settings')" style="color:var(--tu-blue)">Settings</a> to enable classification</span>`
+              }
+            </div>
+          `}
+        </div>
+      </div>
+
+      <!-- Decision bar -->
+      <div class="decision-bar" id="decisionBar">
+        ${renderDecisionBar(alert)}
+      </div>
+    </div>
+  `;
+}
+
+function renderSignalCards(signal) {
+  if (!signal) return '<div class="signal-card"><div class="signal-val">No signal data</div></div>';
+  return Object.entries(signal).map(([key, val]) => {
+    let riskClass = "";
+    if (key.includes("risk_score") || key.includes("ip_risk")) {
+      riskClass = val > 0.7 ? "high-risk" : val > 0.4 ? "med-risk" : "low-risk";
+    }
+    if (key === "velocity_24h" && val > 6) riskClass = "high-risk";
+    if (key === "mfa_bypassed" && val === true) riskClass = "high-risk";
+    if (key === "3ds_authenticated" && val === false) riskClass = "med-risk";
+    if (key === "face_match_score" && val < 0.5) riskClass = "high-risk";
+    const display = typeof val === "boolean"
+      ? (val ? "YES" : "NO")
+      : typeof val === "number" && val % 1 !== 0
+      ? val.toFixed(2)
+      : String(val);
+    return `
+      <div class="signal-card">
+        <div class="signal-key">${key.replace(/_/g, " ")}</div>
+        <div class="signal-val ${riskClass}">${display}</div>
+      </div>
+    `;
+  }).join("");
+}
+
+function renderAIResult(result) {
+  if (!result) return "";
+  const rec = result.recommendation || "INVESTIGATE";
+  const recColour = {
+    BLOCK: "var(--danger)", ESCALATE: "var(--alert)",
+    INVESTIGATE: "var(--tu-blue)", AUTO_RESOLVE: "var(--success)"
+  }[rec] || "var(--text-2)";
+
+  return `
+    <div class="ai-result">
+      <div class="ai-row">
+        <div class="ai-field">
+          <div class="ai-field-label">Risk Type</div>
+          <div class="ai-field-val">${result.risk_type}</div>
+        </div>
+        <div class="ai-field">
+          <div class="ai-field-label">Urgency</div>
+          <div class="ai-field-val" style="color:${PRIORITY_CONFIG[result.urgency]?.color || "var(--text-1)"}">${result.urgency}</div>
+        </div>
+        <div class="ai-field">
+          <div class="ai-field-label">Recommendation</div>
+          <div class="ai-field-val" style="color:${recColour}">${rec}</div>
+        </div>
+        <div class="ai-field">
+          <div class="ai-field-label">Confidence</div>
+          <div class="ai-field-val">${Math.round(result.confidence * 100)}%</div>
+          <div class="confidence-bar">
+            <div class="confidence-fill" style="width:${result.confidence * 100}%"></div>
+          </div>
+        </div>
+        <div class="ai-field">
+          <div class="ai-field-label">False Positive Risk</div>
+          <div class="ai-field-val" style="color:${result.false_positive_probability > 0.4 ? "var(--alert)" : "var(--success)"}">
+            ${Math.round((result.false_positive_probability || 0) * 100)}%
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-field-label" style="margin-bottom:6px">AI Rationale</div>
+      <div class="rationale-box">${result.rationale}</div>
+
+      <div class="ai-field-label" style="margin-bottom:6px">Key Signals Identified</div>
+      <div class="signals-list">
+        ${(result.key_signals || []).map(s => `<span class="signal-tag">${s}</span>`).join("")}
+      </div>
+
+      <div class="suggested-action">
+        <div class="action-label">Suggested Action</div>
+        ${result.suggested_action}
+      </div>
+
+      ${result.regulatory_note ? `<div class="regulatory-note">${result.regulatory_note}</div>` : ""}
+    </div>
+  `;
+}
+
+function renderDecisionBar(alert) {
+  if (alert.status === "confirmed") {
+    return `<div class="decision-done">✓ <strong style="color:var(--success)">Confirmed</strong> — AI classification accepted. Logged to audit trail.</div>`;
+  }
+  if (alert.status === "corrected") {
+    return `<div class="decision-done">✏ <strong style="color:var(--alert)">Corrected</strong> — Your classification has been logged. Feeds back as training signal.</div>`;
+  }
+  if (alert.status === "auto_resolved") {
+    return `<div class="decision-done">⚡ <strong style="color:var(--text-2)">Auto-resolved</strong> — High confidence, low risk. Logged automatically.</div>`;
+  }
+  if (!alert.aiResult) {
+    return `<div class="decision-label">Run AI classification first, then confirm or correct the result.</div>`;
+  }
+  return `
+    <div class="decision-label">
+      AI says: <strong>${alert.aiResult.risk_type}</strong> (${Math.round(alert.aiResult.confidence * 100)}% confidence)
+      <br><span style="font-size:12px;color:var(--text-3)">Review the classification above, then confirm or correct.</span>
+    </div>
+    <div class="decision-buttons">
+      <button class="btn btn-confirm" onclick="confirmAlert('${alert.id}')">✓ Confirm</button>
+      <button class="btn btn-correct" onclick="openCorrectModal('${alert.id}')">✏ Correct</button>
+    </div>
+  `;
+}
+
+// ── AI CLASSIFICATION ──────────────────────────────────────────────────────────
+async function classifyAlert(alertId) {
+  if (STATE.classifying) return;
+  if (!STATE.apiKey) { showToast("Add your API key in Settings first", "error"); return; }
+
+  const alert = STATE.alerts.find(a => a.id === alertId);
+  if (!alert) return;
+
+  STATE.classifying = true;
+
+  // Show spinner
+  const classifyBtn = document.getElementById("classifyBtn");
+  if (classifyBtn) { classifyBtn.disabled = true; classifyBtn.textContent = "Classifying…"; }
+
+  const resultArea = document.getElementById("aiResultArea");
+  if (resultArea) {
+    resultArea.innerHTML = `
+      <div class="ai-loading">
+        <div class="ai-spinner"></div>
+        <div>Analysing signal data…</div>
+        <div style="font-size:11px;color:var(--text-3);margin-top:6px;font-family:monospace">Claude is reviewing ${Object.keys(alert.signal).length} signal fields</div>
+      </div>`;
+  }
+
+  try {
+    const result = await API.classifyAlert(alert, STATE.apiKey);
+    alert.aiResult = result;
+
+    // Auto-resolve if very high confidence and low false positive risk
+    if (result.confidence >= 0.95 && result.false_positive_probability <= 0.05
+        && result.recommendation === "AUTO_RESOLVE") {
+      alert.status = "auto_resolved";
+      logAudit(alert, "auto_resolved", result, null);
+      showToast(`${alertId} auto-resolved (${Math.round(result.confidence * 100)}% confidence)`, "info");
+    }
+
+    saveAlerts();
+    if (resultArea) resultArea.innerHTML = renderAIResult(result);
+
+    // Update decision bar
+    const decisionBar = document.getElementById("decisionBar");
+    if (decisionBar) decisionBar.innerHTML = renderDecisionBar(alert);
+
+    // Hide classify button
+    const btn = document.getElementById("classifyBtn");
+    if (btn) btn.style.display = "none";
+
+    updateNavCounts();
+  } catch (err) {
+    showToast(err.message || "Classification failed", "error");
+    if (resultArea) {
+      resultArea.innerHTML = `<div class="ai-loading" style="color:var(--danger)">${err.message}</div>`;
+    }
+    if (classifyBtn) { classifyBtn.disabled = false; classifyBtn.textContent = "⚡ Classify with AI"; }
+  } finally {
+    STATE.classifying = false;
+  }
+}
+
+// ── CONFIRM / CORRECT ─────────────────────────────────────────────────────────
+function confirmAlert(alertId) {
+  const alert = STATE.alerts.find(a => a.id === alertId);
+  if (!alert || !alert.aiResult) return;
+  alert.status = "confirmed";
+  logAudit(alert, "confirmed", alert.aiResult, null);
+  saveAlerts();
+  updateNavCounts();
+  showToast(`${alertId} confirmed — logged to audit trail`, "success");
+
+  // Re-render decision bar
+  const db = document.getElementById("decisionBar");
+  if (db) db.innerHTML = renderDecisionBar(alert);
+}
+
+function openCorrectModal(alertId) {
+  document.getElementById("correctAlertId").value = alertId;
+  document.getElementById("correctModal").classList.remove("hidden");
+}
+
+function closeCorrectModal() {
+  document.getElementById("correctModal").classList.add("hidden");
+}
+
+function submitCorrection() {
+  const alertId = document.getElementById("correctAlertId").value;
+  const newType = document.getElementById("correctType").value;
+  const newUrgency = document.getElementById("correctUrgency").value;
+  const reason = document.getElementById("correctReason").value.trim();
+
+  if (!reason) { showToast("Please provide a reason for the correction", "error"); return; }
+
+  const alert = STATE.alerts.find(a => a.id === alertId);
+  if (!alert) return;
+
+  const correction = { risk_type: newType, urgency: newUrgency, reason };
+  alert.status = "corrected";
+  alert.correction = correction;
+  logAudit(alert, "corrected", alert.aiResult, correction);
+  saveAlerts();
+  updateNavCounts();
+  closeCorrectModal();
+  showToast(`${alertId} corrected — training signal logged`, "info");
+
+  // Re-render decision bar
+  const db = document.getElementById("decisionBar");
+  if (db) db.innerHTML = renderDecisionBar(alert);
+}
+
+// ── AUDIT LOG ─────────────────────────────────────────────────────────────────
+function logAudit(alert, action, aiResult, correction) {
+  STATE.auditLog.unshift({
+    id: alert.id,
+    timestamp: new Date().toISOString(),
+    alertType: ALERT_TYPE_LABELS[alert.alertType] || alert.alertType,
+    priority: alert.priority,
+    action,
+    aiRiskType: aiResult?.risk_type || "—",
+    aiConfidence: aiResult ? Math.round(aiResult.confidence * 100) : "—",
+    aiRecommendation: aiResult?.recommendation || "—",
+    correctedTo: correction ? `${correction.risk_type} · ${correction.urgency}` : null,
+    correctionReason: correction?.reason || null,
+  });
+  localStorage.setItem("tu_audit_log", JSON.stringify(STATE.auditLog));
+  updateNavCounts();
+}
+
+function renderAuditLog() {
+  const container = document.getElementById("view-audit");
+  container.innerHTML = `
+    <div class="audit-view">
+      <div class="page-header">
+        <h1>Audit Log</h1>
+        <p>Complete record of every classification decision — AI and analyst. Full trail for regulatory review.</p>
+      </div>
+      ${STATE.auditLog.length === 0
+        ? `<div class="audit-empty"><div style="font-size:32px;margin-bottom:12px">📋</div>No decisions logged yet. Classify and review alerts to build the audit trail.</div>`
+        : `
+        <div style="overflow-x:auto">
+          <table class="audit-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Alert ID</th>
+                <th>Type</th>
+                <th>AI Classification</th>
+                <th>Confidence</th>
+                <th>Recommendation</th>
+                <th>Analyst Action</th>
+                <th>Correction / Reason</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${STATE.auditLog.map(entry => `
+                <tr>
+                  <td class="td-id">${new Date(entry.timestamp).toLocaleTimeString()}<br><span style="color:var(--text-3)">${new Date(entry.timestamp).toLocaleDateString()}</span></td>
+                  <td class="td-id">${entry.id}</td>
+                  <td>${entry.alertType}</td>
+                  <td>${entry.aiRiskType}</td>
+                  <td style="font-family:monospace">${entry.aiConfidence}%</td>
+                  <td><span class="badge" style="background:var(--surface-2);color:var(--text-2)">${entry.aiRecommendation}</span></td>
+                  <td class="td-action-${entry.action}">${entry.action.replace("_"," ")}</td>
+                  <td style="color:var(--text-2);font-size:11px">
+                    ${entry.correctedTo ? `<strong style="color:var(--alert)">${entry.correctedTo}</strong><br>` : ""}
+                    ${entry.correctionReason || (entry.action === "confirmed" ? "AI accepted" : "")}
+                  </td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:12px;align-items:center">
+          <span style="font-size:12px;color:var(--text-3)">${STATE.auditLog.length} entries</span>
+          <button class="btn btn-cancel" style="font-size:11px;padding:5px 12px" onclick="exportAuditCSV()">⬇ Export CSV</button>
+          <button class="btn btn-cancel" style="font-size:11px;padding:5px 12px;color:var(--danger)" onclick="clearAuditLog()">Clear log</button>
+        </div>
+        `
+      }
+    </div>
+  `;
+}
+
+function exportAuditCSV() {
+  const headers = ["Time","Alert ID","Type","AI Classification","Confidence","Recommendation","Analyst Action","Corrected To","Reason"];
+  const rows = STATE.auditLog.map(e => [
+    new Date(e.timestamp).toISOString(),
+    e.id, e.alertType, e.aiRiskType, e.aiConfidence + "%",
+    e.aiRecommendation, e.action, e.correctedTo || "", e.correctionReason || ""
+  ]);
+  const csv = [headers, ...rows].map(r => r.map(v => `"${v}"`).join(",")).join("
+");
+  const blob = new Blob([csv], { type: "text/csv" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `transunion_audit_log_${new Date().toISOString().split("T")[0]}.csv`;
+  a.click();
+}
+
+function clearAuditLog() {
+  if (!confirm("Clear the entire audit log? This cannot be undone.")) return;
+  STATE.auditLog = [];
+  localStorage.removeItem("tu_audit_log");
+  updateNavCounts();
+  renderAuditLog();
+}
+
+// ── SETTINGS ──────────────────────────────────────────────────────────────────
+function saveApiKey() {
+  const val = document.getElementById("apiKeyInput").value.trim();
+  if (!val) { setStatus("err", "API key cannot be empty"); return; }
+  if (!val.startsWith("sk-ant-")) { setStatus("err", "Key should start with sk-ant-…"); return; }
+  STATE.apiKey = val;
+  localStorage.setItem("tu_api_key", val);
+  setStatus("ok", "✓ Saved — ready to classify alerts");
+  updateNavCounts();
+}
+
+function clearApiKey() {
+  document.getElementById("apiKeyInput").value = "";
+  STATE.apiKey = "";
+  localStorage.removeItem("tu_api_key");
+  setStatus("ok", "API key cleared");
+}
+
+function resetData() {
+  if (!confirm("Reset all alerts and clear the audit log? This cannot be undone.")) return;
+  STATE.alerts = SAMPLE_ALERTS.map(a => ({ ...a, aiResult: undefined, correction: undefined }));
+  STATE.auditLog = [];
+  saveAlerts();
+  localStorage.removeItem("tu_audit_log");
+  updateNavCounts();
+  showToast("Data reset to sample alerts", "info");
+}
+
+function setStatus(type, msg) {
+  const el = document.getElementById("saveStatus");
+  if (el) { el.className = "save-status " + type; el.textContent = msg; }
+}
+
+// ── UTILS ─────────────────────────────────────────────────────────────────────
+function saveAlerts() {
+  localStorage.setItem("tu_alerts", JSON.stringify(STATE.alerts));
+}
+
+function timeAgo(iso) {
+  const diff = (Date.now() - new Date(iso)) / 1000;
+  if (diff < 60) return `${Math.round(diff)}s ago`;
+  if (diff < 3600) return `${Math.round(diff / 60)}m ago`;
+  return `${Math.round(diff / 3600)}h ago`;
+}
+
+function showToast(msg, type = "info") {
+  const container = document.getElementById("toastContainer");
+  if (!container) return;
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+  toast.textContent = msg;
+  container.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = "0"; toast.style.transition = "opacity 300ms"; }, 2800);
+  setTimeout(() => toast.remove(), 3200);
+}
     window.addEventListener("DOMContentLoaded", init);
   </script>
 </body>
