@@ -242,6 +242,43 @@ h2{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--t1)}
 .coach-bar-label{position:absolute;bottom:-24px;left:0;right:0;font-size:11px;text-align:center;color:var(--t2);font-weight:600;white-space:nowrap}
 .coach-bar-value{position:absolute;top:-24px;left:0;right:0;font-size:12px;text-align:center;color:var(--t1);font-weight:700}
 
+/* AI CHATBOT */
+.ai-chat{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);box-shadow:var(--sh);display:flex;flex-direction:column;height:520px;animation:fade-in 500ms ease-out;overflow:hidden}
+.ai-chat-header{padding:16px 20px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;flex-shrink:0;background:linear-gradient(135deg,rgba(0,120,212,0.06),rgba(98,100,167,0.06))}
+.ai-chat-header .chat-icon{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0078D4,#6264A7);display:flex;align-items:center;justify-content:center;color:#FFF;font-size:16px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,120,212,0.25)}
+.ai-chat-header .chat-info{flex:1}
+.ai-chat-header .chat-name{font-size:14px;font-weight:700;color:var(--t1)}
+.ai-chat-header .chat-status{font-size:11px;color:var(--ok);font-weight:500;display:flex;align-items:center;gap:4px}
+.ai-chat-header .chat-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--ok);display:inline-block}
+.ai-chat-messages{flex:1;overflow-y:auto;padding:16px 16px 8px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.ai-chat-msg{display:flex;gap:10px;animation:fadeInUp 300ms ease-out}
+.ai-chat-msg.user{flex-direction:row-reverse}
+.ai-chat-msg .cm-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#FFF;flex-shrink:0}
+.ai-chat-msg .cm-avatar.bot{background:linear-gradient(135deg,#0078D4,#6264A7)}
+.ai-chat-msg .cm-avatar.user{background:linear-gradient(135deg,#3B82F6,#2563EB)}
+.ai-chat-msg .cm-bubble{max-width:82%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.6;color:var(--t1)}
+.ai-chat-msg:not(.user) .cm-bubble{background:var(--s2);border-bottom-left-radius:4px}
+.ai-chat-msg.user .cm-bubble{background:linear-gradient(135deg,#0078D4,#005A9E);color:#FFF;border-bottom-right-radius:4px}
+.ai-chat-msg .cm-actions{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.ai-chat-msg .cm-action-btn{padding:4px 10px;background:var(--s1);border:1px solid var(--bd);border-radius:6px;font-size:11px;font-weight:600;color:var(--tu);cursor:pointer;transition:all 150ms}
+.ai-chat-msg .cm-action-btn:hover{background:var(--tu);color:#FFF;border-color:var(--tu)}
+.ai-chat-typing{display:flex;gap:10px;align-items:center;padding:4px 0}
+.ai-chat-typing .ct-dots{display:flex;gap:3px;padding:8px 14px;background:var(--s2);border-radius:12px}
+.ai-chat-typing .ct-dot{width:6px;height:6px;border-radius:50%;background:var(--t3);animation:typingBounce 1.4s infinite}
+.ai-chat-typing .ct-dot:nth-child(2){animation-delay:.2s}
+.ai-chat-typing .ct-dot:nth-child(3){animation-delay:.4s}
+.ai-chat-suggestions{display:flex;gap:8px;flex-wrap:wrap;padding:8px 16px;border-top:1px solid var(--bd);flex-shrink:0;background:var(--s2)}
+.ai-chat-suggestions .cs-chip{padding:6px 12px;background:var(--s1);border:1px solid var(--bd);border-radius:20px;font-size:11px;color:var(--tu);font-weight:500;cursor:pointer;transition:all 150ms;white-space:nowrap}
+.ai-chat-suggestions .cs-chip:hover{background:var(--tu);color:#FFF;border-color:var(--tu);transform:translateY(-1px);box-shadow:0 2px 6px rgba(0,120,212,0.15)}
+.ai-chat-input{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--bd);flex-shrink:0;align-items:center}
+.ai-chat-input input{flex:1;border:1px solid var(--bd);border-radius:8px;padding:9px 14px;font-size:13px;font-family:inherit;color:var(--t1);background:var(--s1);outline:none;transition:border-color 200ms}
+.ai-chat-input input:focus{border-color:var(--tu);box-shadow:0 0 0 2px rgba(0,120,212,0.1)}
+.ai-chat-input input::placeholder{color:var(--t3)}
+.ai-chat-input .send{width:34px;height:34px;border:none;background:var(--tu);color:#FFF;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 150ms;flex-shrink:0}
+.ai-chat-input .send:hover{background:#005A9E;transform:scale(1.05)}
+.ai-chat-input .send:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+.ai-chat-input .send svg{width:16px;height:16px}
+
 /* Teams Styles — High Fidelity */
 .teams-container{display:flex;height:calc(100vh - var(--nh));background:#FFFFFF;font-family:'Segoe UI','Inter',system-ui,sans-serif}
 
@@ -550,7 +587,188 @@ function renderDetail(){
   if(!document.getElementById("view-detail").innerHTML){document.getElementById("view-detail").innerHTML=`<div class="dv" style="text-align:center;padding-top:80px;color:var(--t3)"><div style="font-size:48px;margin-bottom:16px">📊</div>Select a signal to view account details</div>`}
 }
 
-function renderCoaching(){document.getElementById("view-coaching").innerHTML=`<div class="wrap"><div class="ph"><h1>AI Coaching Hub</h1><p>Personalized coaching nudges, peer benchmarks, and account health analysis</p></div><div class="coach-grid"><div><div class="coach-perf"><div style="margin-bottom:28px"><div style="font-size:12px;color:var(--t3);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">Your Performance Score</div><div class="coach-score">78 / 100</div><div class="coach-ring"><div class="coach-ring-val">78%</div></div></div><div style="font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:16px"><strong>Rank:</strong> #12 of 45 Consumer Lending CEs. Top performers are leveraging cross-sell strategies and proactive QBRs.</div></div><div class="coach-cards"><div class="coach-card"><div class="coach-title">📉 Volume Decline Pattern</div><div class="coach-body">3 of your accounts show volume decline >10%. Sarah Kim (top 5 performer) stabilized similar accounts by cross-selling Identity Verification Suite in QBRs. Next steps: Schedule cross-functional reviews with your IEs.</div></div><div class="coach-card"><div class="coach-title">⚠ Relationship Risk</div><div class="coach-body">Ally Financial hasn't been contacted in 47 days. Historical data: similar accounts that went dark resulted in 23% churn. Recommend proactive outreach (non-sales) within next 7 days.</div></div><div class="coach-card"><div class="coach-title">📊 Peer Benchmarking</div><div class="coach-body">Top 5 performers (Marcus Chen, Sarah Kim, Jennifer Lee) average 3.2 upsells per account vs your 1.8. They're leveraging competitive intelligence in QBRs. Consider adopting this approach.</div></div></div></div><div class="coach-peer"><h2 style="margin-bottom:20px">Pipeline Growth vs Peers</h2><div class="coach-chart"><div class="coach-bar" style="height:62%"><div class="coach-bar-value">68%</div><div class="coach-bar-label">You</div></div><div class="coach-bar" style="height:91%"><div class="coach-bar-value">91%</div><div class="coach-bar-label">Marcus</div></div><div class="coach-bar" style="height:85%"><div class="coach-bar-value">85%</div><div class="coach-bar-label">Sarah</div></div><div class="coach-bar" style="height:78%"><div class="coach-bar-value">78%</div><div class="coach-bar-label">Jennifer</div></div><div class="coach-bar" style="height:88%"><div class="coach-bar-value">88%</div><div class="coach-bar-label">Robert</div></div></div><div style="padding:16px;background:var(--s2);border-radius:var(--rs);font-size:12px;color:var(--t2);line-height:1.7"><strong>What top performers do differently:</strong><ul style="margin:8px 0 0 16px;padding:0"><li>Proactive quarterly business reviews (QBR)</li><li>Cross-sell preparation using competitive intel</li><li>Relationship check-ins on volume declines</li><li>Team coordination across IEs before client calls</li></ul></div></div></div></div>`}
+function renderCoaching(){
+  document.getElementById("view-coaching").innerHTML=`<div class="wrap"><div class="ph"><h1>AI Coaching Hub</h1><p>Personalized coaching nudges, peer benchmarks, and account health analysis</p></div><div class="coach-grid"><div><div class="coach-perf"><div style="margin-bottom:28px"><div style="font-size:12px;color:var(--t3);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">Your Performance Score</div><div class="coach-score">78 / 100</div><div class="coach-ring"><div class="coach-ring-val">78%</div></div></div><div style="font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:16px"><strong>Rank:</strong> #12 of 45 Consumer Lending CEs. Top performers are leveraging cross-sell strategies and proactive QBRs.</div></div><div class="coach-cards"><div class="coach-card"><div class="coach-title">📉 Volume Decline Pattern</div><div class="coach-body">3 of your accounts show volume decline >10%. Sarah Kim (top 5 performer) stabilized similar accounts by cross-selling Identity Verification Suite in QBRs. Next steps: Schedule cross-functional reviews with your IEs.</div></div><div class="coach-card"><div class="coach-title">⚠ Relationship Risk</div><div class="coach-body">Ally Financial hasn't been contacted in 47 days. Historical data: similar accounts that went dark resulted in 23% churn. Recommend proactive outreach (non-sales) within next 7 days.</div></div><div class="coach-card"><div class="coach-title">📊 Peer Benchmarking</div><div class="coach-body">Top 5 performers (Marcus Chen, Sarah Kim, Jennifer Lee) average 3.2 upsells per account vs your 1.8. They're leveraging competitive intelligence in QBRs. Consider adopting this approach.</div></div></div></div><div><div class="ai-chat" id="ai-coach-chat"><div class="ai-chat-header"><div class="chat-icon">🤖</div><div class="chat-info"><div class="chat-name">Sales Intelligence Coach</div><div class="chat-status">Online — aware of your 8 accounts</div></div></div><div class="ai-chat-messages" id="coach-messages"><div class="ai-chat-msg"><div class="cm-avatar bot">AI</div><div><div class="cm-bubble">Hey Justin — I've been analysing your portfolio this morning. A few things worth your attention:<br><br>• <strong>Block Inc.</strong> is your highest-risk account right now (layoffs + Experian circling)<br>• <strong>Ally Financial</strong> has gone dark — 47 days no contact<br>• Your cross-sell rate (1.8x) is below the peer average (3.2x)<br><br>Want to dig into any of these, or ask me anything about your accounts?</div><div class="cm-actions"><button class="cm-action-btn" onclick="coachAction('draft_email')">📧 Draft Ally Outreach</button><button class="cm-action-btn" onclick="coachAction('block_plan')">🛡 Block Defense Plan</button></div></div></div></div><div class="ai-chat-suggestions" id="coach-suggestions"><div class="cs-chip" onclick="coachAsk(this.textContent)">What should I prioritize this week?</div><div class="cs-chip" onclick="coachAsk(this.textContent)">Why is my score 78?</div><div class="cs-chip" onclick="coachAsk(this.textContent)">How do I improve cross-sell?</div><div class="cs-chip" onclick="coachAsk(this.textContent)">SoFi earnings — what to do?</div></div><div class="ai-chat-input"><input type="text" id="coach-input" placeholder="Ask your coaching agent..." onkeydown="if(event.key==='Enter'&&this.value.trim())coachAsk(this.value)"><button class="send" id="coach-send" onclick="coachAsk(document.getElementById('coach-input').value)" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></div></div><div class="coach-peer" style="margin-top:20px"><h2 style="margin-bottom:20px">Pipeline Growth vs Peers</h2><div class="coach-chart"><div class="coach-bar" style="height:62%"><div class="coach-bar-value">68%</div><div class="coach-bar-label">You</div></div><div class="coach-bar" style="height:91%"><div class="coach-bar-value">91%</div><div class="coach-bar-label">Marcus</div></div><div class="coach-bar" style="height:85%"><div class="coach-bar-value">85%</div><div class="coach-bar-label">Sarah</div></div><div class="coach-bar" style="height:78%"><div class="coach-bar-value">78%</div><div class="coach-bar-label">Jennifer</div></div><div class="coach-bar" style="height:88%"><div class="coach-bar-value">88%</div><div class="coach-bar-label">Robert</div></div></div><div style="padding:16px;background:var(--s2);border-radius:var(--rs);font-size:12px;color:var(--t2);line-height:1.7"><strong>What top performers do differently:</strong><ul style="margin:8px 0 0 16px;padding:0"><li>Proactive quarterly business reviews (QBR)</li><li>Cross-sell preparation using competitive intel</li><li>Relationship check-ins on volume declines</li><li>Team coordination across IEs before client calls</li></ul></div></div></div></div></div>`;
+
+  // Enable send button on input
+  const inp=document.getElementById('coach-input');
+  const sendBtn=document.getElementById('coach-send');
+  inp.addEventListener('input',()=>{sendBtn.disabled=!inp.value.trim()});
+
+  // Chatbot knowledge base — all simulation-aware
+  window._coachKB={
+    accounts:[
+      {name:"Block Inc.",revenue:"$4.2M",health:72,trend:"↓8",ce:"Justin Murry",ies:["Marcus Johnson (Identity)","Sarah Kim (Credit Data)","Wei Chen (Software)"],signal:"40% headcount layoff 2 weeks ago",risk:"Critical — Experian had 2 meetings with their fraud team in Jan. LexisNexis RFP rumored.",action:"Relationship check-in within 48 hrs. Joint call Thursday 2pm scheduled."},
+      {name:"SoFi",revenue:"$3.1M",health:85,trend:"↑4",signal:"Q4 earnings beat — 37% revenue growth in lending division",risk:"Low — expansion opportunity",action:"Prepare cross-sell pitch for Identity Verification Suite during next QBR"},
+      {name:"LendingClub",revenue:"$2.8M",health:68,trend:"↓5",signal:"New CFO appointment — strategic shift expected",risk:"Medium — leadership transition may change vendor priorities",action:"Request intro meeting with new CFO through existing contacts"},
+      {name:"Ally Financial",revenue:"$2.4M",health:55,trend:"↓12",signal:"No contact in 47 days. Volume declining 14% QoQ.",risk:"High — 23% churn probability based on historical patterns",action:"Proactive non-sales outreach this week. Check-in call, not pitch."},
+      {name:"Discover",revenue:"$1.9M",health:74,trend:"↑2",signal:"Expanding fraud analytics team — 5 new hires posted",risk:"Low — upsell opportunity for Fraud Analytics Suite",action:"Connect fraud team hires with Marcus Johnson (Identity)"},
+      {name:"OneMain Financial",revenue:"$1.6M",health:71,trend:"—",signal:"Stable. No recent signals.",risk:"Low",action:"Maintain cadence. Prepare for Q2 QBR."},
+      {name:"Avant",revenue:"$1.2M",health:63,trend:"↓7",signal:"Volume decline 11% — below minimum threshold",risk:"Medium — needs attention. Cross-sell opportunity.",action:"Schedule review with IEs. Consider Identity Verification cross-sell."},
+      {name:"Upstart",revenue:"$0.9M",health:79,trend:"↑6",signal:"AI lending platform expansion — new partnership announced",risk:"Low — strong growth trajectory",action:"Position TU data as enabler for their AI models. Technical deep-dive."}
+    ],
+    score:{value:78,rank:12,total:45,breakdown:{accountHealth:22,engagement:18,crossSell:14,signalResponse:12,peerBench:12},improve:"Cross-sell (14/25) and signal response time (12/20) are your biggest gaps. Top performers score 22+ on cross-sell by preparing competitive briefs before every QBR."},
+    peers:{you:68,marcus:91,sarah:85,jennifer:78,robert:88,avg:80}
+  };
+}
+
+function coachAsk(text){
+  if(!text||!text.trim())return;
+  const input=document.getElementById('coach-input');
+  const msgs=document.getElementById('coach-messages');
+  const sugs=document.getElementById('coach-suggestions');
+  input.value='';
+  document.getElementById('coach-send').disabled=true;
+
+  // Add user message
+  msgs.innerHTML+=`<div class="ai-chat-msg user"><div class="cm-avatar user">JM</div><div class="cm-bubble">${text}</div></div>`;
+  msgs.scrollTop=msgs.scrollHeight;
+
+  // Show typing
+  const typingId='typing-'+Date.now();
+  msgs.innerHTML+=`<div class="ai-chat-typing" id="${typingId}"><div class="cm-avatar bot" style="width:28px;height:28px;font-size:10px;background:linear-gradient(135deg,#0078D4,#6264A7);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#FFF;flex-shrink:0">AI</div><div class="ct-dots"><div class="ct-dot"></div><div class="ct-dot"></div><div class="ct-dot"></div></div></div>`;
+  msgs.scrollTop=msgs.scrollHeight;
+
+  // Generate response
+  setTimeout(()=>{
+    document.getElementById(typingId)?.remove();
+    const resp=generateCoachResponse(text);
+    msgs.innerHTML+=`<div class="ai-chat-msg"><div class="cm-avatar bot">AI</div><div><div class="cm-bubble">${resp.text}</div>${resp.actions?`<div class="cm-actions">${resp.actions.map(a=>`<button class="cm-action-btn" onclick="coachAction('${a.id}')">${a.icon} ${a.label}</button>`).join('')}</div>`:''}</div></div>`;
+    msgs.scrollTop=msgs.scrollHeight;
+
+    // Update suggestions
+    if(resp.followUp){
+      sugs.innerHTML=resp.followUp.map(s=>`<div class="cs-chip" onclick="coachAsk(this.textContent)">${s}</div>`).join('');
+    }
+  },1800+Math.random()*1200);
+}
+
+function coachAction(actionId){
+  const msgs=document.getElementById('coach-messages');
+  const actions={
+    draft_email:{
+      user:"Draft a check-in email for Ally Financial",
+      response:`Here's a draft for your Ally Financial outreach:<br><br><div style="background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:14px;margin:8px 0;font-size:12px;line-height:1.7"><strong>Subject:</strong> Quick check-in — how's Q1 shaping up?<br><br>Hi [Contact],<br><br>Hope you're doing well. Wanted to check in — we haven't connected in a while and I wanted to see how Q1 is shaping up on your end.<br><br>No agenda, just genuinely curious how things are going with the team and whether there's anything we can help with on our side.<br><br>Happy to grab 15 minutes this week if you're free.<br><br>Best,<br>Justin</div>This is deliberately low-pressure. At 47 days of silence, the goal is to re-establish contact, not sell. Want me to adjust the tone or add anything?`,
+      actions:[{id:"send_email",icon:"📧",label:"Send via Outlook"},{id:"edit_email",icon:"✏️",label:"Edit draft"}],
+      followUp:["Make it more formal","Add a specific question about their fraud analytics","Who should I CC from my IE team?"]
+    },
+    block_plan:{
+      user:"Create a defense plan for Block Inc.",
+      response:`Here's your Block Inc. account defense plan:<br><br><strong>🔴 Situation:</strong> 40% layoff, 3 key contacts affected, Experian had 2 meetings with fraud team, LexisNexis RFP rumored for identity verification.<br><br><strong>📋 Immediate (This Week):</strong><br>• Sarah Kim — empathy check-in with credit team contacts (scheduled)<br>• Marcus Johnson — reach out to identity team, assess if contacts are still in place<br>• Wei Chen — technical deep-dive prep on software roadmap<br><br><strong>📋 Thursday Call (Scheduled 2pm ET):</strong><br>• Unified TU value story across all 3 product lines<br>• Competitive positioning vs Experian (fraud) and LexisNexis (identity)<br>• Identify new decision-makers post-reorg<br><br><strong>📋 Next 30 Days:</strong><br>• Executive sponsor alignment — do we need to elevate?<br>• Contract review — when is renewal? Any early-out clauses?<br>• Proactive QBR offer — show them we're invested in their success<br><br><strong>Health target:</strong> Stabilize from 72 → 75 within 30 days.`,
+      actions:[{id:"schedule_qbr",icon:"📅",label:"Schedule QBR"},{id:"share_plan",icon:"📤",label:"Share with IEs"}],
+      followUp:["What's Experian's likely pitch?","When does the Block contract renew?","Draft talking points for Thursday"]
+    },
+    send_email:{user:"Send that email via Outlook",response:"✅ <strong>Email queued for delivery</strong> via Outlook.<br><br>Sending to your primary Ally Financial contact (Lisa Chen, VP Credit Operations) at 10:30 AM ET — timed for optimal open rates.<br><br>I'll notify you when it's opened and track any reply. If no response within 3 business days, I'll suggest a follow-up approach.",actions:[],followUp:["What if they don't reply?","Show me Ally's full contact map","What else should I do for Ally?"]},
+    edit_email:{user:"Let me edit the draft",response:"Opening the email draft in edit mode. What would you like to change? I can adjust the tone (more formal/casual), add specific talking points, or reference a recent event they'd care about.",actions:[],followUp:["Make it more formal","Reference their Q4 performance","Add a question about their fraud analytics stack"]},
+    schedule_qbr:{user:"Schedule a QBR with Block Inc.",response:"✅ <strong>QBR request created</strong> for Block Inc.<br><br>I've drafted an invite for the week of March 31st with:<br>• Justin Murry (CE), Sarah Kim, Marcus Johnson, Wei Chen<br>• Suggested duration: 60 minutes<br>• Agenda: Relationship review, product roadmap alignment, 2026 planning<br><br>I'll need Block's attendee list — shall I pull their org chart to suggest who to invite?",actions:[{id:"view_org",icon:"👥",label:"View Block Org Chart"}],followUp:["Who are the new decision-makers post-reorg?","What should the QBR agenda cover?","Add competitive positioning to the agenda"]},
+    share_plan:{user:"Share the defense plan with my IE team",response:"✅ <strong>Defense plan shared</strong> in #sales-intelligence channel and sent as a direct message to:<br>• Sarah Kim (Credit Data)<br>• Marcus Johnson (Identity)<br>• Wei Chen (Software)<br><br>Each received a personalized action item based on their product line. They'll see it as a pinned card in Teams.",actions:[],followUp:["What should Sarah focus on specifically?","Draft Marcus's outreach message","Prep materials for Thursday's call"]},
+    view_org:{user:"Show me Block's org chart",response:`Here's what we know about Block's post-layoff org structure:<br><br><div style="background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:14px;margin:8px 0;font-size:12px;line-height:1.8"><strong>VP Engineering</strong> — Jack Dorsey Jr. (new, promoted internally)<br>&nbsp;&nbsp;├ <strong>Identity Team</strong> — 2 of 4 contacts still active ⚠<br>&nbsp;&nbsp;├ <strong>Credit Data Team</strong> — 1 of 3 contacts affected by layoff 🔴<br>&nbsp;&nbsp;└ <strong>Software/Analytics</strong> — Team intact ✅<br><br><strong>CFO</strong> — Amrita Ahuja (unchanged)<br><strong>CTO</strong> — Position open — interim: Greg Bort</div><br>The credit team impact is the most concerning — Sarah should prioritize identifying who's now handling her day-to-day relationship.`,actions:[],followUp:["Who replaced the credit team contacts?","Is Amrita Ahuja a potential exec sponsor?","What's Greg Bort's background?"]}
+  };
+
+  if(actions[actionId]){
+    const a=actions[actionId];
+    // Add user message
+    msgs.innerHTML+=`<div class="ai-chat-msg user"><div class="cm-avatar user">JM</div><div class="cm-bubble">${a.user}</div></div>`;
+    msgs.scrollTop=msgs.scrollHeight;
+    // Typing
+    const typingId='typing-'+Date.now();
+    msgs.innerHTML+=`<div class="ai-chat-typing" id="${typingId}"><div class="cm-avatar bot" style="width:28px;height:28px;font-size:10px;background:linear-gradient(135deg,#0078D4,#6264A7);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#FFF;flex-shrink:0">AI</div><div class="ct-dots"><div class="ct-dot"></div><div class="ct-dot"></div><div class="ct-dot"></div></div></div>`;
+    msgs.scrollTop=msgs.scrollHeight;
+    setTimeout(()=>{
+      document.getElementById(typingId)?.remove();
+      msgs.innerHTML+=`<div class="ai-chat-msg"><div class="cm-avatar bot">AI</div><div><div class="cm-bubble">${a.response}</div>${a.actions&&a.actions.length?`<div class="cm-actions">${a.actions.map(b=>`<button class="cm-action-btn" onclick="coachAction('${b.id}')">${b.icon} ${b.label}</button>`).join('')}</div>`:''}</div></div>`;
+      msgs.scrollTop=msgs.scrollHeight;
+      if(a.followUp){
+        document.getElementById('coach-suggestions').innerHTML=a.followUp.map(s=>`<div class="cs-chip" onclick="coachAsk(this.textContent)">${s}</div>`).join('');
+      }
+    },2000+Math.random()*1000);
+  }
+}
+
+function generateCoachResponse(query){
+  const q=query.toLowerCase();
+  const kb=window._coachKB;
+
+  // Priority / this week
+  if(q.includes('prioriti')||q.includes('this week')||q.includes('focus')){
+    return {text:`Based on your current portfolio, here's your priority stack for this week:<br><br><strong>🔴 Priority 1: Block Inc.</strong> (Health: 72, ↓8)<br>Thursday call is critical. Prep the unified TU story. Ensure all 3 IEs are aligned. Experian is actively pursuing.<br><br><strong>🟡 Priority 2: Ally Financial</strong> (Health: 55, ↓12)<br>47 days no contact. Send the check-in email today. Volume is declining 14% QoQ — if we don't re-engage now, churn risk jumps to 35%.<br><br><strong>🟢 Priority 3: SoFi</strong> (Health: 85, ↑4)<br>Earnings beat creates a cross-sell window. Prepare Identity Verification pitch for their expanding lending division.<br><br>These three moves would address your two biggest score gaps: signal response time and cross-sell rate.`,
+    actions:[{id:"block_plan",icon:"🛡",label:"Block Defense Plan"},{id:"draft_email",icon:"📧",label:"Draft Ally Email"}],
+    followUp:["What about Avant's volume decline?","How do I prep for the Block call Thursday?","Draft a SoFi cross-sell pitch"]};
+  }
+
+  // Score breakdown
+  if(q.includes('score')||q.includes('78')||q.includes('why is my')||q.includes('rating')){
+    const s=kb.score;
+    return {text:`Your score breaks down like this:<br><br><div style="background:var(--s2);border-radius:8px;padding:12px;margin:8px 0;font-size:12px;line-height:1.8"><strong>Account Health:</strong> ${s.breakdown.accountHealth}/25 — Solid, but Block and Ally are dragging this down<br><strong>Engagement:</strong> ${s.breakdown.engagement}/20 — Good cadence on most accounts<br><strong>Cross-Sell:</strong> ${s.breakdown.crossSell}/25 — <span style="color:#E74C3C">Biggest gap.</span> You're at 1.8x vs peer avg 3.2x<br><strong>Signal Response:</strong> ${s.breakdown.signalResponse}/20 — <span style="color:#F59E0B">Room to improve.</span> Avg response time is 3.2 days vs top performer 0.8 days<br><strong>Peer Benchmark:</strong> ${s.breakdown.peerBench}/15 — Above average</div><br><strong>Fastest path to 85+:</strong> Close the cross-sell gap by preparing competitive briefs before QBRs (like Sarah Kim does), and respond to signals within 24 hours instead of 3 days.`,
+    actions:[],
+    followUp:["How does Sarah Kim prepare for QBRs?","Which accounts are best for cross-sell?","What signals am I responding to slowly?"]};
+  }
+
+  // Cross-sell
+  if(q.includes('cross-sell')||q.includes('upsell')||q.includes('cross sell')){
+    return {text:`Your cross-sell rate is 1.8x vs the peer average of 3.2x. Here's how to close that gap:<br><br><strong>Best cross-sell candidates right now:</strong><br>• <strong>SoFi</strong> — Earnings beat + lending expansion = perfect timing for Identity Verification Suite<br>• <strong>Discover</strong> — Hiring 5 fraud analysts = Fraud Analytics Suite opportunity<br>• <strong>Upstart</strong> — AI platform expansion = data integration play<br><br><strong>What top performers do:</strong><br>Sarah Kim (3.4x rate) prepares a one-page competitive brief before every QBR showing what the client is missing vs. peers. She positions cross-sell as "closing a gap" not "buying more."<br><br>Marcus Johnson (3.1x) involves IEs from adjacent product lines in every client call — even just for intros.`,
+    actions:[{id:"schedule_qbr",icon:"📅",label:"Schedule SoFi QBR"}],
+    followUp:["Draft a SoFi Identity Verification pitch","What's Discover's fraud team buying now?","Show me Sarah's QBR template approach"]};
+  }
+
+  // SoFi
+  if(q.includes('sofi')){
+    const sofi=kb.accounts.find(a=>a.name==="SoFi");
+    return {text:`<strong>SoFi</strong> — Health: ${sofi.health}/100 (${sofi.trend}), Revenue: ${sofi.revenue}<br><br><strong>Latest Signal:</strong> ${sofi.signal}<br><br>This is your best expansion opportunity right now. Their lending division is growing fast and they'll need more credit data and identity verification to support the volume.<br><br><strong>Recommended play:</strong><br>1. Request a QBR focused on their 2026 lending targets<br>2. Bring Marcus Johnson (Identity) — their expansion will need verification at scale<br>3. Position TU as the data backbone for their growth, not just a vendor<br><br><strong>Competitive landscape:</strong> Experian has a data partnership but it's limited to consumer credit. We can differentiate on identity verification + fraud analytics bundle.`,
+    actions:[{id:"schedule_qbr",icon:"📅",label:"Schedule SoFi QBR"}],
+    followUp:["What products does SoFi currently use?","Draft a QBR agenda for SoFi","Who are the key contacts at SoFi?"]};
+  }
+
+  // Block
+  if(q.includes('block')){
+    const block=kb.accounts.find(a=>a.name==="Block Inc.");
+    return {text:`<strong>Block Inc.</strong> — Health: ${block.health}/100 (${block.trend}), Revenue: ${block.revenue}<br><br><strong>Critical Signal:</strong> ${block.signal}<br><br><strong>Competitive Threat:</strong> ${block.risk}<br><br><strong>Your IEs:</strong> ${block.ies.join(', ')}<br><br><strong>Status:</strong> ${block.action}<br><br>This is a defend-and-retain scenario. The layoff creates vulnerability and competitors are already moving. Your Thursday call needs to result in a clear next step — ideally an executive-level QBR within 2 weeks.`,
+    actions:[{id:"block_plan",icon:"🛡",label:"Full Defense Plan"},{id:"view_org",icon:"👥",label:"View Org Chart"}],
+    followUp:["What's Experian's likely pitch to Block?","Draft talking points for Thursday","Who are the new decision-makers?"]};
+  }
+
+  // Ally
+  if(q.includes('ally')){
+    const ally=kb.accounts.find(a=>a.name==="Ally Financial");
+    return {text:`<strong>Ally Financial</strong> — Health: ${ally.health}/100 (${ally.trend}), Revenue: ${ally.revenue}<br><br><strong>⚠ Warning:</strong> ${ally.signal}<br><br>This account is in the danger zone. Historical data shows accounts that go 50+ days without contact have a 35% churn rate within 6 months. You're at 47 days.<br><br><strong>Recommended approach:</strong><br>1. Send a low-pressure check-in email today (not a sales pitch)<br>2. If they respond, schedule a casual 15-min call<br>3. During the call, ask about Q1 priorities — listen for signals<br>4. Only after re-establishing rapport should you discuss product roadmap<br><br>The goal is re-engagement first, revenue protection second.`,
+    actions:[{id:"draft_email",icon:"📧",label:"Draft Check-in Email"}],
+    followUp:["What if they don't reply?","What's causing their volume decline?","Who's my backup contact at Ally?"]};
+  }
+
+  // Avant
+  if(q.includes('avant')){
+    const avant=kb.accounts.find(a=>a.name==="Avant");
+    return {text:`<strong>Avant</strong> — Health: 63/100 (↓7), Revenue: $1.2M<br><br><strong>Signal:</strong> Volume decline 11% — crossed the minimum attention threshold.<br><br>This is a smaller account but the pattern is concerning. Similar declines at other accounts preceded churn by 4–6 months.<br><br><strong>Recommended:</strong> Schedule a cross-functional review with your IEs. The Identity Verification cross-sell that Sarah Kim used on similar accounts could stabilize the relationship. It gives them a reason to deepen the integration rather than wind it down.`,
+    actions:[],
+    followUp:["What Identity Verification products could work?","Compare Avant to accounts that churned","Schedule a review with my IEs"]};
+  }
+
+  // Sarah Kim / top performers
+  if(q.includes('sarah')||q.includes('top performer')||q.includes('best practice')){
+    return {text:`<strong>Sarah Kim's approach</strong> (Score: 92, Rank: #2):<br><br>Sarah's secret is preparation. Before every QBR she:<br><br>1. <strong>Pulls competitive intel</strong> — uses the signal feed to identify what competitors are offering the client<br>2. <strong>Creates a one-page gap analysis</strong> — shows the client what they're missing vs. their peers<br>3. <strong>Brings adjacent IEs</strong> — even for 5-minute intros, it plants seeds for cross-sell<br>4. <strong>Follows up within 24 hours</strong> — with a summary and specific next steps<br><br>Her cross-sell rate (3.4x) is nearly double yours (1.8x). The biggest difference? She treats QBRs as cross-sell opportunities, not status updates.`,
+    actions:[],
+    followUp:["Can I see a sample gap analysis?","Which of my accounts need a QBR?","How do I involve IEs effectively?"]};
+  }
+
+  // Thursday / Block call prep
+  if(q.includes('thursday')||q.includes('prep')||q.includes('talking point')){
+    return {text:`Here's your prep guide for Thursday's Block Inc. call (2pm ET):<br><br><strong>Attendees:</strong> You, Sarah Kim, Marcus Johnson, Wei Chen<br><br><strong>Key talking points:</strong><br>1. <strong>Open with empathy</strong> — acknowledge the layoff, ask how the team is doing<br>2. <strong>Map the new org</strong> — who are our contacts now? Who's been promoted?<br>3. <strong>Competitive positioning:</strong><br>&nbsp;&nbsp;• vs Experian: They only offer fraud — we cover identity + credit + software<br>&nbsp;&nbsp;• vs LexisNexis: If RFP is real, we need to be in it<br>4. <strong>Close with commitment</strong> — propose exec QBR within 2 weeks<br><br><strong>Pre-read:</strong> Account health report + competitive brief (attached in Teams)<br><br>Each IE should have 3 minutes to present their product line status and one recommendation.`,
+    actions:[{id:"share_plan",icon:"📤",label:"Share Prep with IEs"}],
+    followUp:["Draft an opening statement","What if they mention the Experian meetings?","What should Wei present on software?"]};
+  }
+
+  // Default / catch-all
+  const acctMatch=kb.accounts.find(a=>q.includes(a.name.toLowerCase().split(' ')[0].toLowerCase()));
+  if(acctMatch){
+    return {text:`<strong>${acctMatch.name}</strong> — Health: ${acctMatch.health}/100 (${acctMatch.trend}), Revenue: ${acctMatch.revenue}<br><br><strong>Latest Signal:</strong> ${acctMatch.signal}<br><strong>Risk Level:</strong> ${acctMatch.risk}<br><strong>Recommended Action:</strong> ${acctMatch.action}`,
+    actions:[],
+    followUp:[`What's the competitive landscape for ${acctMatch.name}?`,`Who are my contacts at ${acctMatch.name}?`,`Draft an outreach plan for ${acctMatch.name}`]};
+  }
+
+  return {text:`Good question. Let me think about that in the context of your portfolio.<br><br>You have 8 accounts totalling $18.1M in revenue. Your current score is 78/100 (rank #12 of 45 CEs). The biggest areas for improvement are cross-sell rate (1.8x vs 3.2x peer avg) and signal response time.<br><br>Could you be more specific? I can help with:<br>• Any of your 8 accounts (Block, SoFi, LendingClub, Ally, Discover, OneMain, Avant, Upstart)<br>• Coaching on specific skills (cross-sell, QBR prep, competitive positioning)<br>• Action items (draft emails, schedule meetings, create defense plans)`,
+  actions:[],
+  followUp:["What should I prioritize this week?","Tell me about Block Inc.","How do I improve my score?","Draft an email for Ally"]};
+}
 
 function renderCollaboration(){
   const messages=[
