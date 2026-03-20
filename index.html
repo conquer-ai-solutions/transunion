@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>Fraud Signal Triage — TransUnion</title>
+  <title>Sales Intelligence & AI Coaching — TransUnion</title>
   <link rel="icon" type="image/x-icon" href="https://www.transunion.com/etc.clientlibs/transunion/clientlibs/clientlib-trubrand/resources/images/favicons/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
@@ -137,9 +137,6 @@ h2{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--t1)}
 .ar:nth-child(n+8){animation-delay:450ms}
 @keyframes list-enter{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
 .ar:hover{border-color:var(--tu);box-shadow:0 8px 20px rgba(0,168,203,0.2);transform:translateY(-2px)}
-.ar.sc{border-left:4px solid var(--ok);background:linear-gradient(135deg,var(--okt) 0%,transparent 100%)}
-.ar.sx{border-left:4px solid var(--al);background:linear-gradient(135deg,rgba(245,158,11,0.08) 0%,transparent 100%)}
-.ar.sa{opacity:.6}
 .pdot{width:10px;height:10px;border-radius:50%;flex-shrink:0;box-shadow:0 0 8px currentColor;animation:pulse-dot 3s ease-in-out infinite}
 .pdot.critical{animation:pulse-dot-fast 2s ease-in-out infinite}
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.1)}}
@@ -162,7 +159,7 @@ h2{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--t1)}
 .back:hover{color:var(--tu);transform:translateX(-4px)}
 .dh{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:28px;flex-wrap:wrap}
 .dm{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:28px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:28px}
 .sc2{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rs);padding:14px;box-shadow:var(--sh);transition:all 300ms;animation:signal-card-in 500ms ease-out backwards;cursor:default}
 .sc2:nth-child(1){animation-delay:100ms}
 .sc2:nth-child(2){animation-delay:150ms}
@@ -174,53 +171,11 @@ h2{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--t1)}
 .sc2:hover{border-color:var(--tu);box-shadow:0 4px 16px rgba(0,168,203,0.12)}
 .sk{font-size:10px;color:var(--t3);font-family:monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;font-weight:600}
 .sv{font-size:14px;font-weight:700;font-family:monospace;color:var(--t1);font-feature-settings:"tnum" 1;font-variant-numeric:tabular-nums}
-.sv.rh{color:var(--er);animation:shake 500ms ease-in-out}
-.sv.rm{color:var(--al)}
-.sv.ro{color:var(--ok)}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
-.ais{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;margin-bottom:20px;box-shadow:var(--sh);animation:fade-in 500ms ease-out;transition:all 300ms}
-.aih{padding:16px 20px;background:linear-gradient(135deg,var(--s2),var(--s1));border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.ahl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-family:monospace;color:var(--tu);margin-bottom:2px}
-.ahp{font-size:13px;color:var(--t2);margin:0}
-.aipend{padding:48px;text-align:center;animation:fade-in 400ms ease-out}
-.aipend p{color:var(--t2);font-size:13px;margin-bottom:16px}
-.aiproc{padding:48px;text-align:center;animation:fade-in 300ms ease-out}
-.skeleton{background:linear-gradient(90deg,var(--s2) 0%,var(--s3) 50%,var(--s2) 100%);background-size:200% 100%;animation:shimmer 2s infinite;border-radius:4px}
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.skeleton-bar{height:12px;margin-bottom:8px;border-radius:4px}
-.skeleton-text{height:14px;margin-bottom:12px;border-radius:4px}
-.spin{width:40px;height:40px;border:3px solid var(--s3);border-top-color:var(--tu);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.pstep{font-size:12px;color:var(--t2);font-family:monospace;margin-top:12px;min-height:18px;font-weight:500;animation:fade-in 300ms ease-out}
-.airec{padding:24px;animation:fade-in 400ms ease-out}
-.aigrid{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:20px}
-.af{flex:1;min-width:140px}
-.afl{font-size:10px;color:var(--t3);font-family:monospace;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-weight:700}
-.afv{font-weight:700;font-size:15px;color:var(--t1);animation:counter-in 800ms ease-out}
-@keyframes counter-in{from{opacity:0}to{opacity:1}}
-.cbar{height:6px;background:var(--s3);border-radius:3px;overflow:hidden;margin-top:8px}
-.cfill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--tu),var(--tul));width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1);box-shadow:0 0 12px rgba(0,168,203,0.4)}
 .rat{background:var(--tut);border-left:4px solid var(--tu);border-radius:var(--rs);padding:14px 16px;font-size:13px;line-height:1.7;margin-bottom:16px;color:var(--t1);font-weight:500;animation:fade-in 500ms ease-out}
-.ksigs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.stag{background:var(--tug);border:1px solid rgba(0,168,203,.25);color:var(--tu);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;font-family:monospace;letter-spacing:.02em;animation:tag-in 400ms ease-out backwards;transition:all 200ms}
-.stag:nth-child(1){animation-delay:0ms}
-.stag:nth-child(2){animation-delay:50ms}
-.stag:nth-child(3){animation-delay:100ms}
-.stag:nth-child(4){animation-delay:150ms}
-.stag:nth-child(5){animation-delay:200ms}
-@keyframes tag-in{from{opacity:0;transform:scale(0.8) translateY(-4px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.stag:hover{background:var(--tu);color:#fff;scale:1.05}
 .acbox{background:var(--okt);border:1px solid rgba(16,185,129,.2);border-radius:var(--rs);padding:14px 16px;margin-bottom:16px;animation:fade-in 500ms ease-out}
 .acbox .alb{font-size:9px;font-weight:700;color:var(--ok);font-family:monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
 .acbox p{font-size:14px;font-weight:600;color:var(--t1);margin:0;line-height:1.6}
-.regnote{background:var(--alt);border:1px solid rgba(245,158,11,.2);border-radius:var(--rs);padding:12px 14px;font-size:12px;color:var(--al);margin-bottom:16px;font-weight:600;animation:fade-in 500ms ease-out}
-.regnote::before{content:"⚠ ";margin-right:4px}
 .dbar{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:var(--sh);animation:fade-in 600ms ease-out;transition:all 300ms}
-.di{font-size:14px;color:var(--t2);font-weight:500}
-.di strong{color:var(--t1);font-weight:700}
-.di small{display:block;font-size:12px;color:var(--t3);margin-top:4px}
-.dbtns{display:flex;gap:12px;flex-wrap:wrap}
-.ddone{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--t2);font-weight:600;animation:fade-in 400ms ease-out}
 .btn{padding:10px 22px;border-radius:var(--rs);font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all 200ms cubic-bezier(.4,0,.2,1);display:inline-flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.02em;position:relative;overflow:hidden}
 .btn::before{content:"";position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,0.2);border-radius:50%;transform:translate(-50%,-50%);transition:width 600ms,height 600ms}
 .btn:active::before{width:300px;height:300px}
@@ -229,34 +184,8 @@ h2{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--t1)}
 .b-cl:hover:not(:disabled){background:var(--tud);box-shadow:0 6px 16px rgba(0,168,203,0.4);transform:translateY(-2px)}
 .b-ok{background:var(--ok);color:#fff;box-shadow:0 2px 8px rgba(16,185,129,0.2)}
 .b-ok:hover:not(:disabled){background:#059669;box-shadow:0 6px 16px rgba(16,185,129,0.4);transform:translateY(-2px)}
-.b-fx{background:var(--al);color:#fff;border:none;box-shadow:0 2px 8px rgba(245,158,11,0.2)}
-.b-fx:hover:not(:disabled){background:#D97706;box-shadow:0 6px 16px rgba(245,158,11,0.4);transform:translateY(-2px)}
 .b-cn{background:var(--s2);color:var(--t2);border:1px solid var(--bd);box-shadow:0 1px 4px rgba(0,0,0,0.04)}
 .b-cn:hover{border-color:var(--tu);color:var(--tu);background:var(--tut);box-shadow:0 4px 12px rgba(0,168,203,0.2);transform:translateY(-2px)}
-.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);animation:fade-in 300ms ease-out}
-.modal-ov.hidden{display:none;animation:none}
-.modal{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);width:100%;max-width:500px;padding:28px;box-shadow:0 20px 40px rgba(0,0,0,.15);animation:modal-in 400ms cubic-bezier(.34,.1,.68,.55) forwards}
-@keyframes modal-in{from{opacity:0;transform:scale(0.95) translateY(-20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.modal h2{margin-bottom:8px;color:var(--t1)}
-.modal>p{color:var(--t2);font-size:13px;margin-bottom:20px}
-.fg{margin-bottom:18px}
-.fl{display:block;font-size:12px;font-weight:700;color:var(--t1);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;font-family:monospace}
-.fsel,.fta{width:100%;padding:10px 14px;border:1px solid var(--bd);border-radius:var(--rs);background:var(--s1);color:var(--t1);font-size:13px;font-family:'Inter',system-ui;transition:all 200ms;outline:none}
-.fsel:focus,.fta:focus{border-color:var(--tu);box-shadow:0 0 0 3px rgba(0,168,203,0.1);outline:none}
-.fta{min-height:100px;resize:vertical}
-.mact{display:flex;gap:12px;justify-content:flex-end;margin-top:24px}
-.av{padding:32px 24px;max-width:1280px;margin:0 auto}
-.atw{overflow-x:auto;margin-bottom:20px}
-table{width:100%;font-size:12px;border-collapse:collapse;animation:fade-in 500ms ease-out}
-th{background:linear-gradient(135deg,var(--s2),var(--s1));color:var(--t1);padding:12px;text-align:left;font-weight:700;border-bottom:2px solid var(--bd);position:sticky;top:0;font-family:monospace;font-size:10px;letter-spacing:.05em;text-transform:uppercase}
-td{padding:12px;border-bottom:1px solid var(--bd);color:var(--t2)}
-td.tm{font-family:monospace;font-weight:500;color:var(--t1);white-space:nowrap}
-td.tco{color:var(--ok);font-weight:600}
-td.tcx{color:var(--al);font-weight:600}
-td.tca{color:var(--t2);font-weight:500}
-tr:hover{background:var(--s2);transition:background-color 200ms}
-.aftr{display:flex;justify-content:space-between;align-items:center;padding:16px;background:var(--s2);border-radius:var(--r);font-size:12px;color:var(--t2);flex-wrap:wrap;gap:12px}
-.aftr span{font-family:monospace;font-weight:600}
 .tow{position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:8px;pointer-events:none;z-index:150}
 .toast{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rs);padding:12px 16px;font-size:12px;font-weight:600;color:var(--t1);box-shadow:0 8px 24px rgba(0,0,0,0.12);pointer-events:auto;animation:toast-in 400ms cubic-bezier(.34,.1,.68,.55) forwards;font-family:'Inter',system-ui;white-space:nowrap;max-width:320px;display:flex;align-items:center;gap:10px;position:relative;overflow:hidden}
 @keyframes toast-in{from{opacity:0;transform:translateX(400px) translateY(0)}to{opacity:1;transform:translateX(0)}}
@@ -264,37 +193,64 @@ tr:hover{background:var(--s2);transition:background-color 200ms}
 @keyframes toast-progress{from{width:100%}to{width:0}}
 .toast.ok{border-color:var(--ok);background:linear-gradient(135deg,rgba(16,185,129,0.1) 0%,var(--s1) 100%)}
 .toast.ok::before{background:var(--ok)}
-.toast.er{border-color:var(--er);background:linear-gradient(135deg,rgba(239,68,68,0.1) 0%,var(--s1) 100%)}
-.toast.er::before{background:var(--er)}
 .toast.in{border-color:var(--tu);background:linear-gradient(135deg,rgba(0,168,203,0.1) 0%,var(--s1) 100%)}
 .toast.in::before{background:var(--tu)}
-.toast.ok::before,.toast.er::before,.toast.in::before{animation:toast-progress 3s linear forwards}
 .kbd-hint{position:fixed;bottom:24px;left:24px;font-size:11px;color:var(--t3);background:var(--s1);border:1px solid var(--bd);border-radius:var(--rs);padding:8px 12px;font-family:monospace;cursor:pointer;transition:all 200ms;z-index:50}
 .kbd-hint:hover{border-color:var(--tu);color:var(--tu);background:var(--tut)}
-@media(max-width:768px){
-  .nav{padding:0 16px}
-  .wrap{padding:24px 16px}
-  .metrics{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
-  .nav-tabs{max-width:200px}
-  .sh{flex-direction:column;align-items:flex-start}
-  .ph h1{font-size:20px}
-  .dh{flex-direction:column;align-items:flex-start}
-  .sgrid{grid-template-columns:1fr}
-  .modal{max-width:90vw}
-  .aftr{flex-direction:column;align-items:flex-start}
-  .tow{bottom:16px;right:16px}
-  .toast{max-width:calc(100vw - 32px)}
-}
 
-/* Teams Collaboration Styles */
+/* Overview Cards */
+.overview-headline{margin-bottom:56px;animation:slideUp 0.5s ease-out}
+.overview-overline{font-size:12px;font-weight:700;letter-spacing:1px;color:var(--tu);text-transform:uppercase;margin-bottom:16px;opacity:0.9}
+.overview-h1{font-size:48px;font-weight:800;color:var(--t1);line-height:1.1;margin-bottom:20px;letter-spacing:-1px}
+.overview-sub{font-size:16px;color:var(--t3);line-height:1.7;max-width:680px;font-weight:400}
+.problem-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-bottom:56px}
+.problem-card{background:var(--s1);padding:28px;border:1px solid var(--bd);border-radius:12px;box-shadow:var(--sh);transition:all 0.3s ease-out;position:relative;overflow:hidden;animation:slideUp 0.5s ease-out backwards}
+.problem-card::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(0,168,203,0.05),transparent);opacity:0;transition:opacity 0.3s ease-out}
+.problem-card:nth-child(1){animation-delay:0.1s}
+.problem-card:nth-child(2){animation-delay:0.15s}
+.problem-card:nth-child(3){animation-delay:0.2s}
+.problem-card:hover{border-color:var(--tu);box-shadow:0 16px 40px rgba(0,168,203,0.15);transform:translateY(-6px)}
+.problem-card:hover::before{opacity:1}
+.problem-card-icon{width:32px;height:32px;color:var(--tu);margin-bottom:16px;display:block;transition:transform 0.3s ease-out}
+.problem-card:hover .problem-card-icon{transform:scale(1.15) rotate(5deg)}
+.problem-card-title{font-size:17px;font-weight:700;color:var(--t1);margin-bottom:12px}
+.problem-card-body{font-size:14px;color:var(--t3);line-height:1.6}
+.case-callout{background:linear-gradient(135deg,rgba(0,168,203,0.08),rgba(51,188,218,0.04));border:2px solid var(--tu);border-radius:12px;padding:28px;margin-bottom:40px;backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,168,203,0.1);animation:slideUp 0.5s ease-out 0.35s backwards}
+.case-callout-label{font-size:12px;font-weight:700;letter-spacing:1px;color:var(--tu);text-transform:uppercase;margin-bottom:12px;opacity:0.9}
+.case-callout-text{font-size:16px;color:var(--t2);line-height:1.7}
+.problem-cta{display:flex;flex-direction:column;align-items:center;gap:16px;animation:slideUp 0.5s ease-out 0.4s backwards}
+.problem-cta-sub{font-size:13px;color:var(--t3);font-weight:500}
+@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* Coaching Hub */
+.coach-grid{display:grid;grid-template-columns:2fr 1fr;gap:24px}
+.coach-perf{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:32px;box-shadow:var(--sh);animation:fade-in 500ms ease-out}
+.coach-score{font-size:28px;font-weight:800;color:var(--tu);margin-bottom:8px}
+.coach-ring{width:120px;height:120px;border-radius:50%;background:conic-gradient(var(--tu) 0deg,var(--tu) 280deg,var(--s2) 280deg);display:flex;align-items:center;justify-content:center;margin:20px 0}
+.coach-ring-val{font-size:32px;font-weight:800;color:var(--t1)}
+.coach-cards{display:flex;flex-direction:column;gap:16px;margin-top:24px}
+.coach-card{background:var(--s1);border-left:4px solid var(--tu);border-radius:var(--rs);padding:16px;box-shadow:var(--sh);animation:card-enter 500ms ease-out backwards}
+.coach-card:nth-child(1){animation-delay:200ms}
+.coach-card:nth-child(2){animation-delay:250ms}
+.coach-card:nth-child(3){animation-delay:300ms}
+.coach-title{font-weight:700;font-size:13px;color:var(--t1);margin-bottom:6px}
+.coach-body{font-size:12px;color:var(--t2);line-height:1.6}
+.coach-peer{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:20px;box-shadow:var(--sh);animation:fade-in 600ms ease-out}
+.coach-chart{display:flex;align-items:flex-end;gap:12px;height:160px;margin:24px 0}
+.coach-bar{flex:1;background:var(--tut);border-radius:4px 4px 0 0;position:relative;transition:all 200ms}
+.coach-bar:hover{background:var(--tu)}
+.coach-bar-label{position:absolute;bottom:-24px;left:0;right:0;font-size:11px;text-align:center;color:var(--t2);font-weight:600;white-space:nowrap}
+.coach-bar-value{position:absolute;top:-24px;left:0;right:0;font-size:12px;text-align:center;color:var(--t1);font-weight:700}
+
+/* Teams Styles */
 .teams-container{display:flex;height:calc(100vh - var(--nh));background:#FFFFFF}
 .teams-sidebar{width:260px;background:#FFFFFF;border-right:1px solid #E8E8E8;display:flex;flex-direction:column;overflow-y:auto;font-family:'Segoe UI','Inter',system-ui,sans-serif;flex-shrink:0}
 .teams-sidebar-section{padding:16px 0;border-bottom:1px solid #F0F0F0}
 .teams-sidebar-header{padding:12px 16px;font-size:11px;font-weight:700;text-transform:uppercase;color:#6B7280;letter-spacing:0.5px}
 .teams-channel-list{list-style:none;margin:0;padding:0}
-.teams-channel-item{padding:8px 16px;font-size:13px;color:#424242;cursor:pointer;transition:all 150ms;display:flex;align-items:center;gap:8px;position:relative}
+.teams-channel-item{padding:8px 16px;font-size:13px;color:#424242;cursor:pointer;transition:all 150ms;display:flex;align-items:center;gap:8px}
 .teams-channel-item::before{content:'#';font-weight:700;color:#9CA3AF}
-.teams-channel-item:hover{background:#F5F5F5;color:#424242}
+.teams-channel-item:hover{background:#F5F5F5}
 .teams-channel-item.active{background:linear-gradient(135deg,rgba(98,100,167,0.1),transparent);color:#6264A7;font-weight:600}
 .teams-channel-unread{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#E74C3C;color:white;border-radius:50%;font-size:10px;font-weight:700;margin-left:auto;flex-shrink:0}
 .teams-main{flex:1;display:flex;flex-direction:column;background:#FFFFFF}
@@ -310,13 +266,10 @@ tr:hover{background:var(--s2);transition:background-color 200ms}
 .teams-icon-btn:hover{background:#F0F0F0;color:#424242}
 .teams-messages{flex:1;overflow-y:auto;padding:16px 24px;display:flex;flex-direction:column;background:#FFFFFF;gap:0}
 .teams-message-group{display:flex;gap:12px;margin-bottom:12px;animation:fadeInUp 300ms ease-out forwards;opacity:0}
-.teams-message-group.skeleton{animation:none;opacity:1}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .teams-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:white;flex-shrink:0;position:relative;font-family:monospace}
 .teams-avatar.bot{background:linear-gradient(135deg,#6264A7,#7A7EBA);font-size:11px}
 .teams-avatar::after{content:'';position:absolute;bottom:-1px;right:-1px;width:12px;height:12px;border-radius:50%;border:2px solid white;background:#31A24C;opacity:0}
-.teams-avatar.away::after{background:#F7B500;opacity:1}
-.teams-avatar.bot::after{opacity:0}
 .teams-content{flex:1;min-width:0}
 .teams-message-header{display:flex;align-items:center;gap:8px;margin-bottom:4px}
 .teams-sender{font-weight:600;font-size:13px;color:#424242}
@@ -325,7 +278,6 @@ tr:hover{background:var(--s2);transition:background-color 200ms}
 .teams-message-text{font-size:13px;color:#424242;line-height:1.5;word-wrap:break-word}
 .teams-adaptive-card{background:#F5F5F5;border-left:4px solid #6264A7;border-radius:4px;padding:12px;margin-top:4px;font-size:12px}
 .teams-card-title{font-weight:700;color:#424242;margin-bottom:8px;font-size:13px}
-.teams-card-content{color:#6B7280;margin-bottom:8px;line-height:1.5}
 .teams-card-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:11px}
 .teams-card-table tr{border-bottom:1px solid #EFEFEF}
 .teams-card-table td{padding:6px;color:#6B7280}
@@ -333,20 +285,6 @@ tr:hover{background:var(--s2);transition:background-color 200ms}
 .teams-card-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
 .teams-action-btn{padding:4px 12px;border:1px solid #D0D0D0;background:white;color:#6264A7;border-radius:3px;font-size:11px;font-weight:600;cursor:pointer;transition:all 150ms;white-space:nowrap}
 .teams-action-btn:hover{background:#6264A7;color:white}
-.teams-status-pill{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;margin:4px 0}
-.teams-status-critical{background:#FCE4E6;color:#C41C3B}
-.teams-status-review{background:#FFF3CD;color:#997404}
-.teams-status-cleared{background:#D4EDDA;color:#155724}
-.teams-progress-bar{height:4px;background:#EFEFEF;border-radius:2px;overflow:hidden;margin:6px 0}
-.teams-progress-fill{height:100%;background:linear-gradient(90deg,#6264A7,#7A7EBA);border-radius:2px;transition:width 1s ease-out}
-.teams-reactions{display:flex;gap:8px;margin-top:6px;font-size:12px;flex-wrap:wrap}
-.teams-reaction{background:white;border:1px solid #D0D0D0;border-radius:12px;padding:2px 8px;display:flex;align-items:center;gap:4px;cursor:pointer;transition:all 150ms}
-.teams-reaction:hover{border-color:#6264A7;background:#F5F5F5}
-.teams-reaction-count{color:#6B7280;font-weight:600;font-size:11px}
-.teams-threads{display:flex;align-items:center;gap:4px;margin-top:6px;font-size:11px;color:#6264A7;cursor:pointer;transition:all 150ms}
-.teams-threads:hover{text-decoration:underline}
-.teams-thread-avatars{display:flex;margin-right:4px}
-.teams-thread-avatar{width:16px;height:16px;border-radius:50%;border:1px solid white;margin-right:-6px;font-size:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
 .teams-typing{display:flex;gap:8px;align-items:center;padding:8px 12px;background:#F5F5F5;border-radius:4px;margin-top:4px}
 .teams-typing-dot{width:6px;height:6px;border-radius:50%;background:#6B7280;animation:typingBounce 1.4s infinite}
 .teams-typing-dot:nth-child(2){animation-delay:0.2s}
@@ -367,98 +305,21 @@ tr:hover{background:var(--s2);transition:background-color 200ms}
 .skeleton-loading{background:linear-gradient(90deg,#EFEFEF 0%,#F5F5F5 50%,#EFEFEF 100%);background-size:200% 100%;animation:skeletonShimmer 1.5s infinite}
 @keyframes skeletonShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .skeleton-msg{height:60px;margin-bottom:12px;border-radius:4px}
-.teams-message-hover{position:relative}
-.teams-message-hover:hover{background:#F5F5F5}
-.teams-message-hover-actions{position:absolute;top:-28px;right:0;background:white;border:1px solid #D0D0D0;border-radius:4px;display:flex;gap:2px;padding:4px;opacity:0;pointer-events:none;transition:all 150ms;z-index:10}
-.teams-message-hover:hover .teams-message-hover-actions{opacity:1;pointer-events:auto}
-  
-/* Overview Problem Cards */
-.overview-headline { margin-bottom: 56px; animation: slideUp 0.5s ease-out; }
-.overview-overline { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--tu); text-transform: uppercase; margin-bottom: 16px; opacity: 0.9; }
-.overview-h1 { font-size: 48px; font-weight: 800; color: var(--t1); line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
-.overview-sub { font-size: 16px; color: var(--t3); line-height: 1.7; max-width: 680px; font-weight: 400; }
 
-.problem-cards {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px; margin-bottom: 56px;
+@media(max-width:768px){
+  .nav{padding:0 16px}
+  .wrap{padding:24px 16px}
+  .metrics{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+  .nav-tabs{max-width:200px}
+  .sh{flex-direction:column;align-items:flex-start}
+  .ph h1{font-size:20px}
+  .dh{flex-direction:column;align-items:flex-start}
+  .sgrid{grid-template-columns:1fr}
+  .coach-grid{grid-template-columns:1fr}
+  .tow{bottom:16px;right:16px}
+  .toast{max-width:calc(100vw - 32px)}
 }
-
-.problem-card {
-  background: var(--s1); padding: 28px;
-  border: 1px solid var(--bd); border-radius: 12px;
-  box-shadow: var(--sh);
-  transition: all 0.3s ease-out;
-  position: relative;
-  overflow: hidden;
-  animation: slideUp 0.5s ease-out backwards;
-}
-
-.problem-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, rgba(0,168,203,0.05), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
-
-.problem-card:nth-child(1) { animation-delay: 0.1s; }
-.problem-card:nth-child(2) { animation-delay: 0.15s; }
-.problem-card:nth-child(3) { animation-delay: 0.2s; }
-.problem-card:nth-child(4) { animation-delay: 0.25s; }
-.problem-card:nth-child(5) { animation-delay: 0.3s; }
-
-.problem-card:hover {
-  border-color: var(--tu);
-  box-shadow: 0 16px 40px rgba(0,168,203,0.15);
-  transform: translateY(-6px);
-}
-
-.problem-card:hover::before { opacity: 1; }
-
-.problem-card-icon {
-  width: 32px; height: 32px; color: var(--tu);
-  margin-bottom: 16px; display: block;
-  transition: transform 0.3s ease-out;
-}
-
-.problem-card:hover .problem-card-icon { transform: scale(1.15) rotate(5deg); }
-
-.problem-card-title { font-size: 17px; font-weight: 700; color: var(--t1); margin-bottom: 12px; }
-.problem-card-body { font-size: 14px; color: var(--t3); line-height: 1.6; margin-bottom: 20px; }
-.problem-card-stat { font-size: 32px; font-weight: 800; color: var(--tu); margin-bottom: 6px; letter-spacing: -0.5px; }
-.problem-card-stat-label { font-size: 12px; color: var(--t2); font-weight: 600; letter-spacing: 0.3px; }
-
-.case-callout {
-  background: linear-gradient(135deg, rgba(0,168,203,0.08), rgba(51,188,218,0.04));
-  border: 2px solid var(--tu);
-  border-radius: 12px;
-  padding: 28px;
-  margin-bottom: 40px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 8px 24px rgba(0,168,203,0.1);
-  animation: slideUp 0.5s ease-out 0.35s backwards;
-}
-
-.case-callout-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--tu); text-transform: uppercase; margin-bottom: 12px; opacity: 0.9; }
-.case-callout-text { font-size: 16px; color: var(--t2); line-height: 1.7; }
-
-.problem-cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  animation: slideUp 0.5s ease-out 0.4s backwards;
-}
-
-.problem-cta-sub { font-size: 13px; color: var(--t3); font-weight: 500; }
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-</style>
+  </style>
 </head>
 <body>
 <nav class="nav">
@@ -467,11 +328,11 @@ tr:hover{background:var(--s2);transition:background-color 200ms}
       <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
     </svg>
     <div class="nav-div"></div>
-    <div class="nav-title">TU Triage</div>
+    <div class="nav-title">Sales Intel</div>
   </div>
   <div class="nav-tabs" id="navTabs"></div>
   <div class="nav-r">
-    <span class="nav-badge">Level 2 Augment</span>
+    <span class="nav-badge">AI Coaching</span>
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
     <button class="btn-ic" onclick="showSettings()">ℹ</button>
   </div>
@@ -480,75 +341,46 @@ tr:hover{background:var(--s2);transition:background-color 200ms}
   <div id="view-overview" class="view"></div>
   <div id="view-dashboard" class="view"></div>
   <div id="view-detail" class="view"></div>
-  <div id="view-audit" class="view"></div>
+  <div id="view-coaching" class="view"></div>
   <div id="view-collaboration" class="view"></div>
   <div id="view-settings" class="view"></div>
 </main>
-<div id="correctModal" class="modal-ov hidden" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <h2>Correct Classification</h2>
-    <p>Override the AI assessment. Your correction is logged as a training signal and improves future accuracy.</p>
-    <input type="hidden" id="mId"/>
-    <div class="fg"><label class="fl">Correct Risk Type</label>
-      <select id="mType" class="fsel">
-        <option>Card Not Present Fraud</option><option>Account Takeover</option>
-        <option>Synthetic Identity Fraud</option><option>First Party Fraud</option>
-        <option>Identity Verification Failure</option><option>False Positive — Not Fraud</option>
-        <option>Requires Further Investigation</option>
-      </select></div>
-    <div class="fg"><label class="fl">Correct Urgency</label>
-      <select id="mUrg" class="fsel"><option>CRITICAL</option><option>HIGH</option><option selected>MEDIUM</option><option>LOW</option></select></div>
-    <div class="fg"><label class="fl">Reason for Correction <span style="color:var(--er)">*</span></label>
-      <textarea id="mReason" class="fta" placeholder="e.g., Customer confirmed legitimate travel. IP mismatch expected, not fraud."></textarea></div>
-    <div class="mact">
-      <button class="btn b-cn" onclick="closeModal()">Cancel</button>
-      <button class="btn b-fx" onclick="submitCorrection()">✏ Submit Correction</button>
-    </div>
-  </div>
-</div>
 <div id="toasts" class="tow"></div>
 <div class="kbd-hint" id="kbdHint" onclick="showKbdHints()">Press ? for shortcuts</div>
+
 <script>
-const P={CRITICAL:{c:"#EF4444",b:"rgba(239,68,68,0.08)"},HIGH:{c:"#F59E0B",b:"rgba(245,158,11,0.08)"},MEDIUM:{c:"#00A8CB",b:"rgba(0,168,203,0.08)"},LOW:{c:"#10B981",b:"rgba(16,185,129,0.08)"}};
-const TL={cnp:"Card Not Present",ato:"Account Takeover",synth:"Synthetic Identity",idv:"Identity Verification",fp:"First Party Fraud"};
-
-const MOCK={
-"ALT-0041":{risk_type:"Card Not Present Fraud",urgency:"HIGH",confidence:.93,recommendation:"BLOCK",rationale:"IP risk score of 0.91 combined with geographic mismatch — cardholder in GB, transaction routed through Nigeria — is a strong CNP fraud indicator. Device fingerprint is unrecognised (NEW_DEVICE) and transaction amount £4,750 is 32× average spend of £145.50. 3DS authentication failed and addresses do not match.",key_signals:["IP risk: 0.91","GB → NG mismatch","NEW_DEVICE","£4,750 vs £145.50 avg","3DS: not authenticated"],suggested_action:"Block transaction immediately. Place hold on card. Contact cardholder on registered mobile to verify.",false_positive_probability:.06,regulatory_note:"Cross-border transaction over £3,000 — document decision rationale for AML record-keeping."},
-"ALT-0042":{risk_type:"Account Takeover",urgency:"CRITICAL",confidence:.97,recommendation:"BLOCK",rationale:"Textbook account takeover. Access from Russian IP (risk score 0.95) despite US registration. MFA bypassed. Password and email both changed. $2,100 transaction initiated 4 minutes after account modification. Seven failed logins in prior 24 hours indicate brute-force attack.",key_signals:["Login RU vs registered US","MFA bypassed","Password + email changed","Transaction 4 mins after change","7 failed logins in 24h"],suggested_action:"Lock account immediately. Reverse password and email changes. Notify customer via secondary contact. File incident report.",false_positive_probability:.02,regulatory_note:"Account takeover involving credential compromise must be reported under breach notification if PII accessed. Escalate to compliance within 24 hours."},
-"ALT-0043":{risk_type:"Synthetic Identity Fraud",urgency:"MEDIUM",confidence:.81,recommendation:"INVESTIGATE",rationale:"Multiple indicators consistent with synthetic identity application. SSN first used in adulthood (not childhood). Issued in Wyoming but applicant in New York — common in SSN farming. Credit file only 11 days old with 8 inquiries in 30 days. Employer verification failed. Phone number 9 days old.",key_signals:["SSN: adult first use","Credit file: 11 days old","8 inquiries in 30 days","Employer: verification failed","Phone: 9 days old"],suggested_action:"Request enhanced KYC documentation — government-issued ID, proof of address within 30 days, employer confirmation letter. Do not approve until reviewed.",false_positive_probability:.19,regulatory_note:null},
-"ALT-0044":{risk_type:"False Positive — Not Fraud",urgency:"LOW",confidence:.91,recommendation:"AUTO_RESOLVE",rationale:"Signal profile highly consistent with legitimate transaction. IP risk score 0.08. Recognised device. Both cardholder and merchant in Canada. Transaction CAD 89.99 within normal range (average CAD 92.00). 3DS authenticated. Addresses match. Netflix Canada is well-known low-risk merchant.",key_signals:["IP risk: 0.08","KNOWN_DEVICE","CA → CA","Amount within avg","3DS: authenticated"],suggested_action:"Auto-resolve as false positive. Consider adjusting velocity threshold for subscription category to reduce noise.",false_positive_probability:.91,regulatory_note:null},
-"ALT-0045":{risk_type:"Identity Verification Failure",urgency:"HIGH",confidence:.88,recommendation:"ESCALATE",rationale:"Liveness check failed outright. Face match score 0.41 is well below 0.70 minimum threshold — presented document does not correspond to person completing verification. Document authenticity score 0.62 also below threshold, suggesting passport may be altered or counterfeit. Address verification returned partial match.",key_signals:["Liveness: FAIL","Face match: 0.41 (min 0.70)","Document authenticity: 0.62","Address verification: PARTIAL","New account + overdraft"],suggested_action:"Decline application. Request in-branch verification with two forms of original ID. Flag for 90-day enhanced monitoring.",false_positive_probability:.10,regulatory_note:"Failed identity verification on new account application must be documented per KYC/AML. Retain all verification records for 5 years."},
-"ALT-0046":{risk_type:"First Party Fraud",urgency:"MEDIUM",confidence:.78,recommendation:"INVESTIGATE",rationale:"Customer filed 4 disputes and 3 chargebacks in 12 months with 92% win rate — pattern consistent with deliberate first-party fraud. Most recent dispute 18 days ago. Current transaction $520 matches average dispute amount of $340. Pattern flag: high_dispute_velocity.",key_signals:["4 disputes + 3 chargebacks in 12m","Win rate: 92%","Last dispute: 18 days ago","Transaction ≈ avg dispute amount","Pattern: high velocity"],suggested_action:"Place manual review hold. Review full dispute history. If pattern confirmed, restrict chargeback rights and flag for enhanced monitoring.",false_positive_probability:.22,regulatory_note:null},
-"ALT-0047":{risk_type:"False Positive — Not Fraud",urgency:"LOW",confidence:.94,recommendation:"AUTO_RESOLVE",rationale:"All signal indicators point to legitimate transaction. IP risk score 0.05. Recognised device. US cardholder purchasing from US Apple Store via in-app channel. 3DS authenticated. Transaction amount $1,250 in line with customer average spend of $980. Premium segment, no adverse indicators.",key_signals:["IP risk: 0.05","KNOWN_DEVICE","In-app Apple US","3DS: authenticated","Amount near avg $980"],suggested_action:"Auto-resolve as false positive. Recommend whitelisting Apple Store in-app purchases for Premium segment to reduce false positive noise.",false_positive_probability:.94,regulatory_note:null},
-"ALT-0048":{risk_type:"Account Takeover",urgency:"HIGH",confidence:.84,recommendation:"ESCALATE",rationale:"Login from Chinese IP (risk score 0.78) for UK-registered Business account using new unrecognised device, followed immediately by £8,900 transfer attempt. Customer's last login 4 days ago from UK IP. MFA not bypassed and no account changes — reducing certainty vs ALT-0042 — but combination of high-risk foreign IP, new device, and immediate high-value transaction warrants escalation.",key_signals:["Login CN, registered GB","IP risk: 0.78","NEW_DEVICE","£8,900 transaction immediately after","Business account"],suggested_action:"Step-up authentication required. Send OTP to registered mobile. If not completed within 10 minutes, block transaction and contact account holder directly.",false_positive_probability:.14,regulatory_note:"Business account ATO over £5,000 requires escalation to fraud operations team within 1 hour per policy."}
-};
-
-const SAMPLE=[
-{id:"ALT-0041",ts:new Date(Date.now()-4*60000).toISOString(),type:"cnp",priority:"HIGH",status:"pending",source:"FDE-Primary v3.1",cust:{seg:"Premium",cc:"GB"},sig:{transaction_amount:"£4,750",merchant:"TechStore International",ip_risk:"0.91",velocity_24h:"9",avg_spend:"£145.50",device:"NEW_DEVICE",auth_3ds:"NO"}},
-{id:"ALT-0042",ts:new Date(Date.now()-11*60000).toISOString(),type:"ato",priority:"CRITICAL",status:"pending",source:"FDE-Primary v3.1",cust:{seg:"Standard",cc:"US"},sig:{event:"Password + email change",ip_country:"Russia",ip_risk:"0.95",device:"NEW_DEVICE",failed_logins:"7",mfa_bypassed:"YES",transaction:"$2,100"}},
-{id:"ALT-0043",ts:new Date(Date.now()-18*60000).toISOString(),type:"synth",priority:"MEDIUM",status:"pending",source:"FDE-Secondary v2.4",cust:{seg:"New",cc:"US"},sig:{ssn_state:"Wyoming",applicant_state:"New York",credit_age:"11 days",inquiries_30d:"8",employer:"FAILED",phone_age:"9 days",credit_requested:"$15,000"}},
-{id:"ALT-0044",ts:new Date(Date.now()-27*60000).toISOString(),type:"cnp",priority:"LOW",status:"pending",source:"FDE-Primary v3.1",cust:{seg:"Premium",cc:"CA"},sig:{transaction:"CAD 89.99",merchant:"Netflix Canada",ip_risk:"0.08",device:"KNOWN_DEVICE",auth_3ds:"YES",avg_spend:"CAD 92.00"}},
-{id:"ALT-0045",ts:new Date(Date.now()-35*60000).toISOString(),type:"idv",priority:"HIGH",status:"pending",source:"Identity Engine v1.9",cust:{seg:"New",cc:"GB"},sig:{document:"Passport (GB)",liveness:"FAIL",face_match:"0.41",authenticity:"0.62",address:"PARTIAL"}},
-{id:"ALT-0046",ts:new Date(Date.now()-52*60000).toISOString(),type:"fp",priority:"MEDIUM",status:"pending",source:"FDE-Primary v3.1",cust:{seg:"Standard",cc:"US"},sig:{disputes_12m:"4",chargebacks_12m:"3",win_rate:"92%",avg_amount:"$340",last_dispute:"18 days ago",transaction:"$520"}},
-{id:"ALT-0047",ts:new Date(Date.now()-68*60000).toISOString(),type:"cnp",priority:"LOW",status:"pending",source:"FDE-Secondary v2.4",cust:{seg:"Premium",cc:"US"},sig:{transaction:"$1,250",merchant:"Apple Store",ip_risk:"0.05",device:"KNOWN_DEVICE",auth_3ds:"YES",avg_spend:"$980"}},
-{id:"ALT-0048",ts:new Date(Date.now()-89*60000).toISOString(),type:"ato",priority:"HIGH",status:"pending",source:"FDE-Primary v3.1",cust:{seg:"Business",cc:"GB"},sig:{event:"Unusual login location",ip_country:"China",ip_risk:"0.78",device:"NEW_DEVICE",last_login:"4 days ago",transaction:"£8,900"}}
+const ACCOUNTS=[
+  {id:"Block Inc.",industry:"Fintech",ce:"Justin Murry",ies:["Marcus Johnson (Identity)","Sarah Kim (Credit Data)","Wei Chen (Software)"],revenue:"$4.2M",health:68,status:"at_risk"},
+  {id:"LendingClub",industry:"Consumer Lending",ce:"Justin Murry",ies:["Jennifer Lee (Credit)","David Park (Identity)"],revenue:"$2.1M",health:82,status:"healthy"},
+  {id:"SoFi Technologies",industry:"Fintech",ce:"Justin Murry",ies:["Robert Martinez (Compliance)","Aisha Patel (Fraud)"],revenue:"$3.8M",health:91,status:"expansion"},
+  {id:"Ally Financial",industry:"Digital Banking",ce:"Marcus Chen",ies:["Tom Wilson (Credit)","Lisa Zhang (Digital)"],revenue:"$5.2M",health:75,status:"healthy"},
+  {id:"Discover Financial",industry:"Cards",ce:"Marcus Chen",ies:["James Anderson (Fraud)","Nina Rodriguez (Credit)"],revenue:"$3.1M",health:88,status:"healthy"},
+  {id:"OneMain Holdings",industry:"Personal Loans",ce:"Sarah Kim",ies:["Chris Brown (Origination)","Amanda Green (Collections)"],revenue:"$1.9M",health:64,status:"declining"},
+  {id:"Avant LLC",industry:"Fintech Lending",ce:"Sarah Kim",ies:["Kevin Park (Operations)","Melissa White (Product)"],revenue:"$2.4M",health:79,status:"healthy"},
+  {id:"Upstart Holdings",industry:"AI Lending",ce:"Marcus Chen",ies:["Robert Taylor (Product)","Emily Johnson (Strategy)"],revenue:"$3.5M",health:85,status:"healthy"}
 ];
 
-const S={alerts:[],log:[],filter:"all",cid:null,darkMode:localStorage.getItem("tu_dm")==="true"};
+const SIGNALS=[
+  {id:"SIG-001",account:"Block Inc.",type:"MARKET EVENT",priority:"CRITICAL",title:"Block Inc. Lays Off 40% of Headcount",desc:"Significant workforce reduction announced 2 weeks ago. Impacts Consumer Lending, Credit, Digital Marketing teams.",timestamp:"2 hours ago",confidence:98},
+  {id:"SIG-002",account:"SoFi Technologies",type:"EARNINGS",priority:"HIGH",title:"Q4 Earnings Beat: Consumer Lending +28% YoY",desc:"Exceeded estimates by 15%. Credit division growing rapidly. Current contract covers Credit Data only.",timestamp:"4 hours ago",confidence:95},
+  {id:"SIG-003",account:"Block Inc.",type:"LEADERSHIP",priority:"HIGH",title:"CFO Departure Announced",desc:"Key finance leader stepping down. Indicates potential strategic shift. Account reassignment likely.",timestamp:"6 hours ago",confidence:92},
+  {id:"SIG-004",account:"Discover Financial",type:"COMPETITIVE",priority:"MEDIUM",title:"Experian Activity Detected",desc:"2 meetings with Discover's fraud team in last 30 days. Increased RFP activity. Cross-sell risk.",timestamp:"8 hours ago",confidence:87},
+  {id:"SIG-005",account:"OneMain Holdings",type:"VOLUME DECLINE",priority:"MEDIUM",title:"Credit Volume Down 12% This Quarter",desc:"YoY decline in originations. Peer account (similar size) cross-sold Fraud Analytics and stabilized.",timestamp:"12 hours ago",confidence:85},
+  {id:"SIG-006",account:"Ally Financial",type:"PRODUCT ALERT",priority:"MEDIUM",title:"Digital Channel Expansion",desc:"Investing in mobile lending. May present Identity Verification upsell opportunity.",timestamp:"18 hours ago",confidence:80},
+  {id:"SIG-007",account:"Upstart Holdings",type:"MARKET EVENT",priority:"LOW",title:"Strategic Partnership Announced",desc:"Third-party integration expanding AI lending ecosystem. Monitor for new decision-making contacts.",timestamp:"24 hours ago",confidence:75},
+  {id:"SIG-008",account:"Avant LLC",type:"COMPETITIVE",priority:"LOW",title:"LexisNexis RFP Scheduled",desc:"Routine contract review. Scheduled for Q2. No immediate threat detected.",timestamp:"36 hours ago",confidence:68}
+];
+
+const S={signals:[],filter:"all",darkMode:localStorage.getItem("tu_dm")==="true"};
 
 function dc(x){return JSON.parse(JSON.stringify(x))}
 
-function save(){localStorage.setItem("tu_a",JSON.stringify(S.alerts));localStorage.setItem("tu_l",JSON.stringify(S.log))}
-
-function resetData(){if(!confirm("Reset all alerts to sample data?"))return;S.alerts=dc(SAMPLE);S.log=[];save();updateCounts();showView("dashboard");toast("Alerts reset","in")}
-
 function init(){
-  try{S.alerts=JSON.parse(localStorage.getItem("tu_a"))||dc(SAMPLE)}catch{S.alerts=dc(SAMPLE)}
-  try{S.log=JSON.parse(localStorage.getItem("tu_l"))||[]}catch{S.log=[]}
   if(S.darkMode)document.documentElement.classList.add("dark");
   buildNav();renderOverview();showView("overview");
   updateThemeToggle();
   document.addEventListener("keydown",handleKeyboardShortcuts);
+  S.signals=dc(SIGNALS);
 }
 
 function toggleTheme(){
@@ -569,21 +401,18 @@ function handleKeyboardShortcuts(e){
 }
 
 function showKbdHints(){
-  toast("Shortcuts: ? = help, ESC = close modal, ← = back","in");
+  toast("Shortcuts: ? = help, ESC = close","in");
 }
 
 function buildNav(){
   document.getElementById("navTabs").innerHTML=[
-    {v:"overview",l:"Problem Overview",c:null},{v:"dashboard",l:"Alert Queue",c:"cq"},{v:"audit",l:"Audit Log",c:"ca"},{v:"collaboration",l:"Collaboration",c:null},{v:"settings",l:"⚙ About",c:null}
+    {v:"overview",l:"Problem Overview",c:null},
+    {v:"dashboard",l:"Intelligence Feed",c:null},
+    {v:"detail",l:"Account Deep Dive",c:null},
+    {v:"coaching",l:"AI Coaching Hub",c:null},
+    {v:"collaboration",l:"Team Collaboration",c:null},
+    {v:"settings",l:"⚙ About",c:null}
   ].map(t=>`<button class="nav-tab" data-view="${t.v}" onclick="showView('${t.v}')">${t.l}${t.c?`<span class="tcnt m" id="${t.c}">0</span>`:""}</button>`).join("");
-  updateCounts();
-}
-
-function updateCounts(){
-  const p=S.alerts.filter(a=>a.status==="pending").length;
-  const qe=document.getElementById("cq"),ae=document.getElementById("ca");
-  if(qe){qe.textContent=p;qe.className="tcnt"+(p>0?"":" m")}
-  if(ae){ae.textContent=S.log.length;ae.className="tcnt m"}
 }
 
 function showView(n){
@@ -591,159 +420,20 @@ function showView(n){
   document.getElementById("view-"+n).classList.add("active");
   document.querySelectorAll(".nav-tab").forEach(t=>t.classList.toggle("active",t.dataset.view===n));
   if(n==="overview")renderOverview();
-  if(n==="audit")renderAudit();
   if(n==="dashboard")renderDash();
+  if(n==="detail")renderDetail();
+  if(n==="coaching")renderCoaching();
   if(n==="collaboration")renderCollaboration();
   if(n==="settings")renderSettings();
 }
 
-function renderOverview(){
-  document.getElementById("view-overview").innerHTML=`
-<div class="wrap">
-  <div class="overview-headline">
-    <div class="overview-overline">The Challenge</div>
-    <h1 class="overview-h1">Fraud Signals at Scale</h1>
-    <p class="overview-sub">Every day, 10,000+ fraud detection signals flood in. Analysts manually review each one. Most are false alarms. Real fraud hides in the noise.</p>
-  </div>
-
-  <div class="problem-cards">
-    <div class="problem-card">
-      <svg class="problem-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-      <div class="problem-card-title">Alert Volume Overwhelms Analysts</div>
-      <div class="problem-card-body">10,000+ fraud signals per day across multiple detection engines. Every one requires manual review. Most are false positives. Capacity is the bottleneck.</div>
-      <div class="problem-card-stat">10K+</div>
-      <div class="problem-card-stat-label">alerts per day</div>
-    </div>
-
-    <div class="problem-card">
-      <svg class="problem-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <div class="problem-card-title">False Positives Drain Productivity</div>
-      <div class="problem-card-body">Up to 85% of flagged transactions are legitimate. Time spent clearing false positives is time not spent catching real fraud. Analyst fatigue sets in.</div>
-      <div class="problem-card-stat">85%</div>
-      <div class="problem-card-stat-label">false positive rate</div>
-    </div>
-
-    <div class="problem-card">
-      <svg class="problem-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      <div class="problem-card-title">Inconsistent Decisions Under Pressure</div>
-      <div class="problem-card-body">Different analysts. Different shifts. Different outcomes for identical signals. No standardised decision framework. Outcomes vary 3× across equivalent cases.</div>
-      <div class="problem-card-stat">3×</div>
-      <div class="problem-card-stat-label">variance in shift outcomes</div>
-    </div>
-
-    <div class="problem-card">
-      <svg class="problem-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-      <div class="problem-card-title">No Audit Trail for Regulators</div>
-      <div class="problem-card-body">When regulators ask "why was this flagged?" or "why was this cleared?" — there's no systematic record. Compliance gaps grow. Risk exposure increases.</div>
-      <div class="problem-card-stat">Zero</div>
-      <div class="problem-card-stat-label">systematic decision logs</div>
-    </div>
-
-    <div class="problem-card">
-      <svg class="problem-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
-      <div class="problem-card-title">Delayed Response = Financial Loss</div>
-      <div class="problem-card-body">Every minute a fraudulent transaction isn't blocked, exposure grows. Manual triage creates a dangerous bottleneck. Annual fraud loss accumulates rapidly.</div>
-      <div class="problem-card-stat">$4.2M</div>
-      <div class="problem-card-stat-label">avg annual fraud loss</div>
-    </div>
-  </div>
-
-  <div style="margin-top:56px;margin-bottom:56px;padding:40px 0;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)">
-    <div style="text-align:center;margin-bottom:36px">
-      <div style="display:inline-block;background:var(--tut);color:var(--tu);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:16px;font-family:monospace">The Solution</div>
-      <h2 style="font-size:28px;font-weight:800;letter-spacing:-.03em;color:var(--t1);margin-bottom:12px;line-height:1.2">Fraud Signal Triage Agent</h2>
-      <p style="font-size:16px;color:var(--t2);max-width:680px;margin:0 auto;line-height:1.7;font-weight:500">An AI-powered copilot that sits alongside your fraud analysts. It reads every incoming alert, classifies the risk, recommends an action — and lets your team confirm or override with one click. Think of it as a senior analyst that never sleeps, never gets fatigued, and documents every decision automatically.</p>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:36px">
-      <div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:24px;box-shadow:var(--sh)">
-        <div style="font-size:28px;margin-bottom:12px">🎯</div>
-        <div style="font-size:15px;font-weight:700;color:var(--t1);margin-bottom:8px">AI Classifies. You Decide.</div>
-        <div style="font-size:13px;color:var(--t2);line-height:1.7">Every alert gets an instant AI assessment — risk type, confidence score, recommended action, and plain-English reasoning. Your analysts spend time on judgment calls, not paperwork.</div>
-      </div>
-      <div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:24px;box-shadow:var(--sh)">
-        <div style="font-size:28px;margin-bottom:12px">⚡</div>
-        <div style="font-size:15px;font-weight:700;color:var(--t1);margin-bottom:8px">From 10 Minutes to 10 Seconds</div>
-        <div style="font-size:13px;color:var(--t2);line-height:1.7">Average triage time drops from 10+ minutes of manual investigation per alert to under 10 seconds of confirm-or-correct review. Same quality, fraction of the time.</div>
-      </div>
-      <div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:24px;box-shadow:var(--sh)">
-        <div style="font-size:28px;margin-bottom:12px">📋</div>
-        <div style="font-size:15px;font-weight:700;color:var(--t1);margin-bottom:8px">Audit-Ready by Default</div>
-        <div style="font-size:13px;color:var(--t2);line-height:1.7">Every decision — AI recommendation, analyst action, correction reason — is logged with a timestamp and exportable as CSV. When regulators ask, the answer is already documented.</div>
-      </div>
-    </div>
-
-    <div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:28px;box-shadow:var(--sh)">
-      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tu);margin-bottom:16px;font-family:monospace">What's Included in This Demo</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
-        <div style="display:flex;align-items:flex-start;gap:10px">
-          <div style="color:var(--ok);font-size:16px;flex-shrink:0;margin-top:1px">✓</div>
-          <div><div style="font-size:13px;font-weight:700;color:var(--t1)">8 Live Fraud Alerts</div><div style="font-size:12px;color:var(--t3)">CNP, ATO, Synthetic ID, IDV failure, First Party</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px">
-          <div style="color:var(--ok);font-size:16px;flex-shrink:0;margin-top:1px">✓</div>
-          <div><div style="font-size:13px;font-weight:700;color:var(--t1)">AI Classification Engine</div><div style="font-size:12px;color:var(--t3)">Confidence scores, risk rationale, key signals</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px">
-          <div style="color:var(--ok);font-size:16px;flex-shrink:0;margin-top:1px">✓</div>
-          <div><div style="font-size:13px;font-weight:700;color:var(--t1)">Confirm-or-Correct Workflow</div><div style="font-size:12px;color:var(--t3)">One-click confirm, structured override with reason</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px">
-          <div style="color:var(--ok);font-size:16px;flex-shrink:0;margin-top:1px">✓</div>
-          <div><div style="font-size:13px;font-weight:700;color:var(--t1)">Full Audit Trail</div><div style="font-size:12px;color:var(--t3)">Every decision logged, timestamped, CSV-exportable</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px">
-          <div style="color:var(--ok);font-size:16px;flex-shrink:0;margin-top:1px">✓</div>
-          <div><div style="font-size:13px;font-weight:700;color:var(--t1)">Accuracy Tracking</div><div style="font-size:12px;color:var(--t3)">Real-time AI vs analyst agreement metrics</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:10px">
-          <div style="color:var(--ok);font-size:16px;flex-shrink:0;margin-top:1px">✓</div>
-          <div><div style="font-size:13px;font-weight:700;color:var(--t1)">Regulatory Flags</div><div style="font-size:12px;color:var(--t3)">AML, KYC, and breach notification callouts</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="case-callout">
-    <div class="case-callout-label">Ready to See It in Action?</div>
-    <div class="case-callout-text">
-      Walk through 8 real fraud scenarios — from a £4,750 card-not-present transaction to a full account takeover with MFA bypass. Watch the AI classify each one, review the reasoning, then confirm or correct. Every decision hits the audit log instantly.
-    </div>
-  </div>
-
-  <div class="problem-cta">
-    <button class="btn b-cl" style="padding: 14px 32px; font-size: 15px; font-weight: 600;" onclick="showView('dashboard')">
-      Enter the Triage Queue →
-    </button>
-    <div class="problem-cta-sub">8 live alerts · AI classification · analyst review · full audit trail</div>
-  </div>
-</div>`;
-}
+function renderOverview(){document.getElementById("view-overview").innerHTML=`<div class="wrap"><div class="overview-headline"><div class="overview-overline">The Challenge</div><h1 class="overview-h1">Sales Intelligence at Scale</h1><p class="overview-sub">300+ sales reps across consumer lending. Critical market signals every day. No unified view. No coaching mechanism. Institutional knowledge dies when clients get reassigned annually.</p></div><div class="problem-cards"><div class="problem-card"><svg class="problem-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v6m0 0h6m-6 0H6m6 0v6m0 0h6m-6 0h-6"/></svg><div class="problem-card-title">Signal Blindness</div><div class="problem-card-body">Reps miss critical market events. Block laid off 40% of headcount 2 weeks ago. Nobody told the relevant CE. News, earnings, leadership changes, M&A — scattered across email, Slack, WSJ, LinkedIn. No unified alert system.</div></div><div class="problem-card"><svg class="problem-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div class="problem-card-title">Fragmented Intelligence</div><div class="problem-card-body">Data lives in Salesforce, Wall Street Journal, LinkedIn, Google, tribal knowledge. CRM data quality is poor. Reps are forced to be the "source of truth." No unified view per account. Intelligence doesn't transfer when IEs change.</div></div><div class="problem-card"><svg class="problem-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><div class="problem-card-title">Coaching at Scale</div><div class="problem-card-body">Justin can mentor 1 rep at a time, not 300. No mechanism to identify which reps are struggling, which accounts are declining, or what peer benchmarks look like. Training doesn't transfer when client assignments change annually.</div></div></div><div style="margin-top:56px;margin-bottom:56px;padding:40px 0;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)"><div style="text-align:center;margin-bottom:36px"><div style="display:inline-block;background:var(--tut);color:var(--tu);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:16px;font-family:monospace">The Solution</div><h2 style="font-size:28px;font-weight:800;letter-spacing:-.03em;color:var(--t1);margin-bottom:12px;line-height:1.2">Sales Intelligence & AI Coaching</h2><p style="font-size:16px;color:var(--t2);max-width:680px;margin:0 auto;line-height:1.7;font-weight:500">AI agent that continuously scans external signals (news, earnings, leadership, competitive), aggregates account data (Salesforce, revenue, product status), and pushes proactive intelligence to reps every 3 days. Spot struggling accounts. Suggest peer benchmarks. Surface upsell opportunities. Scale coaching across your entire go-to-market organization.</p></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:36px"><div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:24px;box-shadow:var(--sh)"><div style="font-size:28px;margin-bottom:12px">📧</div><div style="font-size:15px;font-weight:700;color:var(--t1);margin-bottom:8px">Proactive Signal Push</div><div style="font-size:13px;color:var(--t2);line-height:1.7">Email digest every 3 days. Aggregates news, earnings, leadership changes, competitive intel for your book of business. Includes revenue impact estimates, contact mapping, and suggested actions.</div></div><div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:24px;box-shadow:var(--sh)"><div style="font-size:28px;margin-bottom:12px">🎯</div><div style="font-size:15px;font-weight:700;color:var(--t1);margin-bottom:8px">Account Health Dashboard</div><div style="font-size:13px;color:var(--t2);line-height:1.7">Unified view per account: revenue trends, products deployed, contract renewal dates, pipeline activity, last contact, and health score. External signals linked to decision-making contacts.</div></div><div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:24px;box-shadow:var(--sh)"><div style="font-size:28px;margin-bottom:12px">🤖</div><div style="font-size:15px;font-weight:700;color:var(--t1);margin-bottom:8px">AI Coaching Agent</div><div style="font-size:13px;color:var(--t2);line-height:1.7">Identifies volume declines, struggling accounts, peer benchmarks. Suggests proactive actions: "Your peer grew similar account via cross-sell. Consider QBR." Nudges on at-risk relationships. Scales Justin's mentorship.</div></div></div></div><div class="case-callout"><div class="case-callout-label">Real-World Scenario</div><div class="case-callout-text">Block laid off 40% of headcount 2 weeks ago. The agent flags this to Justin (CE). Shows which IEs are assigned (Marcus on Identity, Sarah on Credit Data, Wei on Software). Suggests a proactive "relationship check-in" within 48 hours based on 12 similar events historically. 34% of similar-treated accounts increased engagement. No sales push — just showing up at the right time with the right context.</div></div><div class="problem-cta"><button class="btn b-cl" style="padding: 14px 32px; font-size: 15px; font-weight: 600;" onclick="showView('dashboard')">Enter the Intelligence Feed →</button><div class="problem-cta-sub">Account signals · Competitive intel · Coaching nudges · Team collaboration</div></div></div>`}
 
 function renderDash(){
-  const p=S.alerts.filter(a=>a.status==="pending").length;
-  const r=S.alerts.filter(a=>a.status!=="pending").length;
-  const co=S.log.filter(e=>e.action==="confirmed").length;
-  const cx=S.log.filter(e=>e.action==="corrected").length;
-  const tot=co+cx;
-  const acc=tot>0?Math.round(co/tot*100)+"%":"—";
-  const ts=(S.log.length*4.2).toFixed(0)+"m";
-  const fl=getFiltered();
-  document.getElementById("view-dashboard").innerHTML=`
-<div class="wrap">
-  <div class="ph"><h1>Fraud Signal Queue</h1><p>Incoming alerts from fraud detection engines — AI-classified and analyst-reviewed</p></div>
-  <div class="metrics">
-    <div class="mc cr"><div class="mv"><span class="mv-counter" data-target="${p}">0</span></div><div class="ml">Pending Review</div><div class="ms">Awaiting analyst</div></div>
-    <div class="mc ok"><div class="mv"><span class="mv-counter" data-target="${r}">0</span></div><div class="ml">Resolved</div><div class="ms">Confirmed or corrected</div></div>
-    <div class="mc tu"><div class="mv">${acc}</div><div class="ml">AI Accuracy</div><div class="ms">${tot} decisions made</div></div>
-    <div class="mc al"><div class="mv"><span class="mv-counter" data-target="${parseInt(ts)}">0</span>m</div><div class="ml">Time Saved</div><div class="ms">Est. vs manual triage</div></div>
-  </div>
-  <div class="sh">
-    <h2>Alert Queue (${fl.length})</h2>
-    <div class="frow">${["all","pending","confirmed","corrected","auto_resolved"].map(f=>`<button class="fb ${S.filter===f?"active":""}" onclick="setFilter('${f}')">${f.replace("_"," ")}</button>`).join("")}</div>
-  </div>
-  <div class="alist">${fl.length===0?`<div class="empty"><span class="empty-icon">📭</span>No alerts matching this filter</div>`:fl.map(aRow).join("")}</div>
-</div>`;
+  const at_risk=ACCOUNTS.filter(a=>a.status==="at_risk").length;
+  const exp=ACCOUNTS.filter(a=>a.status==="expansion").length;
+  const vol=S.signals.length;
+  document.getElementById("view-dashboard").innerHTML=`<div class="wrap"><div class="ph"><h1>Sales Intelligence Feed</h1><p>Proactive account signals, competitive intel, and revenue trends across your book of business</p></div><div class="metrics"><div class="mc tu"><div class="mv"><span class="mv-counter" data-target="${ACCOUNTS.length}">0</span></div><div class="ml">Active Accounts</div><div class="ms">Consumer lending focus</div></div><div class="mc cr"><div class="mv"><span class="mv-counter" data-target="${vol}">0</span></div><div class="ml">Signals This Week</div><div class="ms">Market events detected</div></div><div class="mc al"><div class="mv"><span class="mv-counter" data-target="${at_risk}">0</span></div><div class="ml">Accounts At Risk</div><div class="ms">Volume decline or leadership change</div></div><div class="mc ok"><div class="mv"><span class="mv-counter" data-target="${exp}">0</span></div><div class="ml">Expansion Opportunities</div><div class="ms">Growth signals detected</div></div></div><div class="sh"><h2>Account Signals (${S.signals.length})</h2><div class="frow">${["all","critical","high","medium"].map(f=>`<button class="fb ${S.filter===f?"active":""}" onclick="setFilter('${f}')">${f}</button>`).join("")}</div></div><div class="alist">${getFiltered().map(aRow).join("")}</div></div>`;
   animateCounters();
 }
 
@@ -761,454 +451,73 @@ function animateCounters(){
 }
 
 function getFiltered(){
-  const all=[...S.alerts].sort((a,b)=>{const o={CRITICAL:0,HIGH:1,MEDIUM:2,LOW:3};if(a.status==="pending"&&b.status!=="pending")return -1;if(a.status!=="pending"&&b.status==="pending")return 1;return(o[a.priority]??9)-(o[b.priority]??9)});
-  return S.filter==="all"?all:all.filter(a=>a.status===S.filter);
+  const all=[...S.signals].sort((a,b)=>{const o={CRITICAL:0,HIGH:1,MEDIUM:2,LOW:3};return(o[a.priority]??9)-(o[b.priority]??9)});
+  return S.filter==="all"?all:all.filter(s=>s.priority===S.filter.toUpperCase());
 }
 
 function setFilter(f){S.filter=f;renderDash()}
 
-function aRow(a){
-  const pc=P[a.priority]||P.LOW;
-  const sigVal=Object.values(a.sig)[0]||"";
-  const sc=a.status==="confirmed"?"sc":a.status==="corrected"?"sx":a.status==="auto_resolved"?"sa":"";
-  const isCrit=a.priority==="CRITICAL"?' critical':'';
-  return`<div class="ar ${sc}" onclick="openAlert('${a.id}')">
-  <div class="pdot${isCrit}" style="background:${pc.c}"></div>
-  <div><div class="aid">${a.id}</div><div class="atype">${TL[a.type]}</div><div class="ameta">${a.source} · ${a.cust.seg} · ${a.cust.cc}${sigVal?" · "+sigVal:""}</div></div>
-  <div class="abadges">
-    ${a.status==="pending"?`<span class="badge" style="background:${pc.b};color:${pc.c}">${a.priority}</span>`:`<span class="badge" style="background:var(--s3);color:var(--t3)">${a.status.replace("_"," ")}</span>`}
-    ${a.ai?`<span class="badge" style="background:var(--tut);color:var(--tu)">${Math.round(a.ai.confidence*100)}%</span>`:""}
-  </div>
-  <div class="atime">${ago(a.ts)}</div>
-</div>`;
+function aRow(s){
+  const col={CRITICAL:"#EF4444",HIGH:"#F59E0B",MEDIUM:"#00A8CB",LOW:"#10B981"};
+  const isCrit=s.priority==="CRITICAL"?' critical':'';
+  return`<div class="ar" onclick="openSignal('${s.id}')"><div class="pdot${isCrit}" style="background:${col[s.priority]}"></div><div><div class="aid">${s.id}</div><div class="atype">${s.account}</div><div class="ameta">${s.type} · ${s.title}</div></div><div class="abadges"><span class="badge" style="background:rgba(${s.priority==='CRITICAL'?'239,68,68':'245,158,11'},0.1);color:${col[s.priority]}">${s.priority}</span><span class="badge" style="background:var(--tut);color:var(--tu)">${s.confidence}%</span></div><div class="atime">${s.timestamp}</div></div>`;
 }
 
-function openAlert(id){
-  S.cid=id;const a=S.alerts.find(x=>x.id===id);if(!a)return;
-  const pc=P[a.priority]||P.LOW;
-  document.getElementById("view-detail").innerHTML=`
-<div class="dv">
-  <button class="back" onclick="showView('dashboard')">← Back to Queue</button>
-  <div class="dh">
-    <div><h1>${TL[a.type]}</h1>
-      <div class="dm">
-        <span class="badge" style="background:${pc.b};color:${pc.c}">${a.priority}</span>
-        <span class="badge" style="background:var(--s2);color:var(--t2)">${a.id}</span>
-        <span class="badge" style="background:var(--s2);color:var(--t2)">${a.source}</span>
-        <span class="badge" style="background:var(--s2);color:var(--t2)">${a.cust.seg} · ${a.cust.cc}</span>
-      </div>
-    </div>
-    <div style="font-size:12px;color:var(--t3);font-family:monospace;font-weight:500">${new Date(a.ts).toLocaleString()}</div>
-  </div>
-  <h2 style="margin-bottom:16px">Signal Data</h2>
-  <div class="sgrid">${sigCards(a.sig)}</div>
-  <div class="ais" id="aiS">
-    <div class="aih">
-      <div><div class="ahl">AI Classification</div><p class="ahp">Claude Sonnet 4 · Fraud Analysis</p></div>
-      ${a.status==="pending"&&!a.ai?`<button class="btn b-cl" id="cBtn" onclick="runClassify('${a.id}')">⚡ Classify</button>`:""}
-    </div>
-    <div id="aiB">${a.ai?aiHTML(a.ai):`<div class="aipend"><p>Click <strong>Classify</strong> to analyse this alert's signal data.</p></div>`}</div>
-  </div>
-  <div class="dbar" id="dBar">${dbarHTML(a)}</div>
-</div>`;
+function openSignal(id){
+  const s=S.signals.find(x=>x.id===id);if(!s)return;
+  const acc=ACCOUNTS.find(a=>a.id===s.account);
+  document.getElementById("view-detail").innerHTML=`<div class="dv"><button class="back" onclick="showView('dashboard')">← Back to Feed</button><div class="dh"><div><h1>${s.account}</h1><div class="dm"><span class="badge" style="background:rgba(0,168,203,0.1);color:var(--tu)">${s.type}</span><span class="badge" style="background:var(--s2);color:var(--t2)">${acc.industry}</span><span class="badge" style="background:var(--s2);color:var(--t2)">Health: ${acc.health}%</span></div></div></div><h2 style="margin-bottom:16px;margin-top:28px">Signal Summary</h2><div class="rat">${s.desc}</div><h2 style="margin-bottom:16px">Account Overview</h2><div class="sgrid"><div class="sc2"><div class="sk">CE Assigned</div><div class="sv">${acc.ce}</div></div><div class="sc2"><div class="sk">Industry Execs</div><div class="sv">${acc.ies.length}</div></div><div class="sc2"><div class="sk">Annual Revenue</div><div class="sv">${acc.revenue}</div></div><div class="sc2"><div class="sk">Account Status</div><div class="sv">${acc.status.replace('_',' ')}</div></div><div class="sc2"><div class="sk">Last Updated</div><div class="sv">${s.timestamp}</div></div><div class="sc2"><div class="sk">AI Confidence</div><div class="sv">${s.confidence}%</div></div></div><h2 style="margin-bottom:16px">Team Assignment</h2><div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:20px;box-shadow:var(--sh)"><div style="margin-bottom:16px"><div style="font-size:12px;color:var(--t3);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">Client Executive (CE)</div><div style="font-size:14px;font-weight:700;color:var(--t1)">${acc.ce}</div></div><div><div style="font-size:12px;color:var(--t3);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px">Industry Executives (IEs)</div>${acc.ies.map(ie=>`<div style="font-size:13px;color:var(--t2);padding:8px;background:var(--s2);border-radius:var(--rs);margin-bottom:8px;font-weight:500">${ie}</div>`).join('')}</div></div><h2 style="margin-bottom:16px;margin-top:28px">Suggested Actions</h2><div class="acbox"><div class="alb">Coaching Recommendation</div><p>${s.id==='SIG-001'?'Schedule relationship check-in within 48 hours (not sales call). Based on 12 similar events, 34% of accounts that received proactive outreach maintained or grew engagement.':s.id==='SIG-002'?'Cross-sell opportunity: Current contract covers Credit Data only. Consumer lending division grew 28% YoY. Schedule QBR to discuss Identity Verification Suite + Fraud Analytics.':'Monitor this signal and coordinate with relevant IEs for strategic response.'}</p></div><div class="dbar" style="margin-top:28px"><div style="flex:1"><div style="font-size:14px;color:var(--t1);font-weight:600;margin-bottom:6px">${s.account} Signal</div><div style="font-size:12px;color:var(--t2)">Confidence: ${s.confidence}% • Priority: ${s.priority}</div></div><button class="btn b-cl" onclick="toast('✓ Signal marked for action','ok')">✓ Schedule Outreach</button></div></div>`;
   showView("detail");
 }
 
-function sigCards(sig){
-  return Object.entries(sig).map(([k,v])=>{
-    const sv=String(v).toLowerCase();
-    let rc="";
-    if(["fail","0.91","0.95","0.78","9","7","new_device"].some(x=>sv.includes(x)))rc="rh";
-    else if(["partial","0.41","0.62"].some(x=>sv===x||sv.includes(x)))rc="rm";
-    else if(["known_device","yes","0.05","0.08","1","2"].some(x=>sv===x||sv.startsWith(x)))rc="ro";
-    return`<div class="sc2"><div class="sk">${k.replace(/_/g," ")}</div><div class="sv ${rc}">${v}</div></div>`;
-  }).join("");
+function renderDetail(){
+  if(!document.getElementById("view-detail").innerHTML){document.getElementById("view-detail").innerHTML=`<div class="dv" style="text-align:center;padding-top:80px;color:var(--t3)"><div style="font-size:48px;margin-bottom:16px">📊</div>Select a signal to view account details</div>`}
 }
 
-function aiHTML(r){
-  const rc={BLOCK:"var(--er)",ESCALATE:"var(--al)",INVESTIGATE:"var(--tu)",AUTO_RESOLVE:"var(--ok)"}[r.recommendation]||"var(--t2)";
-  const pc=P[r.urgency]||P.LOW;
-  return`<div class="airec" id="airec">
-  <div class="aigrid">
-    <div class="af"><div class="afl">Risk Type</div><div class="afv">${r.risk_type}</div></div>
-    <div class="af"><div class="afl">Urgency</div><div class="afv" style="color:${pc.c}">${r.urgency}</div></div>
-    <div class="af"><div class="afl">Recommendation</div><div class="afv" style="color:${rc}">${r.recommendation}</div></div>
-    <div class="af"><div class="afl">Confidence</div><div class="afv">${Math.round(r.confidence*100)}%</div><div class="cbar"><div class="cfill" id="cf" style="width:0"></div></div></div>
-    <div class="af"><div class="afl">False Positive Risk</div><div class="afv" style="color:${r.false_positive_probability>.4?"var(--al)":"var(--ok)"}">${Math.round(r.false_positive_probability*100)}%</div></div>
-  </div>
-  <div class="afl" style="margin-bottom:6px">Analysis Rationale</div>
-  <div class="rat">${r.rationale}</div>
-  <div class="afl" style="margin-bottom:6px">Key Signals Identified</div>
-  <div class="ksigs">${r.key_signals.map(s=>`<span class="stag">${s}</span>`).join("")}</div>
-  <div class="acbox"><div class="alb">Recommended Action</div><p>${r.suggested_action}</p></div>
-  ${r.regulatory_note?`<div class="regnote">${r.regulatory_note}</div>`:""}
-</div>`;
-}
-
-function dbarHTML(a){
-  if(a.status==="confirmed")return`<div class="ddone">✓ <strong style="color:var(--ok)">Confirmed</strong> — AI classification accepted and logged.</div>`;
-  if(a.status==="corrected")return`<div class="ddone">✏ <strong style="color:var(--al)">Corrected</strong> — Your classification logged as training signal.</div>`;
-  if(a.status==="auto_resolved")return`<div class="ddone">⚡ <strong style="color:var(--t2)">Auto-Resolved</strong> — High confidence, low false positive risk. Logged automatically.</div>`;
-  if(!a.ai)return`<div class="di">Run AI classification first, then confirm or correct the result.</div>`;
-  return`<div class="di"><strong>AI Classification: ${a.ai.risk_type}</strong><small>${Math.round(a.ai.confidence*100)}% confidence — Review above and confirm or override.</small></div>
-  <div class="dbtns"><button class="btn b-ok" onclick="confirmAlert('${a.id}')">✓ Confirm</button><button class="btn b-fx" onclick="openModal('${a.id}')">✏ Correct</button></div>`;
-}
-
-function runClassify(id){
-  const a=S.alerts.find(x=>x.id===id);if(!a)return;
-  const btn=document.getElementById("cBtn");if(btn){btn.disabled=true;btn.textContent="Classifying…"}
-  document.getElementById("aiB").innerHTML=`<div class="aiproc"><div class="spin"></div><div style="display:flex;gap:12px;margin-top:16px;justify-content:center"><div style="flex:1;max-width:200px"><div class="skeleton skeleton-bar"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text" style="width:80%"></div></div></div><div class="pstep" id="ps">Initialising analysis…</div></div>`;
-  const steps=["Ingesting signal fields…","Checking risk databases…","Analysing velocity patterns…","Evaluating device fingerprint…","Cross-referencing geographic signals…","Generating classification…","Computing confidence…","Finalizing analysis…"];
-  let i=0;const iv=setInterval(()=>{const e=document.getElementById("ps");if(e&&i<steps.length)e.textContent=steps[i++]},200);
-  setTimeout(()=>{
-    clearInterval(iv);
-    const r=MOCK[id];if(!r)return;
-    a.ai=r;
-    if(r.recommendation==="AUTO_RESOLVE"&&r.confidence>=.90){a.status="auto_resolved";logEntry(a,"auto_resolved",null);toast(id+" auto-resolved ("+Math.round(r.confidence*100)+"% confidence)","in")}
-    save();updateCounts();
-    document.getElementById("aiB").innerHTML=aiHTML(r);
-    document.getElementById("dBar").innerHTML=dbarHTML(a);
-    setTimeout(()=>{const f=document.getElementById("cf");if(f)f.style.width=(r.confidence*100)+"%"},50);
-    const b=document.getElementById("cBtn");if(b)b.style.display="none";
-  },1600);
-}
-
-function confirmAlert(id){
-  const a=S.alerts.find(x=>x.id===id);if(!a||!a.ai)return;
-  a.status="confirmed";logEntry(a,"confirmed",null);save();updateCounts();
-  document.getElementById("dBar").innerHTML=dbarHTML(a);
-  toast(id+" confirmed — logged to audit trail","ok");
-}
-
-function openModal(id){document.getElementById("mId").value=id;document.getElementById("mReason").value="";document.getElementById("correctModal").classList.remove("hidden")}
-
-function closeModal(){document.getElementById("correctModal").classList.add("hidden")}
-
-function submitCorrection(){
-  const id=document.getElementById("mId").value;
-  const ty=document.getElementById("mType").value;
-  const ur=document.getElementById("mUrg").value;
-  const re=document.getElementById("mReason").value.trim();
-  if(!re){toast("Please provide a reason for the correction","er");return}
-  const a=S.alerts.find(x=>x.id===id);if(!a)return;
-  a.status="corrected";a.correction={ty,ur,re};
-  logEntry(a,"corrected",{ty,ur,re});save();updateCounts();closeModal();
-  document.getElementById("dBar").innerHTML=dbarHTML(a);
-  toast(id+" corrected — training signal logged","in");
-}
-
-function logEntry(a,action,corr){
-  S.log.unshift({ts:new Date().toISOString(),id:a.id,type:TL[a.type],priority:a.priority,action,aiRisk:a.ai?.risk_type||"—",aiConf:a.ai?Math.round(a.ai.confidence*100)+"%":"—",aiRec:a.ai?.recommendation||"—",corrTo:corr?`${corr.ty} · ${corr.ur}`:null,corrReason:corr?.re||null});
-  localStorage.setItem("tu_l",JSON.stringify(S.log));updateCounts();
-}
-
-function renderAudit(){
-  document.getElementById("view-audit").innerHTML=`
-<div class="av">
-  <div class="ph"><h1>Audit Log</h1><p>Complete record of every classification decision — AI and analyst. Full trail for regulatory review and model improvement.</p></div>
-  ${S.log.length===0
-    ?`<div class="empty" style="border:1px solid var(--bd);border-radius:var(--r);padding:80px 24px"><span class="empty-icon">📋</span>No decisions logged yet.<br>Classify and review alerts to build the audit trail.</div>`
-    :`<div class="atw"><table>
-  <thead><tr><th>Time</th><th>Alert ID</th><th>Type</th><th>AI Classification</th><th>Confidence</th><th>Recommendation</th><th>Analyst Action</th><th>Correction / Reason</th></tr></thead>
-  <tbody>${S.log.map(e=>`<tr>
-    <td class="tm">${new Date(e.ts).toLocaleTimeString()}<br><span style="color:var(--t3);font-size:10px">${new Date(e.ts).toLocaleDateString()}</span></td>
-    <td class="tm">${e.id}</td><td>${e.type}</td><td>${e.aiRisk}</td><td class="tm">${e.aiConf}</td>
-    <td><span class="badge" style="background:var(--s3);color:var(--t3)">${e.aiRec}</span></td>
-    <td class="t${e.action==="confirmed"?"co":e.action==="corrected"?"cx":"ca"}">${e.action.replace("_"," ")}</td>
-    <td style="font-size:11px;color:var(--t2)">${e.corrTo?`<strong style="color:var(--al)">${e.corrTo}</strong><br>`:""}${e.corrReason||(e.action==="confirmed"?"AI accepted":e.action==="auto_resolved"?"Auto-resolved":"")}</td>
-  </tr>`).join("")}</tbody>
-</table></div>
-<div class="aftr"><span>${S.log.length} entries</span>
-  <button class="btn b-cn" style="font-size:11px;padding:6px 12px" onclick="exportCSV()">⬇ Export CSV</button>
-  <button class="btn b-cn" style="font-size:11px;padding:6px 12px;color:var(--er)" onclick="clearLog()">Clear log</button>
-</div>`}
-</div>`;
-}
+function renderCoaching(){document.getElementById("view-coaching").innerHTML=`<div class="wrap"><div class="ph"><h1>AI Coaching Hub</h1><p>Personalized coaching nudges, peer benchmarks, and account health analysis</p></div><div class="coach-grid"><div><div class="coach-perf"><div style="margin-bottom:28px"><div style="font-size:12px;color:var(--t3);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">Your Performance Score</div><div class="coach-score">78 / 100</div><div class="coach-ring"><div class="coach-ring-val">78%</div></div></div><div style="font-size:12px;color:var(--t2);line-height:1.7;margin-bottom:16px"><strong>Rank:</strong> #12 of 45 Consumer Lending CEs. Top performers are leveraging cross-sell strategies and proactive QBRs.</div></div><div class="coach-cards"><div class="coach-card"><div class="coach-title">📉 Volume Decline Pattern</div><div class="coach-body">3 of your accounts show volume decline >10%. Sarah Kim (top 5 performer) stabilized similar accounts by cross-selling Identity Verification Suite in QBRs. Next steps: Schedule cross-functional reviews with your IEs.</div></div><div class="coach-card"><div class="coach-title">⚠ Relationship Risk</div><div class="coach-body">Ally Financial hasn't been contacted in 47 days. Historical data: similar accounts that went dark resulted in 23% churn. Recommend proactive outreach (non-sales) within next 7 days.</div></div><div class="coach-card"><div class="coach-title">📊 Peer Benchmarking</div><div class="coach-body">Top 5 performers (Marcus Chen, Sarah Kim, Jennifer Lee) average 3.2 upsells per account vs your 1.8. They're leveraging competitive intelligence in QBRs. Consider adopting this approach.</div></div></div></div><div class="coach-peer"><h2 style="margin-bottom:20px">Pipeline Growth vs Peers</h2><div class="coach-chart"><div class="coach-bar" style="height:62%"><div class="coach-bar-value">68%</div><div class="coach-bar-label">You</div></div><div class="coach-bar" style="height:91%"><div class="coach-bar-value">91%</div><div class="coach-bar-label">Marcus</div></div><div class="coach-bar" style="height:85%"><div class="coach-bar-value">85%</div><div class="coach-bar-label">Sarah</div></div><div class="coach-bar" style="height:78%"><div class="coach-bar-value">78%</div><div class="coach-bar-label">Jennifer</div></div><div class="coach-bar" style="height:88%"><div class="coach-bar-value">88%</div><div class="coach-bar-label">Robert</div></div></div><div style="padding:16px;background:var(--s2);border-radius:var(--rs);font-size:12px;color:var(--t2);line-height:1.7"><strong>What top performers do differently:</strong><ul style="margin:8px 0 0 16px;padding:0"><li>Proactive quarterly business reviews (QBR)</li><li>Cross-sell preparation using competitive intel</li><li>Relationship check-ins on volume declines</li><li>Team coordination across IEs before client calls</li></ul></div></div></div></div>`}
 
 function renderCollaboration(){
   const messages=[
-    {sender:"Fraud Triage Bot",avatar:"FTB",initials:"FTB",color:"#6264A7",timestamp:"9:02 AM",isBot:true,type:"card",content:"High Priority Alert",data:{alert:"ALT-0042",risk:"Account Takeover",confidence:97,status:"critical",details:[{label:"Threat",value:"Credential Compromise"},{label:"Location",value:"Moscow, Russia"},{label:"Device",value:"NEW_DEVICE"},{label:"Action",value:"MFA Bypass"},{label:"Transaction",value:"$2,100"}]},actionText:"@Sarah Chen please review"},
-    {sender:"Sarah Chen",avatar:"SC",initials:"SC",color:"#3B82F6",timestamp:"9:04 AM",isBot:false,content:"On it. Pulling up the full signal now.",reactions:[{emoji:"👍",count:1}]},
-    {sender:"Fraud Triage Bot",avatar:"FTB",initials:"FTB",color:"#6264A7",timestamp:"9:05 AM",isBot:true,type:"card",content:"ALT-0042 Detail",data:{sequence:"7 failed logins (24h) → password change → email change → $2.1K transfer",ipLocation:"185.xx.xx.xx (Moscow)",timestamp:"4 min after credential change",pattern:"ATO pattern tracked since Tuesday"},actionText:""},
-    {sender:"Sarah Chen",avatar:"SC",initials:"SC",color:"#3B82F6",timestamp:"9:08 AM",isBot:false,content:"Confirmed as ATO. Account locked. Reversed credential changes. Customer notified via secondary contact. Filing incident report now.",reactions:[{emoji:"👍",count:2},{emoji:"❤️",count:1}]},
-    {sender:"Fraud Triage Bot",avatar:"FTB",initials:"FTB",color:"#6264A7",timestamp:"9:08 AM",isBot:true,type:"card",content:"ALT-0042 Confirmed",data:{alert:"ALT-0042",action:"BLOCK",status:"cleared",logs:["Decision logged to audit trail","Compliance notification queued","24hr breach escalation triggered"]},actionText:""},
-    {sender:"Mike Torres",avatar:"MT",initials:"MT",color:"#10B981",timestamp:"9:12 AM",isBot:false,content:"Good catch. Seeing similar pattern on ALT-0048 — Chinese IP on a UK business account. Want me to take that one?"},
-    {sender:"Sarah Chen",avatar:"SC",initials:"SC",color:"#3B82F6",timestamp:"9:13 AM",isBot:false,content:"Yes please. That one's £8,900 so needs the step-up auth first before we block.",threads:3},
-    {sender:"Fraud Triage Bot",avatar:"FTB",initials:"FTB",color:"#6264A7",timestamp:"9:15 AM",isBot:true,type:"summary",content:"Morning Summary",data:{alerts:8,critical:2,high:2,medium:2,low:2,accuracy:94,triageTime:8},actionText:""},
-    {sender:"David Park",avatar:"DP",initials:"DP",color:"#F59E0B",timestamp:"9:18 AM",isBot:false,content:"The two low-priority ones (ALT-0044, ALT-0047) — both known devices, 3DS authenticated, amounts in normal range. I'm comfortable auto-resolving those. Anyone object?"},
-    {sender:"Sarah Chen",avatar:"SC",initials:"SC",color:"#3B82F6",timestamp:"9:19 AM",isBot:false,content:"No objection. Both look clean.",reactions:[{emoji:"👍",count:3}]},
-    {sender:"Fraud Triage Bot",avatar:"FTB",initials:"FTB",color:"#6264A7",timestamp:"9:20 AM",isBot:true,type:"card",content:"Auto-Resolved",data:{alerts:["ALT-0044","ALT-0047"],status:"cleared",resolvedBy:"David Park"},actionText:""},
-    {sender:"Fraud Triage Bot",avatar:"FTB",initials:"FTB",color:"#6264A7",timestamp:"9:25 AM",isBot:true,type:"card",content:"Regulatory Flag",data:{alert:"ALT-0041",type:"Cross-Border Transaction",amount:"£3,000",route:"GB → NG",requirement:"AML Documentation Required",risk:"HIGH"},actionText:"@David Park — ensure decision rationale captured"},
-    {sender:"David Park",avatar:"DP",initials:"DP",color:"#F59E0B",timestamp:"9:27 AM",isBot:false,content:"Noted. Adding AML notes now. This one's a clear block — IP risk 0.91, new device, 32x average spend."}
+    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:02 AM",isBot:true,type:"card",content:"📊 Morning Brief",data:{signals:23,critical:2,high:3,expansion:2}},
+    {sender:"Justin Murry",avatar:"JM",color:"#3B82F6",timestamp:"9:04 AM",isBot:false,content:"Thanks bot. Block is a major account. Which IEs are assigned there?"},
+    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:05 AM",isBot:true,type:"card",content:"Block Inc. — Account Details",data:{ce:"Justin Murry",ies:3,revenue:"$4.2M",recent:[{label:"Marcus Johnson",value:"Identity"},{label:"Sarah Kim",value:"Credit Data"},{label:"Wei Chen",value:"Software"}]}},
+    {sender:"Sarah Kim",avatar:"SK",color:"#10B981",timestamp:"9:06 AM",isBot:false,content:"I saw the LinkedIn posts from their credit team. At least 3 of our day-to-day contacts were affected in the layoff. Should I reach out?"},
+    {sender:"Justin Murry",avatar:"JM",color:"#3B82F6",timestamp:"9:08 AM",isBot:false,content:"Yes, but position it as a check-in, not a sales call. We need to protect the relationship first. This is critical to us."},
+    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:09 AM",isBot:true,type:"coaching",content:"✅ Coaching Insight",data:{insight:"Based on 12 similar layoff events in the last 2 years, accounts that received a 'relationship check-in' within 48 hours had 34% higher retention. Talk track attached.",action:"Start with empathy, position as support, not sales"}},
+    {sender:"Marcus Johnson",avatar:"MJ",color:"#F59E0B",timestamp:"9:12 AM",isBot:false,content:"Good insight. I'll reach out to their identity team too. Any competitive intel on who else is circling?"},
+    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:14 AM",isBot:true,type:"competitive",content:"Competitive Intel — Block Inc.",data:{experian:"2 meetings with fraud team (Jan)",equifax:"No recent activity",lexisnexis:"RFP rumored for identity verification"}},
+    {sender:"Justin Murry",avatar:"JM",color:"#3B82F6",timestamp:"9:16 AM",isBot:false,content:"Experian is moving fast. Let's get ahead. Sarah, Marcus — joint call Thursday 2pm. Wei, join us. I want a unified TU story for Block."},
+    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:17 AM",isBot:true,type:"confirm",content:"📅 Meeting Scheduled",data:{meeting:"Block Account Review",date:"Thursday 2:00 PM ET",attendees:["Justin Murry","Sarah Kim","Marcus Johnson","Wei Chen"],preRead:"Account health report attached"}}
   ];
 
-  const html=`
-<div class="teams-container">
-  <!-- Sidebar -->
-  <div class="teams-sidebar">
-    <div class="teams-sidebar-section" style="flex-shrink:0">
-      <div class="teams-sidebar-header">Channels</div>
-      <ul class="teams-channel-list">
-        <li class="teams-channel-item active">
-          fraud-ops-triage
-          <div class="teams-channel-unread">3</div>
-        </li>
-        <li class="teams-channel-item" style="opacity:0.5">general</li>
-        <li class="teams-channel-item" style="opacity:0.5">compliance-alerts</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Main Chat Area -->
-  <div class="teams-main">
-    <!-- Header -->
-    <div class="teams-header">
-      <div class="teams-header-left">
-        <div>
-          <div class="teams-channel-name">#fraud-ops-triage</div>
-          <div class="teams-member-count">Team collaboration channel · 7 members online</div>
-        </div>
-      </div>
-      <div class="teams-tabs">
-        <div class="teams-tab active">Posts</div>
-        <div class="teams-tab">Files</div>
-        <div class="teams-tab">Wiki</div>
-      </div>
-      <div class="teams-header-right">
-        <button class="teams-icon-btn" title="Call">📞</button>
-        <button class="teams-icon-btn" title="Video">📹</button>
-      </div>
-    </div>
-
-    <!-- Messages -->
-    <div class="teams-messages" id="teams-msg-container">
-      <div class="teams-placeholder" style="padding-top:60px">Loading conversation...</div>
-    </div>
-
-    <!-- Compose -->
-    <div class="teams-compose">
-      <div class="teams-compose-toolbar">
-        <button class="teams-toolbar-btn" title="Format" disabled>A̲</button>
-        <button class="teams-toolbar-btn" title="Attach" disabled>📎</button>
-        <button class="teams-toolbar-btn" title="Emoji" disabled>😊</button>
-        <button class="teams-toolbar-btn" title="GIF" disabled>GIF</button>
-        <button class="teams-toolbar-btn" title="Stickers" disabled>✨</button>
-        <button class="teams-toolbar-btn" title="Schedule" disabled>⏱</button>
-      </div>
-      <textarea class="teams-compose-input" placeholder="Type a new message..." disabled></textarea>
-    </div>
-  </div>
-</div>
-  `;
+  const html=`<div class="teams-container"><div class="teams-sidebar"><div class="teams-sidebar-section" style="flex-shrink:0"><div class="teams-sidebar-header">Channels</div><ul class="teams-channel-list"><li class="teams-channel-item active">#sales-intelligence</li><li class="teams-channel-item" style="opacity:0.5">#strategy</li><li class="teams-channel-item" style="opacity:0.5">#pipeline</li></ul></div></div><div class="teams-main"><div class="teams-header"><div class="teams-header-left"><div><div class="teams-channel-name">#sales-intelligence</div><div class="teams-member-count">Sales team collaboration · 6 members online</div></div></div><div class="teams-tabs"><div class="teams-tab active">Posts</div><div class="teams-tab">Files</div><div class="teams-tab">Wiki</div></div><div class="teams-header-right"><button class="teams-icon-btn" title="Call">📞</button><button class="teams-icon-btn" title="Video">📹</button></div></div><div class="teams-messages" id="teams-msg-container"><div class="teams-placeholder" style="padding-top:60px">Loading conversation...</div></div><div class="teams-compose"><div class="teams-compose-toolbar"><button class="teams-toolbar-btn" title="Format" disabled>A̲</button><button class="teams-toolbar-btn" title="Attach" disabled>📎</button><button class="teams-toolbar-btn" title="Emoji" disabled>😊</button></div><textarea class="teams-compose-input" placeholder="Type a message..." disabled></textarea></div></div></div>`;
 
   document.getElementById("view-collaboration").innerHTML=html;
 
-  // Simulate loading skeleton
   const container=document.getElementById("teams-msg-container");
   container.innerHTML='<div class="skeleton-msg skeleton-loading"></div><div class="skeleton-msg skeleton-loading"></div>';
 
-  // Load messages with stagger
   setTimeout(()=>{
     let html='';
     messages.forEach((m,idx)=>{
       const isGrouped=idx>0&&messages[idx-1].sender===m.sender;
-      const hasReactions=m.reactions&&m.reactions.length>0;
-      const hasThreads=m.threads>0;
-      const statusMap={critical:"teams-status-critical",review:"teams-status-review",cleared:"teams-status-cleared"};
-
       let cardHtml='';
-      if(m.type==='card'&&m.data){
-        if(m.data.alert||m.data.details){
-          const status=m.data.status||'review';
-          const statusEmoji={critical:'🔴',review:'🟡',cleared:'🟢'}[status]||'◯';
-          cardHtml=`
-            <div class="teams-adaptive-card">
-              <div class="teams-card-title">${m.content}</div>
-              <div class="teams-status-pill ${statusMap[status] || 'teams-status-review'}">${statusEmoji} ${status.toUpperCase()}</div>
-              <table class="teams-card-table">
-                ${m.data.details?m.data.details.map(d=>`<tr><td>${d.label}</td><td>${d.value}</td></tr>`).join(''):''}
-                ${m.data.alert?`<tr><td>Alert ID</td><td style="font-family:monospace;font-weight:700">${m.data.alert}</td></tr>`:''}
-                ${m.data.confidence?`<tr><td>Confidence</td><td>${m.data.confidence}%</td></tr>`:''}
-                ${m.data.risk?`<tr><td>Risk Type</td><td>${m.data.risk}</td></tr>`:''}
-                ${m.data.sequence?`<tr><td>Sequence</td><td>${m.data.sequence}</td></tr>`:''}
-                ${m.data.ipLocation?`<tr><td>IP Location</td><td>${m.data.ipLocation}</td></tr>`:''}
-                ${m.data.action?`<tr><td>Recommended</td><td>${m.data.action}</td></tr>`:''}
-                ${m.data.type?`<tr><td>Type</td><td>${m.data.type}</td></tr>`:''}
-                ${m.data.amount?`<tr><td>Amount</td><td>${m.data.amount}</td></tr>`:''}
-                ${m.data.route?`<tr><td>Route</td><td>${m.data.route}</td></tr>`:''}
-                ${m.data.requirement?`<tr><td>Requirement</td><td>${m.data.requirement}</td></tr>`:''}
-              </table>
-              ${m.data.logs?`<div style="font-size:11px;color:#6B7280;margin:6px 0">${m.data.logs.map(l=>'✓ '+l).join('<br>')}</div>`:''}
-              ${m.data.alerts?`<div style="margin:6px 0"><strong>Resolved:</strong> ${m.data.alerts.join(', ')}</div>`:''}
-              ${m.data.accuracy?`<div class="teams-progress-bar"><div class="teams-progress-fill" style="width:${m.data.accuracy}%"></div></div><div style="font-size:11px;color:#6B7280">AI Accuracy: ${m.data.accuracy}% • Avg Triage Time: ${m.data.triageTime}s</div>`:''}
-              <div class="teams-card-actions">
-                <button class="teams-action-btn">View Details</button>
-                <button class="teams-action-btn">Escalate</button>
-                <button class="teams-action-btn">Dismiss</button>
-              </div>
-            </div>`;
-        }
-      }
-
-      if(m.type==='summary'&&m.data){
-        cardHtml=`
-          <div class="teams-adaptive-card">
-            <div class="teams-card-title">📊 ${m.content}</div>
-            <table class="teams-card-table">
-              <tr><td>Total Alerts</td><td>${m.data.alerts}</td></tr>
-              <tr><td>🔴 Critical</td><td>${m.data.critical}</td></tr>
-              <tr><td>🟡 High</td><td>${m.data.high}</td></tr>
-              <tr><td>Medium</td><td>${m.data.medium}</td></tr>
-              <tr><td>🟢 Low</td><td>${m.data.low}</td></tr>
-            </table>
-            <div class="teams-progress-bar"><div class="teams-progress-fill" style="width:${m.data.accuracy}%"></div></div>
-            <div style="font-size:11px;color:#6B7280;margin-top:6px">AI Accuracy: ${m.data.accuracy}% • Avg Triage: ${m.data.triageTime}s</div>
-          </div>`;
-      }
-
-      html+=`
-        <div class="teams-message-group teams-message-hover" style="animation-delay:${idx*80}ms;margin-bottom:${hasReactions||hasThreads?8:0}px">
-          <div class="teams-avatar ${m.isBot?'bot':''}${m.avatar==='SC'?' away':''}" style="background:${m.isBot?'':'linear-gradient(135deg,'+m.color+','+m.color+'dd)'}">
-            ${m.initials || m.avatar}
-          </div>
-          <div class="teams-content">
-            ${!isGrouped?`
-              <div class="teams-message-header">
-                <span class="teams-sender">${m.sender}</span>
-                ${m.isBot?'<span class="teams-badge">BOT</span>':''}
-                <span class="teams-timestamp">${m.timestamp}</span>
-              </div>
-            `:''}
-            <div class="teams-message-text">${m.content}</div>
-            ${m.actionText?'<div style="font-size:12px;color:#6264A7;margin-top:4px;font-weight:500">'+m.actionText+'</div>':''}
-            ${cardHtml}
-            ${hasReactions?`
-              <div class="teams-reactions">
-                ${m.reactions.map(r=>`
-                  <div class="teams-reaction">
-                    <span>${r.emoji}</span>
-                    <span class="teams-reaction-count">${r.count}</span>
-                  </div>
-                `).join('')}
-              </div>
-            `:''}
-            ${hasThreads?`
-              <div class="teams-threads">
-                <div class="teams-thread-avatars">
-                  <div class="teams-thread-avatar" style="background:#3B82F6">SC</div>
-                  <div class="teams-thread-avatar" style="background:#10B981">MT</div>
-                </div>
-                <span>${m.threads} replies</span>
-              </div>
-            `:''}
-          </div>
-          <div class="teams-message-hover-actions">
-            <button class="teams-toolbar-btn" title="React">👍</button>
-            <button class="teams-toolbar-btn" title="Love">❤️</button>
-            <button class="teams-toolbar-btn" title="Wow">😮</button>
-            <button class="teams-toolbar-btn" title="Reply">💬</button>
-            <button class="teams-toolbar-btn" title="More">⋯</button>
-          </div>
-        </div>
-      `;
+      if(m.type==='card'&&m.data){cardHtml=`<div class="teams-adaptive-card"><div class="teams-card-title">${m.content}</div><table class="teams-card-table">${m.data.signals?`<tr><td>Total Signals</td><td>${m.data.signals}</td></tr><tr><td>🔴 Critical</td><td>${m.data.critical}</td></tr><tr><td>🟡 High</td><td>${m.data.high}</td></tr><tr><td>🟢 Expansion</td><td>${m.data.expansion}</td></tr>`:''}${m.data.ce?`<tr><td>CE</td><td>${m.data.ce}</td></tr>`:''}${m.data.revenue?`<tr><td>Revenue</td><td>${m.data.revenue}</td></tr>`:''}${m.data.ies?`<tr><td>IEs Assigned</td><td>${m.data.ies}</td></tr>`:''}${m.data.recent?m.data.recent.map(r=>`<tr><td>${r.label}</td><td>${r.value}</td></tr>`).join(''):''}${m.data.experian?`<tr><td>Experian</td><td>${m.data.experian}</td></tr><tr><td>Equifax</td><td>${m.data.equifax}</td></tr><tr><td>LexisNexis</td><td>${m.data.lexisnexis}</td></tr>`:''}</table><div class="teams-card-actions"><button class="teams-action-btn">View Details</button><button class="teams-action-btn">Add to Watch</button></div></div>`}
+      if(m.type==='coaching'){cardHtml=`<div class="teams-adaptive-card" style="border-left-color:#10B981"><div class="teams-card-title" style="color:#10B981">💡 ${m.content}</div><div style="font-size:12px;color:#6B7280;line-height:1.6;margin:8px 0">${m.data.insight}</div><div style="font-size:11px;background:rgba(16,185,129,0.1);padding:8px;border-radius:4px;color:#155724;font-weight:500">💭 ${m.data.action}</div></div>`}
+      if(m.type==='competitive'){cardHtml=`<div class="teams-adaptive-card" style="border-left-color:#F59E0B"><div class="teams-card-title" style="color:#F59E0B">${m.content}</div><table class="teams-card-table"><tr><td>${m.data.experian}</td><td>Experian</td></tr><tr><td>${m.data.equifax}</td><td>Equifax</td></tr><tr><td>${m.data.lexisnexis}</td><td>LexisNexis</td></tr></table></div>`}
+      if(m.type==='confirm'){cardHtml=`<div class="teams-adaptive-card" style="border-left-color:#10B981"><div class="teams-card-title" style="color:#10B981">${m.content}</div><table class="teams-card-table"><tr><td>Meeting</td><td>${m.data.meeting}</td></tr><tr><td>Date</td><td>${m.data.date}</td></tr><tr><td>Attendees</td><td>${m.data.attendees.join(', ')}</td></tr></table><div style="font-size:11px;color:#6B7280;margin-top:8px">📎 Pre-read attached</div></div>`}
+      html+=`<div class="teams-message-group" style="animation-delay:${idx*80}ms"><div class="teams-avatar ${m.isBot?'bot':''}" style="background:${m.isBot?'':'linear-gradient(135deg,'+m.color+','+m.color+'dd)'}">  ${m.avatar}</div><div class="teams-content">${!isGrouped?`<div class="teams-message-header"><span class="teams-sender">${m.sender}</span>${m.isBot?'<span class="teams-badge">BOT</span>':''}<span class="teams-timestamp">${m.timestamp}</span></div>`:''}<div class="teams-message-text">${m.content}</div>${cardHtml}</div></div>`;
     });
-
-    // Add new messages divider
     html+=`<div class="teams-new-messages" style="margin:20px 0"><div class="teams-new-messages-line"></div><div class="teams-new-messages-dot"></div><div class="teams-new-messages-line"></div></div>`;
-
-    // Add typing indicator
-    html+=`
-      <div class="teams-message-group" style="animation-delay:${messages.length*80+200}ms">
-        <div class="teams-avatar bot">
-          FTB
-        </div>
-        <div class="teams-content">
-          <div class="teams-message-header">
-            <span class="teams-sender">Fraud Triage Bot</span>
-            <span class="teams-badge">BOT</span>
-            <span class="teams-timestamp">typing...</span>
-          </div>
-          <div class="teams-typing">
-            <div class="teams-typing-dot"></div>
-            <div class="teams-typing-dot"></div>
-            <div class="teams-typing-dot"></div>
-          </div>
-        </div>
-      </div>
-    `;
-
+    html+=`<div class="teams-message-group" style="animation-delay:${messages.length*80+200}ms"><div class="teams-avatar bot">SIB</div><div class="teams-content"><div class="teams-message-header"><span class="teams-sender">Sales Intelligence Bot</span><span class="teams-badge">BOT</span><span class="teams-timestamp">typing...</span></div><div class="teams-typing"><div class="teams-typing-dot"></div><div class="teams-typing-dot"></div><div class="teams-typing-dot"></div></div></div></div>`;
     container.innerHTML=html;
-
-    // Scroll to bottom
-    setTimeout(()=>{
-      container.scrollTop=container.scrollHeight;
-    },50);
+    setTimeout(()=>{container.scrollTop=container.scrollHeight},50);
   },800);
 }
 
-function renderSettings(){
-  document.getElementById("view-settings").innerHTML=`
-<div class="wrap" style="max-width:700px">
-  <div class="ph"><h1>About Fraud Signal Triage</h1><p>Premium fintech-grade fraud detection workflow</p></div>
-  <div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:32px;box-shadow:var(--sh);animation:fade-in 500ms ease-out">
-    <h2 style="margin-bottom:16px">System Overview</h2>
-    <div style="line-height:1.8;color:var(--t2);margin-bottom:32px">
-      <p style="margin-bottom:12px"><strong>TransUnion Fraud Signal Triage</strong> combines AI classification with expert analyst review for premium fraud detection accuracy. This interface demonstrates Level 2 — Augment autonomy, where AI recommends actions and analysts confirm, correct, or override.</p>
-      <p style="margin-bottom:12px"><strong>Core Features:</strong></p>
-      <ul style="margin-left:20px;margin-bottom:12px">
-        <li>Real-time fraud signal ingestion from multiple detection engines</li>
-        <li>AI-powered risk classification and confidence scoring</li>
-        <li>Analyst review workflow with correction logging</li>
-        <li>Regulatory audit trail for compliance</li>
-        <li>Keyboard shortcuts (press ?) and dark/light theme toggle</li>
-        <li>Smooth animations and responsive design across all devices</li>
-      </ul>
-    </div>
-    <h2 style="margin-bottom:16px">Signal Types</h2>
-    <p style="margin-bottom:12px">Five fraud patterns representative of payment fraud environments:</p>
-    <div style="margin-bottom:32px">
-      <div style="display:flex;gap:12px;margin-bottom:8px;padding:8px;border-radius:var(--rs);background:var(--ert)"><div style="width:8px;height:8px;border-radius:50%;background:var(--er);flex-shrink:0;margin-top:6px"></div><span><strong>Card Not Present Fraud</strong> — geographic mismatch, high IP risk, new device, velocity spikes</span></div>
-      <div style="display:flex;gap:12px;margin-bottom:8px;padding:8px;border-radius:var(--rs);background:var(--ert)"><div style="width:8px;height:8px;border-radius:50%;background:var(--er);flex-shrink:0;margin-top:6px"></div><span><strong>Account Takeover</strong> — credential compromise, MFA bypass, unusual location, rapid transaction</span></div>
-      <div style="display:flex;gap:12px;margin-bottom:8px;padding:8px;border-radius:var(--rs);background:var(--alt)"><div style="width:8px;height:8px;border-radius:50%;background:var(--al);flex-shrink:0;margin-top:6px"></div><span><strong>Synthetic Identity Fraud</strong> — thin credit file, SSN anomalies, failed verification</span></div>
-      <div style="display:flex;gap:12px;margin-bottom:8px;padding:8px;border-radius:var(--rs);background:var(--alt)"><div style="width:8px;height:8px;border-radius:50%;background:var(--al);flex-shrink:0;margin-top:6px"></div><span><strong>Identity Verification Failure</strong> — liveness check fail, low face match score</span></div>
-      <div style="display:flex;gap:12px;padding:8px;border-radius:var(--rs);background:var(--tut)"><div style="width:8px;height:8px;border-radius:50%;background:var(--tu);flex-shrink:0;margin-top:6px"></div><span><strong>First Party Fraud</strong> — high dispute velocity, chargeback pattern, deliberate claims</span></div>
-    </div>
-    <h2 style="margin-bottom:16px">AI Autonomy Level</h2>
-    <p style="margin-bottom:32px">This system operates at <strong>Level 2 — Augment</strong>. AI classifies and recommends actions. Human analysts confirm or override. Automatic resolution only for very high confidence, low false-positive-risk alerts.</p>
-    <h2 style="margin-bottom:16px">UX Enhancements</h2>
-    <p style="margin-bottom:12px">This premium interface features:</p>
-    <ul style="margin-left:20px;margin-bottom:32px">
-      <li>Smooth fade/slide animations on page transitions</li>
-      <li>Staggered card entrance animations on load</li>
-      <li>Animated counter numbers in metric cards</li>
-      <li>Micro-interactions on buttons and filters (press effects, hover lifts)</li>
-      <li>Pulse animations on priority indicators</li>
-      <li>Skeleton loading shimmer during AI processing</li>
-      <li>Toast notifications with progress bars</li>
-      <li>Frosted glass effects with backdrop filters</li>
-      <li>Dark mode toggle with smooth CSS transitions</li>
-      <li>Responsive mobile-first design</li>
-    </ul>
-    <button class="btn b-cn" onclick="resetData()">↺ Reset all alerts to sample data</button>
-  </div>
-</div>`;
-}
+function renderSettings(){document.getElementById("view-settings").innerHTML=`<div class="wrap" style="max-width:700px"><div class="ph"><h1>About Sales Intelligence & AI Coaching</h1><p>Proactive account intelligence, competitive awareness, and scaled mentorship for TransUnion's sales teams</p></div><div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:32px;box-shadow:var(--sh);animation:fade-in 500ms ease-out"><h2 style="margin-bottom:16px">Platform Overview</h2><div style="line-height:1.8;color:var(--t2);margin-bottom:32px"><p style="margin-bottom:12px"><strong>Sales Intelligence & AI Coaching Platform</strong> delivers proactive market signals, unified account data, and scaled mentorship to 300+ sales representatives across TransUnion's consumer lending vertical. This interface demonstrates three core capabilities:</p><h3 style="font-weight:700;margin-top:20px;margin-bottom:12px">1. Proactive Signal Push</h3><p style="margin-bottom:12px">AI continuously scans external sources (news, earnings, leadership, competitive intel) and pushes relevant intelligence to reps every 3 days. Example: "Block Inc. laid off 40% of headcount 2 weeks ago. Your IEs: Marcus (Identity), Sarah (Credit Data), Wei (Software). Suggested action: relationship check-in within 48 hours."</p><h3 style="font-weight:700;margin-top:20px;margin-bottom:12px">2. Account Health Dashboard</h3><p style="margin-bottom:12px">Unified view of each account: revenue trends, products deployed, contract renewal dates, pipeline activity, last contact date, health score. External signals (news, earnings, leadership changes) linked to decision-making contacts. CRM data gaps filled with market data.</p><h3 style="font-weight:700;margin-top:20px;margin-bottom:12px">3. AI Coaching Agent</h3><p style="margin-bottom:12px">Identifies struggling accounts (volume decline >10%), flags at-risk relationships (no contact >30 days), surfaces peer benchmarks (top performers cross-sell at 3.2x rate). Suggests specific actions: "Your peer grew similar account via Identity Verification cross-sell. Consider QBR."</p></div><h2 style="margin-bottom:16px">Organization Model</h2><div style="margin-bottom:32px"><p style="margin-bottom:12px"><strong>Client Executives (CEs):</strong> Account ambassadors responsible for overall relationship health, strategic alignment, and go-to-market execution across multiple product lines.</p><p style="margin-bottom:12px"><strong>Industry Executives (IEs):</strong> Product specialists (3-7 per CE) who drive implementation and adoption within their domain (Identity Verification, Credit Data, Fraud Analytics, Software).</p><p><strong>Challenge:</strong> Annual client reassignments wipe institutional knowledge. New CEs/IEs onboard without context. Signals get missed. Relationships suffer.</p></div><h2 style="margin-bottom:16px">The Demo</h2><div style="margin-bottom:32px"><p style="margin-bottom:12px">This interface shows:</p><ul style="margin-left:20px"><li>8 real-world account signals (market events, earnings, leadership changes, competitive intel, volume declines)</li><li>Account intelligence dashboard with CE/IE assignments, revenue, health scores</li><li>AI coaching hub with personalized recommendations and peer benchmarks</li><li>Live Team collaboration channel showing sales team coordination in response to signals</li><li>Dark mode and responsive design for mobile-first workflows</li></ul></div><h2 style="margin-bottom:16px">Key Signals Demonstrated</h2><div style="margin-bottom:32px"><div style="display:flex;gap:12px;margin-bottom:8px;padding:8px;border-radius:var(--rs);background:var(--ert)"><div style="color:var(--er);margin-top:2px">⚠</div><span><strong>Organizational Changes:</strong> Layoffs, leadership departures, strategic shifts that impact your contacts</span></div><div style="display:flex;gap:12px;margin-bottom:8px;padding:8px;border-radius:var(--rs);background:var(--alt)"><div style="color:var(--al);margin-top:2px">📈</div><span><strong>Financial Performance:</strong> Earnings beats, revenue growth, division performance — upsell opportunities</span></div><div style="display:flex;gap:12px;margin-bottom:8px;padding:8px;border-radius:var(--rs);background:var(--tut)"><div style="color:var(--tu);margin-top:2px">🎯</div><span><strong>Competitive Activity:</strong> Competitor meetings, RFPs, expansion plans — retention/growth risk</span></div><div style="display:flex;gap:12px;padding:8px;border-radius:var(--rs);background:var(--okt)"><div style="color:var(--ok);margin-top:2px">📊</div><span><strong>Volume Trends:</strong> Decline signals + peer benchmarks = coaching recommendations</span></div></div></div></div>`}
 
-function showSettings(){
-  renderSettings();
-  showView("settings");
-}
-
-function exportCSV(){
-  const h=["Time","Alert ID","Type","AI Classification","Confidence","Recommendation","Analyst Action","Corrected To","Reason"];
-  const r=S.log.map(e=>[new Date(e.ts).toISOString(),e.id,e.type,e.aiRisk,e.aiConf,e.aiRec,e.action,e.corrTo||"",e.corrReason||""]);
-  const csv=[h,...r].map(row=>row.map(v=>`"${v}"`).join(",")).join("\n");
-  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="transunion_audit_"+new Date().toISOString().split("T")[0]+".csv";a.click();
-}
-
-function clearLog(){if(!confirm("Clear the entire audit log?"))return;S.log=[];localStorage.removeItem("tu_l");updateCounts();renderAudit()}
-
-function ago(iso){const d=(Date.now()-new Date(iso))/1000;if(d<60)return Math.round(d)+"s ago";if(d<3600)return Math.round(d/60)+"m ago";return Math.round(d/3600)+"h ago"}
+function showSettings(){renderSettings();showView("settings")}
 
 function toast(msg,type="in"){const c=document.getElementById("toasts"),t=document.createElement("div");t.className="toast "+type;t.innerHTML=`<span style="flex:1">${msg}</span>`;c.appendChild(t);setTimeout(()=>{t.style.animation="none";t.style.opacity="0";t.style.transition="opacity 300ms"},2800);setTimeout(()=>t.remove(),3200)}
 
