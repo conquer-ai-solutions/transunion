@@ -242,69 +242,145 @@ h2{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--t1)}
 .coach-bar-label{position:absolute;bottom:-24px;left:0;right:0;font-size:11px;text-align:center;color:var(--t2);font-weight:600;white-space:nowrap}
 .coach-bar-value{position:absolute;top:-24px;left:0;right:0;font-size:12px;text-align:center;color:var(--t1);font-weight:700}
 
-/* Teams Styles */
-.teams-container{display:flex;height:calc(100vh - var(--nh));background:#FFFFFF}
-.teams-sidebar{width:260px;background:#FFFFFF;border-right:1px solid #E8E8E8;display:flex;flex-direction:column;overflow-y:auto;font-family:'Segoe UI','Inter',system-ui,sans-serif;flex-shrink:0}
-.teams-sidebar-section{padding:16px 0;border-bottom:1px solid #F0F0F0}
-.teams-sidebar-header{padding:12px 16px;font-size:11px;font-weight:700;text-transform:uppercase;color:#6B7280;letter-spacing:0.5px}
-.teams-channel-list{list-style:none;margin:0;padding:0}
-.teams-channel-item{padding:8px 16px;font-size:13px;color:#424242;cursor:pointer;transition:all 150ms;display:flex;align-items:center;gap:8px}
-.teams-channel-item::before{content:'#';font-weight:700;color:#9CA3AF}
-.teams-channel-item:hover{background:#F5F5F5}
-.teams-channel-item.active{background:linear-gradient(135deg,rgba(98,100,167,0.1),transparent);color:#6264A7;font-weight:600}
-.teams-channel-unread{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#E74C3C;color:white;border-radius:50%;font-size:10px;font-weight:700;margin-left:auto;flex-shrink:0}
-.teams-main{flex:1;display:flex;flex-direction:column;background:#FFFFFF}
-.teams-header{background:#FFFFFF;border-bottom:1px solid #E8E8E8;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.teams-header-left{display:flex;align-items:center;gap:16px}
-.teams-channel-name{font-size:16px;font-weight:600;color:#424242}
+/* Teams Styles — High Fidelity */
+.teams-container{display:flex;height:calc(100vh - var(--nh));background:#FFFFFF;font-family:'Segoe UI','Inter',system-ui,sans-serif}
+
+/* SIDEBAR */
+.teams-sidebar{width:68px;background:#292929;display:flex;flex-direction:column;align-items:center;padding:12px 0;flex-shrink:0;gap:4px}
+.teams-sidebar .ts-icon{width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 150ms;position:relative;color:#B3B3B3}
+.teams-sidebar .ts-icon:hover{background:rgba(255,255,255,0.1);color:#FFF}
+.teams-sidebar .ts-icon.active{background:#6264A7;color:#FFF;border-radius:8px}
+.teams-sidebar .ts-icon svg{width:22px;height:22px}
+.teams-sidebar .ts-icon .ts-badge{position:absolute;top:2px;right:2px;min-width:16px;height:16px;background:#E74C3C;color:#FFF;font-size:9px;font-weight:700;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 4px;border:2px solid #292929}
+.teams-sidebar .ts-divider{width:28px;height:1px;background:rgba(255,255,255,0.12);margin:8px 0}
+
+/* CHANNEL LIST */
+.teams-channels{width:240px;background:#F5F5F5;border-right:1px solid #E8E8E8;display:flex;flex-direction:column;flex-shrink:0}
+.teams-channels .tc-header{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E8E8E8}
+.teams-channels .tc-org{display:flex;align-items:center;gap:10px}
+.teams-channels .tc-org-icon{width:28px;height:28px;background:linear-gradient(135deg,#0078D4,#005A9E);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:13px;font-weight:700}
+.teams-channels .tc-org-name{font-size:14px;font-weight:600;color:#424242}
+.teams-channels .tc-section{padding:12px 0}
+.teams-channels .tc-section-title{padding:4px 16px;font-size:11px;font-weight:600;text-transform:uppercase;color:#9CA3AF;letter-spacing:0.5px}
+.teams-channels .tc-item{padding:6px 16px;font-size:13px;color:#424242;cursor:pointer;transition:all 150ms;display:flex;align-items:center;gap:8px}
+.teams-channels .tc-item:hover{background:#EBEBEB}
+.teams-channels .tc-item.active{background:rgba(98,100,167,0.12);color:#6264A7;font-weight:600}
+.teams-channels .tc-item .tc-hash{font-weight:700;color:#9CA3AF;font-size:14px;width:16px}
+.teams-channels .tc-item.active .tc-hash{color:#6264A7}
+.teams-channels .tc-unread{margin-left:auto;min-width:18px;height:18px;background:#E74C3C;color:#FFF;font-size:10px;font-weight:700;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 5px}
+.teams-channels .tc-muted{margin-left:auto;font-size:10px;color:#B0B0B0;font-style:italic}
+
+/* MAIN CONTENT */
+.teams-main{flex:1;display:flex;flex-direction:column;background:#FFFFFF;min-width:0}
+.teams-header{background:#FFFFFF;border-bottom:1px solid #E8E8E8;padding:0 24px}
+.teams-header-top{display:flex;align-items:center;justify-content:space-between;padding:12px 0 0}
+.teams-header-left{display:flex;align-items:center;gap:12px}
+.teams-channel-name{font-size:16px;font-weight:600;color:#242424}
 .teams-member-count{font-size:12px;color:#6B7280;font-weight:400}
-.teams-tabs{display:flex;gap:24px;margin-left:16px;border-bottom:1px solid #E8E8E8;padding-bottom:0}
-.teams-tab{padding:8px 0;font-size:13px;color:#6B7280;cursor:pointer;border-bottom:2px solid transparent;transition:all 150ms;font-weight:500}
-.teams-tab.active{color:#6264A7;border-bottom-color:#6264A7}
-.teams-header-right{display:flex;gap:8px;align-items:center}
+.teams-header-right{display:flex;gap:4px;align-items:center}
 .teams-icon-btn{width:32px;height:32px;border:none;background:transparent;color:#6B7280;cursor:pointer;font-size:16px;border-radius:4px;transition:all 150ms;display:flex;align-items:center;justify-content:center}
-.teams-icon-btn:hover{background:#F0F0F0;color:#424242}
-.teams-messages{flex:1;overflow-y:auto;padding:16px 24px;display:flex;flex-direction:column;background:#FFFFFF;gap:0}
-.teams-message-group{display:flex;gap:12px;margin-bottom:12px;animation:fadeInUp 300ms ease-out forwards;opacity:0}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.teams-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:white;flex-shrink:0;position:relative;font-family:monospace}
-.teams-avatar.bot{background:linear-gradient(135deg,#6264A7,#7A7EBA);font-size:11px}
-.teams-avatar::after{content:'';position:absolute;bottom:-1px;right:-1px;width:12px;height:12px;border-radius:50%;border:2px solid white;background:#31A24C;opacity:0}
+.teams-icon-btn:hover{background:#F0F0F0;color:#242424}
+.teams-icon-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.teams-tabs{display:flex;gap:0;padding-top:8px}
+.teams-tab{padding:8px 16px;font-size:13px;color:#6B7280;cursor:pointer;border-bottom:2px solid transparent;transition:all 150ms;font-weight:500}
+.teams-tab:hover{color:#242424}
+.teams-tab.active{color:#6264A7;border-bottom-color:#6264A7;font-weight:600}
+
+/* MESSAGES */
+.teams-messages{flex:1;overflow-y:auto;padding:16px 24px 8px;display:flex;flex-direction:column;background:#FFFFFF;gap:0}
+.teams-message-group{display:flex;gap:12px;padding:8px 0;opacity:0;transform:translateY(12px);transition:opacity 400ms ease,transform 400ms ease}
+.teams-message-group.visible{opacity:1;transform:translateY(0)}
+.teams-message-group:hover{background:#F5F5F5;border-radius:6px;margin:0 -8px;padding:8px}
+
+/* AVATARS */
+.teams-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:white;flex-shrink:0;position:relative}
+.teams-avatar.bot{background:linear-gradient(135deg,#6264A7,#8B8EC7);box-shadow:0 2px 8px rgba(98,100,167,0.3)}
+.teams-avatar .presence{position:absolute;bottom:0;right:0;width:12px;height:12px;border-radius:50%;border:2px solid #FFF;background:#31A24C}
+.teams-avatar .presence.busy{background:#C4314B}
+.teams-avatar .presence.away{background:#FFAA44}
+
+/* MESSAGE CONTENT */
 .teams-content{flex:1;min-width:0}
-.teams-message-header{display:flex;align-items:center;gap:8px;margin-bottom:4px}
-.teams-sender{font-weight:600;font-size:13px;color:#424242}
-.teams-badge{display:inline-flex;align-items:center;padding:2px 6px;background:#6264A7;color:white;font-size:9px;font-weight:700;border-radius:3px;text-transform:uppercase;letter-spacing:0.5px}
-.teams-timestamp{font-size:12px;color:#9CA3AF;font-family:monospace}
-.teams-message-text{font-size:13px;color:#424242;line-height:1.5;word-wrap:break-word}
-.teams-adaptive-card{background:#F5F5F5;border-left:4px solid #6264A7;border-radius:4px;padding:12px;margin-top:4px;font-size:12px}
-.teams-card-title{font-weight:700;color:#424242;margin-bottom:8px;font-size:13px}
-.teams-card-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:11px}
+.teams-message-header{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.teams-sender{font-weight:600;font-size:13px;color:#242424}
+.teams-badge{display:inline-flex;align-items:center;padding:1px 6px;background:#6264A7;color:white;font-size:9px;font-weight:700;border-radius:3px;text-transform:uppercase;letter-spacing:0.5px}
+.teams-timestamp{font-size:11px;color:#9CA3AF;font-family:'DM Mono',monospace}
+.teams-message-text{font-size:14px;color:#242424;line-height:1.6;word-wrap:break-word}
+
+/* REACTIONS */
+.teams-reactions{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.teams-reaction{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;background:#F0F0F0;border:1px solid #E0E0E0;border-radius:12px;font-size:12px;cursor:pointer;transition:all 150ms}
+.teams-reaction:hover{background:#E0E0F0;border-color:#6264A7}
+.teams-reaction .r-count{font-weight:600;color:#6264A7;font-size:11px}
+
+/* THREAD INDICATOR */
+.teams-thread{display:flex;align-items:center;gap:8px;margin-top:6px;padding:4px 0;cursor:pointer}
+.teams-thread .thread-avatars{display:flex}
+.teams-thread .thread-avatars .t-av{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#FFF;margin-left:-6px;border:2px solid #FFF}
+.teams-thread .thread-avatars .t-av:first-child{margin-left:0}
+.teams-thread .thread-count{font-size:12px;color:#6264A7;font-weight:600}
+.teams-thread .thread-count:hover{text-decoration:underline}
+
+/* ADAPTIVE CARDS */
+.teams-adaptive-card{background:#F8F8F8;border:1px solid #E8E8E8;border-left:4px solid #6264A7;border-radius:6px;padding:14px 16px;margin-top:6px;font-size:12px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.teams-adaptive-card.coaching-card{border-left-color:#10B981;background:#F0FDF4}
+.teams-adaptive-card.competitive-card{border-left-color:#F59E0B;background:#FFFBEB}
+.teams-adaptive-card.confirm-card{border-left-color:#10B981;background:#F0FDF4}
+.teams-card-title{font-weight:700;color:#242424;margin-bottom:10px;font-size:14px;display:flex;align-items:center;gap:8px}
+.teams-card-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12px}
 .teams-card-table tr{border-bottom:1px solid #EFEFEF}
-.teams-card-table td{padding:6px;color:#6B7280}
-.teams-card-table td:first-child{font-weight:600;width:40%;color:#424242}
-.teams-card-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
-.teams-action-btn{padding:4px 12px;border:1px solid #D0D0D0;background:white;color:#6264A7;border-radius:3px;font-size:11px;font-weight:600;cursor:pointer;transition:all 150ms;white-space:nowrap}
-.teams-action-btn:hover{background:#6264A7;color:white}
-.teams-typing{display:flex;gap:8px;align-items:center;padding:8px 12px;background:#F5F5F5;border-radius:4px;margin-top:4px}
-.teams-typing-dot{width:6px;height:6px;border-radius:50%;background:#6B7280;animation:typingBounce 1.4s infinite}
+.teams-card-table tr:last-child{border-bottom:none}
+.teams-card-table td{padding:7px 8px;color:#6B7280}
+.teams-card-table td:first-child{font-weight:600;width:38%;color:#242424}
+.teams-card-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.teams-action-btn{padding:5px 14px;border:1px solid #D0D0D0;background:white;color:#6264A7;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;transition:all 150ms;white-space:nowrap}
+.teams-action-btn:hover{background:#6264A7;color:white;border-color:#6264A7;box-shadow:0 2px 6px rgba(98,100,167,0.2)}
+.teams-action-btn.primary{background:#6264A7;color:#FFF;border-color:#6264A7}
+.teams-action-btn.primary:hover{background:#4F5197}
+
+/* TYPING INDICATOR */
+.teams-typing-indicator{display:flex;gap:12px;padding:8px 0;align-items:center;opacity:0;transition:opacity 300ms}
+.teams-typing-indicator.visible{opacity:1}
+.teams-typing-indicator .typing-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:10px;color:white;flex-shrink:0}
+.teams-typing-bubble{display:flex;gap:4px;align-items:center;padding:6px 14px;background:#F0F0F0;border-radius:16px}
+.teams-typing-dot{width:7px;height:7px;border-radius:50%;background:#9CA3AF;animation:typingBounce 1.4s infinite}
 .teams-typing-dot:nth-child(2){animation-delay:0.2s}
 .teams-typing-dot:nth-child(3){animation-delay:0.4s}
-@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:0.7}30%{transform:translateY(-8px);opacity:1}}
-.teams-new-messages{display:flex;align-items:center;justify-content:center;height:32px;margin:16px 0;position:relative}
-.teams-new-messages-line{flex:1;height:1px;background:#E8E8E8}
-.teams-new-messages-dot{width:8px;height:8px;border-radius:50%;background:#E74C3C;margin:0 12px}
-.teams-compose{background:#FFFFFF;border-top:1px solid #E8E8E8;padding:16px 24px}
-.teams-compose-toolbar{display:flex;gap:8px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #F0F0F0}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:0.5}30%{transform:translateY(-6px);opacity:1}}
+.teams-typing-name{font-size:11px;color:#9CA3AF;font-weight:500;margin-left:4px}
+
+/* NEW MESSAGES DIVIDER */
+.teams-new-divider{display:flex;align-items:center;margin:16px 0;gap:12px;opacity:0;transition:opacity 400ms}
+.teams-new-divider.visible{opacity:1}
+.teams-new-divider .nd-line{flex:1;height:1px;background:#E74C3C}
+.teams-new-divider .nd-dot{width:8px;height:8px;border-radius:50%;background:#E74C3C;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+.teams-new-divider .nd-label{font-size:11px;font-weight:700;color:#E74C3C;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap}
+
+/* COMPOSE */
+.teams-compose{background:#FFFFFF;border-top:1px solid #E8E8E8;padding:12px 24px 16px}
+.teams-compose-box{border:1px solid #D0D0D0;border-radius:8px;overflow:hidden;transition:border-color 200ms}
+.teams-compose-box:focus-within{border-color:#6264A7;box-shadow:0 0 0 2px rgba(98,100,167,0.15)}
+.teams-compose-toolbar{display:flex;gap:2px;padding:6px 8px;border-bottom:1px solid #F0F0F0;background:#FAFAFA}
 .teams-toolbar-btn{width:28px;height:28px;border:none;background:transparent;color:#6B7280;cursor:pointer;font-size:14px;border-radius:4px;transition:all 150ms;display:flex;align-items:center;justify-content:center}
-.teams-toolbar-btn:hover{background:#F0F0F0;color:#6264A7}
-.teams-toolbar-btn:disabled{opacity:0.5;cursor:not-allowed;color:#9CA3AF}
-.teams-compose-input{width:100%;border:1px solid #D0D0D0;border-radius:4px;padding:10px 12px;font-size:13px;font-family:'Segoe UI','Inter',system-ui;color:#424242;resize:vertical;background:#F5F5F5}
-.teams-compose-input:disabled{background:#F5F5F5;cursor:not-allowed;opacity:0.7}
-.teams-compose-input::placeholder{color:#9CA3AF}
-.teams-placeholder{text-align:center;padding:40px 20px;color:#9CA3AF;font-size:13px}
-.skeleton-loading{background:linear-gradient(90deg,#EFEFEF 0%,#F5F5F5 50%,#EFEFEF 100%);background-size:200% 100%;animation:skeletonShimmer 1.5s infinite}
+.teams-toolbar-btn:hover{background:#E8E8E8;color:#6264A7}
+.teams-toolbar-btn:disabled{opacity:0.4;cursor:not-allowed}
+.teams-compose-input{width:100%;border:none;padding:10px 12px;font-size:13px;font-family:'Segoe UI','Inter',system-ui;color:#242424;resize:none;background:#FFF;outline:none;min-height:38px}
+.teams-compose-input:disabled{background:#FAFAFA;cursor:not-allowed;opacity:0.6}
+.teams-compose-input::placeholder{color:#B0B0B0}
+.teams-compose-bottom{display:flex;align-items:center;justify-content:space-between;padding:6px 8px;background:#FAFAFA}
+.teams-compose-bottom .send-btn{width:32px;height:32px;border:none;background:#6264A7;color:#FFF;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0.4;transition:opacity 200ms}
+
+/* SKELETON */
+.skeleton-loading{background:linear-gradient(90deg,#EFEFEF 0%,#F8F8F8 50%,#EFEFEF 100%);background-size:200% 100%;animation:skeletonShimmer 1.5s infinite}
 @keyframes skeletonShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.skeleton-msg{height:60px;margin-bottom:12px;border-radius:4px}
+.skeleton-msg{display:flex;gap:12px;margin-bottom:16px;padding:8px 0}
+.skeleton-msg .sk-avatar{width:40px;height:40px;border-radius:50%;flex-shrink:0}
+.skeleton-msg .sk-lines{flex:1;display:flex;flex-direction:column;gap:8px}
+.skeleton-msg .sk-line{height:12px;border-radius:4px}
+.skeleton-msg .sk-line.short{width:40%}
+.skeleton-msg .sk-line.medium{width:70%}
+.skeleton-msg .sk-line.long{width:90%}
 
 @media(max-width:768px){
   .nav{padding:0 16px}
@@ -478,41 +554,197 @@ function renderCoaching(){document.getElementById("view-coaching").innerHTML=`<d
 
 function renderCollaboration(){
   const messages=[
-    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:02 AM",isBot:true,type:"card",content:"📊 Morning Brief",data:{signals:23,critical:2,high:3,expansion:2}},
-    {sender:"Justin Murry",avatar:"JM",color:"#3B82F6",timestamp:"9:04 AM",isBot:false,content:"Thanks bot. Block is a major account. Which IEs are assigned there?"},
-    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:05 AM",isBot:true,type:"card",content:"Block Inc. — Account Details",data:{ce:"Justin Murry",ies:3,revenue:"$4.2M",recent:[{label:"Marcus Johnson",value:"Identity"},{label:"Sarah Kim",value:"Credit Data"},{label:"Wei Chen",value:"Software"}]}},
-    {sender:"Sarah Kim",avatar:"SK",color:"#10B981",timestamp:"9:06 AM",isBot:false,content:"I saw the LinkedIn posts from their credit team. At least 3 of our day-to-day contacts were affected in the layoff. Should I reach out?"},
-    {sender:"Justin Murry",avatar:"JM",color:"#3B82F6",timestamp:"9:08 AM",isBot:false,content:"Yes, but position it as a check-in, not a sales call. We need to protect the relationship first. This is critical to us."},
-    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:09 AM",isBot:true,type:"coaching",content:"✅ Coaching Insight",data:{insight:"Based on 12 similar layoff events in the last 2 years, accounts that received a 'relationship check-in' within 48 hours had 34% higher retention. Talk track attached.",action:"Start with empathy, position as support, not sales"}},
-    {sender:"Marcus Johnson",avatar:"MJ",color:"#F59E0B",timestamp:"9:12 AM",isBot:false,content:"Good insight. I'll reach out to their identity team too. Any competitive intel on who else is circling?"},
-    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:14 AM",isBot:true,type:"competitive",content:"Competitive Intel — Block Inc.",data:{experian:"2 meetings with fraud team (Jan)",equifax:"No recent activity",lexisnexis:"RFP rumored for identity verification"}},
-    {sender:"Justin Murry",avatar:"JM",color:"#3B82F6",timestamp:"9:16 AM",isBot:false,content:"Experian is moving fast. Let's get ahead. Sarah, Marcus — joint call Thursday 2pm. Wei, join us. I want a unified TU story for Block."},
-    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:17 AM",isBot:true,type:"confirm",content:"📅 Meeting Scheduled",data:{meeting:"Block Account Review",date:"Thursday 2:00 PM ET",attendees:["Justin Murry","Sarah Kim","Marcus Johnson","Wei Chen"],preRead:"Account health report attached"}}
+    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:02 AM",isBot:true,type:"card",content:"📊 Morning Signal Brief",reactions:[{emoji:"👍",count:3},{emoji:"🔥",count:1}],data:{signals:23,critical:2,high:3,expansion:2}},
+    {sender:"Justin Murry",avatar:"JM",color:"#3B82F6",timestamp:"9:04 AM",isBot:false,content:"Thanks bot. Block is a major account — $4.2M in revenue. Which IEs are assigned there currently?",reactions:[{emoji:"👀",count:2}]},
+    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:05 AM",isBot:true,type:"card",content:"Block Inc. — Account Intelligence",thread:{count:5,avatars:[{initials:"SK",color:"#10B981"},{initials:"WC",color:"#8B5CF6"}]},data:{ce:"Justin Murry",ies:3,revenue:"$4.2M",health:"72/100 (↓8)",recent:[{label:"Marcus Johnson",value:"Identity Verification"},{label:"Sarah Kim",value:"Credit Data Solutions"},{label:"Wei Chen",value:"Software & Analytics"}]}},
+    {sender:"Sarah Kim",avatar:"SK",color:"#10B981",timestamp:"9:06 AM",isBot:false,content:"I saw the LinkedIn posts from their credit team. At least 3 of our day-to-day contacts were affected in the layoff. Should I reach out?",reactions:[{emoji:"😬",count:1}]},
+    {sender:"Justin Murry",avatar:"JM",color:"#3B82F6",timestamp:"9:08 AM",isBot:false,content:"Yes, but position it as a check-in, not a sales call. We need to protect the relationship first. This is critical."},
+    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:09 AM",isBot:true,type:"coaching",content:"Coaching Insight",reactions:[{emoji:"💡",count:4},{emoji:"👏",count:2}],data:{insight:"Based on 12 similar layoff events in the last 2 years, accounts that received a relationship check-in within 48 hours had <strong>34% higher retention</strong>. Top performers used empathy-first outreach. Talk track attached.",action:"Lead with empathy → ask how they're doing → offer to adjust timelines → do NOT pitch new products"}},
+    {sender:"Marcus Johnson",avatar:"MJ",color:"#F59E0B",timestamp:"9:12 AM",isBot:false,content:"Good insight. I'll reach out to their identity team too. Any competitive intel on who else is circling Block right now?"},
+    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:14 AM",isBot:true,type:"competitive",content:"⚔️ Competitive Intel — Block Inc.",reactions:[{emoji:"🔥",count:3}],data:{rows:[{competitor:"Experian",activity:"2 meetings with fraud team (Jan)",risk:"High"},{competitor:"Equifax",activity:"No recent activity detected",risk:"Low"},{competitor:"LexisNexis",activity:"RFP rumored for identity verification",risk:"Medium"}]}},
+    {sender:"Justin Murry",avatar:"JM",color:"#3B82F6",timestamp:"9:16 AM",isBot:false,content:"Experian is moving fast. Let's get ahead of this. Sarah, Marcus — joint call Thursday 2pm. Wei, join us. I want a unified TU story for Block before they take another meeting.",reactions:[{emoji:"💪",count:3},{emoji:"✅",count:2}]},
+    {sender:"Sales Intelligence Bot",avatar:"SIB",color:"#6264A7",timestamp:"9:17 AM",isBot:true,type:"confirm",content:"📅 Meeting Scheduled",data:{meeting:"Block Inc. — Account Defense Review",date:"Thursday 2:00 PM ET",attendees:["Justin Murry (CE)","Sarah Kim (Credit)","Marcus Johnson (Identity)","Wei Chen (Software)"],preRead:"Account health report + competitive brief attached"}}
   ];
 
-  const html=`<div class="teams-container"><div class="teams-sidebar"><div class="teams-sidebar-section" style="flex-shrink:0"><div class="teams-sidebar-header">Channels</div><ul class="teams-channel-list"><li class="teams-channel-item active">#sales-intelligence</li><li class="teams-channel-item" style="opacity:0.5">#strategy</li><li class="teams-channel-item" style="opacity:0.5">#pipeline</li></ul></div></div><div class="teams-main"><div class="teams-header"><div class="teams-header-left"><div><div class="teams-channel-name">#sales-intelligence</div><div class="teams-member-count">Sales team collaboration · 6 members online</div></div></div><div class="teams-tabs"><div class="teams-tab active">Posts</div><div class="teams-tab">Files</div><div class="teams-tab">Wiki</div></div><div class="teams-header-right"><button class="teams-icon-btn" title="Call">📞</button><button class="teams-icon-btn" title="Video">📹</button></div></div><div class="teams-messages" id="teams-msg-container"><div class="teams-placeholder" style="padding-top:60px">Loading conversation...</div></div><div class="teams-compose"><div class="teams-compose-toolbar"><button class="teams-toolbar-btn" title="Format" disabled>A̲</button><button class="teams-toolbar-btn" title="Attach" disabled>📎</button><button class="teams-toolbar-btn" title="Emoji" disabled>😊</button></div><textarea class="teams-compose-input" placeholder="Type a message..." disabled></textarea></div></div></div>`;
+  const sidebarSvg={
+    chat:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+    teams:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    calendar:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+    files:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>`,
+    search:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+    video:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>`,
+    phone:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+    more:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>`
+  };
+
+  const html=`<div class="teams-container">
+    <div class="teams-sidebar">
+      <div class="ts-icon active" title="Chat">${sidebarSvg.chat}<div class="ts-badge">4</div></div>
+      <div class="ts-icon" title="Teams">${sidebarSvg.teams}</div>
+      <div class="ts-icon" title="Calendar">${sidebarSvg.calendar}</div>
+      <div class="ts-icon" title="Files">${sidebarSvg.files}</div>
+      <div class="ts-divider"></div>
+      <div class="ts-icon" title="Search">${sidebarSvg.search}</div>
+    </div>
+    <div class="teams-channels">
+      <div class="tc-header">
+        <div class="tc-org"><div class="tc-org-icon">TU</div><div class="tc-org-name">TransUnion</div></div>
+      </div>
+      <div class="tc-section">
+        <div class="tc-section-title">Favorites</div>
+        <div class="tc-item active"><span class="tc-hash">#</span>sales-intelligence<span class="tc-unread">4</span></div>
+      </div>
+      <div class="tc-section">
+        <div class="tc-section-title">Channels</div>
+        <div class="tc-item"><span class="tc-hash">#</span>general</div>
+        <div class="tc-item"><span class="tc-hash">#</span>pipeline-review</div>
+        <div class="tc-item"><span class="tc-hash">#</span>competitive-intel<span class="tc-unread">2</span></div>
+        <div class="tc-item"><span class="tc-hash">#</span>coaching-tips<span class="tc-muted">muted</span></div>
+      </div>
+    </div>
+    <div class="teams-main">
+      <div class="teams-header">
+        <div class="teams-header-top">
+          <div class="teams-header-left">
+            <div>
+              <div class="teams-channel-name"># sales-intelligence</div>
+              <div class="teams-member-count">Block Inc. response coordination · 6 members online</div>
+            </div>
+          </div>
+          <div class="teams-header-right">
+            <button class="teams-icon-btn" title="Video call">${sidebarSvg.video}</button>
+            <button class="teams-icon-btn" title="Call">${sidebarSvg.phone}</button>
+            <button class="teams-icon-btn" title="Search">${sidebarSvg.search}</button>
+            <button class="teams-icon-btn" title="More">${sidebarSvg.more}</button>
+          </div>
+        </div>
+        <div class="teams-tabs">
+          <div class="teams-tab active">Posts</div>
+          <div class="teams-tab">Files</div>
+          <div class="teams-tab">Wiki</div>
+        </div>
+      </div>
+      <div class="teams-messages" id="teams-msg-container"></div>
+      <div class="teams-compose">
+        <div class="teams-compose-box">
+          <div class="teams-compose-toolbar">
+            <button class="teams-toolbar-btn" title="Format" disabled>A̲</button>
+            <button class="teams-toolbar-btn" title="Attach" disabled>📎</button>
+            <button class="teams-toolbar-btn" title="Emoji" disabled>😊</button>
+            <button class="teams-toolbar-btn" title="GIF" disabled>GIF</button>
+            <button class="teams-toolbar-btn" title="Sticker" disabled>🏷</button>
+            <button class="teams-toolbar-btn" title="Schedule" disabled>📅</button>
+          </div>
+          <textarea class="teams-compose-input" placeholder="Type a new message in #sales-intelligence..." disabled rows="1"></textarea>
+          <div class="teams-compose-bottom">
+            <div style="font-size:11px;color:#B0B0B0">Powered by Sales Intelligence Bot</div>
+            <div class="send-btn"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
 
   document.getElementById("view-collaboration").innerHTML=html;
-
   const container=document.getElementById("teams-msg-container");
-  container.innerHTML='<div class="skeleton-msg skeleton-loading"></div><div class="skeleton-msg skeleton-loading"></div>';
 
+  // Show skeleton loading
+  container.innerHTML=`
+    <div class="skeleton-msg"><div class="sk-avatar skeleton-loading"></div><div class="sk-lines"><div class="sk-line short skeleton-loading"></div><div class="sk-line long skeleton-loading"></div></div></div>
+    <div class="skeleton-msg"><div class="sk-avatar skeleton-loading"></div><div class="sk-lines"><div class="sk-line short skeleton-loading"></div><div class="sk-line medium skeleton-loading"></div></div></div>
+    <div class="skeleton-msg"><div class="sk-avatar skeleton-loading"></div><div class="sk-lines"><div class="sk-line short skeleton-loading"></div><div class="sk-line long skeleton-loading"></div><div class="sk-line medium skeleton-loading"></div></div></div>`;
+
+  function buildCard(m){
+    if(m.type==='card'&&m.data){
+      let healthRow=m.data.health?`<tr><td>Health Score</td><td><span style="color:${m.data.health.includes('↓')?'#E74C3C':'#10B981'};font-weight:600">${m.data.health}</span></td></tr>`:'';
+      return `<div class="teams-adaptive-card"><div class="teams-card-title">${m.content}</div><table class="teams-card-table">${m.data.signals?`<tr><td>Total Signals Today</td><td><strong>${m.data.signals}</strong></td></tr><tr><td>🔴 Critical</td><td>${m.data.critical} accounts</td></tr><tr><td>🟡 High Priority</td><td>${m.data.high} accounts</td></tr><tr><td>🟢 Expansion Opps</td><td>${m.data.expansion} accounts</td></tr>`:''}${m.data.ce?`<tr><td>Client Executive</td><td>${m.data.ce}</td></tr>`:''}${m.data.revenue?`<tr><td>Annual Revenue</td><td><strong>${m.data.revenue}</strong></td></tr>`:''}${healthRow}${m.data.ies?`<tr><td>IEs Assigned</td><td>${m.data.ies}</td></tr>`:''}${m.data.recent?m.data.recent.map(r=>`<tr><td>${r.label}</td><td>${r.value}</td></tr>`).join(''):''}</table><div class="teams-card-actions"><button class="teams-action-btn primary">View Details</button><button class="teams-action-btn">Add to Watch</button></div></div>`;}
+    if(m.type==='coaching'){return `<div class="teams-adaptive-card coaching-card"><div class="teams-card-title" style="color:#10B981">💡 ${m.content}</div><div style="font-size:13px;color:#374151;line-height:1.7;margin:10px 0">${m.data.insight}</div><div style="font-size:12px;background:rgba(16,185,129,0.12);padding:10px 12px;border-radius:6px;color:#065F46;font-weight:500;line-height:1.5">💭 <strong>Recommended approach:</strong> ${m.data.action}</div></div>`;}
+    if(m.type==='competitive'){return `<div class="teams-adaptive-card competitive-card"><div class="teams-card-title" style="color:#D97706">${m.content}</div><table class="teams-card-table">${m.data.rows.map(r=>`<tr><td>${r.competitor}</td><td>${r.activity} <span style="display:inline-block;margin-left:8px;padding:1px 6px;border-radius:3px;font-size:10px;font-weight:600;background:${r.risk==='High'?'#FEE2E2':r.risk==='Medium'?'#FEF3C7':'#D1FAE5'};color:${r.risk==='High'?'#991B1B':r.risk==='Medium'?'#92400E':'#065F46'}">${r.risk}</span></td></tr>`).join('')}</table><div class="teams-card-actions"><button class="teams-action-btn primary">Track Competitors</button><button class="teams-action-btn">Share with Team</button></div></div>`;}
+    if(m.type==='confirm'){return `<div class="teams-adaptive-card confirm-card"><div class="teams-card-title" style="color:#10B981">${m.content}</div><table class="teams-card-table"><tr><td>Meeting</td><td><strong>${m.data.meeting}</strong></td></tr><tr><td>Date</td><td>${m.data.date}</td></tr><tr><td>Attendees</td><td>${m.data.attendees.join(', ')}</td></tr></table><div style="font-size:12px;color:#6B7280;margin-top:10px;display:flex;align-items:center;gap:6px"><span>📎</span> ${m.data.preRead}</div><div class="teams-card-actions"><button class="teams-action-btn primary">Accept</button><button class="teams-action-btn">Tentative</button><button class="teams-action-btn">Decline</button></div></div>`;}
+    return '';
+  }
+
+  function buildReactions(reactions){
+    if(!reactions||!reactions.length)return '';
+    return `<div class="teams-reactions">${reactions.map(r=>`<span class="teams-reaction">${r.emoji} <span class="r-count">${r.count}</span></span>`).join('')}</div>`;
+  }
+
+  function buildThread(thread){
+    if(!thread)return '';
+    return `<div class="teams-thread"><div class="thread-avatars">${thread.avatars.map(a=>`<div class="t-av" style="background:${a.color}">${a.initials}</div>`).join('')}</div><span class="thread-count">${thread.count} replies</span></div>`;
+  }
+
+  function buildMessage(m){
+    const presence=m.isBot?'':'<div class="presence"></div>';
+    const avatarStyle=m.isBot?'':`style="background:linear-gradient(135deg,${m.color},${m.color}cc)"`;
+    return `<div class="teams-message-group" id="msg-${messages.indexOf(m)}">
+      <div class="teams-avatar ${m.isBot?'bot':''}" ${avatarStyle}>${m.avatar}${presence}</div>
+      <div class="teams-content">
+        <div class="teams-message-header">
+          <span class="teams-sender">${m.sender}</span>
+          ${m.isBot?'<span class="teams-badge">BOT</span>':''}
+          <span class="teams-timestamp">${m.timestamp}</span>
+        </div>
+        ${!m.type?`<div class="teams-message-text">${m.content}</div>`:''}
+        ${buildCard(m)}
+        ${buildReactions(m.reactions)}
+        ${buildThread(m.thread)}
+      </div>
+    </div>`;
+  }
+
+  function showTypingIndicator(sender,avatar,color,isBot){
+    const avStyle=isBot?`background:linear-gradient(135deg,#6264A7,#8B8EC7)`:`background:${color}`;
+    const el=document.createElement('div');
+    el.className='teams-typing-indicator';
+    el.innerHTML=`<div class="typing-avatar" style="${avStyle}">${avatar}</div><div class="teams-typing-bubble"><div class="teams-typing-dot"></div><div class="teams-typing-dot"></div><div class="teams-typing-dot"></div></div><span class="teams-typing-name">${sender} is typing...</span>`;
+    container.appendChild(el);
+    setTimeout(()=>el.classList.add('visible'),20);
+    container.scrollTop=container.scrollHeight;
+    return el;
+  }
+
+  // Progressive loading sequence
   setTimeout(()=>{
-    let html='';
+    container.innerHTML='';
+    let delay=0;
+    const baseDelay=600;
+    const typingDuration=900;
+
     messages.forEach((m,idx)=>{
-      const isGrouped=idx>0&&messages[idx-1].sender===m.sender;
-      let cardHtml='';
-      if(m.type==='card'&&m.data){cardHtml=`<div class="teams-adaptive-card"><div class="teams-card-title">${m.content}</div><table class="teams-card-table">${m.data.signals?`<tr><td>Total Signals</td><td>${m.data.signals}</td></tr><tr><td>🔴 Critical</td><td>${m.data.critical}</td></tr><tr><td>🟡 High</td><td>${m.data.high}</td></tr><tr><td>🟢 Expansion</td><td>${m.data.expansion}</td></tr>`:''}${m.data.ce?`<tr><td>CE</td><td>${m.data.ce}</td></tr>`:''}${m.data.revenue?`<tr><td>Revenue</td><td>${m.data.revenue}</td></tr>`:''}${m.data.ies?`<tr><td>IEs Assigned</td><td>${m.data.ies}</td></tr>`:''}${m.data.recent?m.data.recent.map(r=>`<tr><td>${r.label}</td><td>${r.value}</td></tr>`).join(''):''}${m.data.experian?`<tr><td>Experian</td><td>${m.data.experian}</td></tr><tr><td>Equifax</td><td>${m.data.equifax}</td></tr><tr><td>LexisNexis</td><td>${m.data.lexisnexis}</td></tr>`:''}</table><div class="teams-card-actions"><button class="teams-action-btn">View Details</button><button class="teams-action-btn">Add to Watch</button></div></div>`}
-      if(m.type==='coaching'){cardHtml=`<div class="teams-adaptive-card" style="border-left-color:#10B981"><div class="teams-card-title" style="color:#10B981">💡 ${m.content}</div><div style="font-size:12px;color:#6B7280;line-height:1.6;margin:8px 0">${m.data.insight}</div><div style="font-size:11px;background:rgba(16,185,129,0.1);padding:8px;border-radius:4px;color:#155724;font-weight:500">💭 ${m.data.action}</div></div>`}
-      if(m.type==='competitive'){cardHtml=`<div class="teams-adaptive-card" style="border-left-color:#F59E0B"><div class="teams-card-title" style="color:#F59E0B">${m.content}</div><table class="teams-card-table"><tr><td>${m.data.experian}</td><td>Experian</td></tr><tr><td>${m.data.equifax}</td><td>Equifax</td></tr><tr><td>${m.data.lexisnexis}</td><td>LexisNexis</td></tr></table></div>`}
-      if(m.type==='confirm'){cardHtml=`<div class="teams-adaptive-card" style="border-left-color:#10B981"><div class="teams-card-title" style="color:#10B981">${m.content}</div><table class="teams-card-table"><tr><td>Meeting</td><td>${m.data.meeting}</td></tr><tr><td>Date</td><td>${m.data.date}</td></tr><tr><td>Attendees</td><td>${m.data.attendees.join(', ')}</td></tr></table><div style="font-size:11px;color:#6B7280;margin-top:8px">📎 Pre-read attached</div></div>`}
-      html+=`<div class="teams-message-group" style="animation-delay:${idx*80}ms"><div class="teams-avatar ${m.isBot?'bot':''}" style="background:${m.isBot?'':'linear-gradient(135deg,'+m.color+','+m.color+'dd)'}">  ${m.avatar}</div><div class="teams-content">${!isGrouped?`<div class="teams-message-header"><span class="teams-sender">${m.sender}</span>${m.isBot?'<span class="teams-badge">BOT</span>':''}<span class="teams-timestamp">${m.timestamp}</span></div>`:''}<div class="teams-message-text">${m.content}</div>${cardHtml}</div></div>`;
+      // Show typing indicator
+      setTimeout(()=>{
+        const typingEl=showTypingIndicator(m.sender,m.avatar,m.color,m.isBot);
+        // After typing, replace with message
+        setTimeout(()=>{
+          typingEl.remove();
+          const msgHtml=buildMessage(m);
+          container.insertAdjacentHTML('beforeend',msgHtml);
+          const msgEl=document.getElementById('msg-'+idx);
+          setTimeout(()=>msgEl.classList.add('visible'),30);
+          container.scrollTop=container.scrollHeight;
+
+          // After the 5th message (coaching insight), show new messages divider
+          if(idx===5){
+            setTimeout(()=>{
+              const divider=document.createElement('div');
+              divider.className='teams-new-divider';
+              divider.innerHTML='<div class="nd-line"></div><div class="nd-dot"></div><div class="nd-label">New</div><div class="nd-line"></div>';
+              container.appendChild(divider);
+              setTimeout(()=>divider.classList.add('visible'),30);
+              container.scrollTop=container.scrollHeight;
+            },200);
+          }
+        },typingDuration);
+      },delay);
+      delay+=baseDelay+typingDuration+(m.type?400:200);
     });
-    html+=`<div class="teams-new-messages" style="margin:20px 0"><div class="teams-new-messages-line"></div><div class="teams-new-messages-dot"></div><div class="teams-new-messages-line"></div></div>`;
-    html+=`<div class="teams-message-group" style="animation-delay:${messages.length*80+200}ms"><div class="teams-avatar bot">SIB</div><div class="teams-content"><div class="teams-message-header"><span class="teams-sender">Sales Intelligence Bot</span><span class="teams-badge">BOT</span><span class="teams-timestamp">typing...</span></div><div class="teams-typing"><div class="teams-typing-dot"></div><div class="teams-typing-dot"></div><div class="teams-typing-dot"></div></div></div></div>`;
-    container.innerHTML=html;
-    setTimeout(()=>{container.scrollTop=container.scrollHeight},50);
-  },800);
+
+    // Final typing indicator that stays
+    setTimeout(()=>{
+      showTypingIndicator("Sales Intelligence Bot","SIB","#6264A7",true);
+    },delay+300);
+  },1200);
 }
 
 function renderSettings(){document.getElementById("view-settings").innerHTML=`<div class="wrap" style="max-width:700px"><div class="ph"><h1>About Sales Intelligence & AI Coaching</h1><p>Proactive account intelligence, competitive awareness, and scaled mentorship for TransUnion's sales teams</p></div><div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:32px;box-shadow:var(--sh);animation:fade-in 500ms ease-out"><h2 style="margin-bottom:16px">Platform Overview</h2><div style="line-height:1.8;color:var(--t2);margin-bottom:32px"><p style="margin-bottom:12px"><strong>Sales Intelligence & AI Coaching Platform</strong> delivers proactive market signals, unified account data, and scaled mentorship to 300+ sales representatives across TransUnion's consumer lending vertical. This interface demonstrates three core capabilities:</p><h3 style="font-weight:700;margin-top:20px;margin-bottom:12px">1. Proactive Signal Push</h3><p style="margin-bottom:12px">AI continuously scans external sources (news, earnings, leadership, competitive intel) and pushes relevant intelligence to reps every 3 days. Example: "Block Inc. laid off 40% of headcount 2 weeks ago. Your IEs: Marcus (Identity), Sarah (Credit Data), Wei (Software). Suggested action: relationship check-in within 48 hours."</p><h3 style="font-weight:700;margin-top:20px;margin-bottom:12px">2. Account Health Dashboard</h3><p style="margin-bottom:12px">Unified view of each account: revenue trends, products deployed, contract renewal dates, pipeline activity, last contact date, health score. External signals (news, earnings, leadership changes) linked to decision-making contacts. CRM data gaps filled with market data.</p><h3 style="font-weight:700;margin-top:20px;margin-bottom:12px">3. AI Coaching Agent</h3><p style="margin-bottom:12px">Identifies struggling accounts (volume decline >10%), flags at-risk relationships (no contact >30 days), surfaces peer benchmarks (top performers cross-sell at 3.2x rate). Suggests specific actions: "Your peer grew similar account via Identity Verification cross-sell. Consider QBR."</p></div><h2 style="margin-bottom:16px">Organization Model</h2><div style="margin-bottom:32px"><p style="margin-bottom:12px"><strong>Client Executives (CEs):</strong> Account ambassadors responsible for overall relationship health, strategic alignment, and go-to-market execution across multiple product lines.</p><p style="margin-bottom:12px"><strong>Industry Executives (IEs):</strong> Product specialists (3-7 per CE) who drive implementation and adoption within their domain (Identity Verification, Credit Data, Fraud Analytics, Software).</p><p><strong>Challenge:</strong> Annual client reassignments wipe institutional knowledge. New CEs/IEs onboard without context. Signals get missed. Relationships suffer.</p></div><h2 style="margin-bottom:16px">The Demo</h2><div style="margin-bottom:32px"><p style="margin-bottom:12px">This interface shows:</p><ul style="margin-left:20px"><li>8 real-world account signals (market events, earnings, leadership changes, competitive intel, volume declines)</li><li>Account intelligence dashboard with CE/IE assignments, revenue, health scores</li><li>AI coaching hub with personalized recommendations and peer benchmarks</li><li>Live Team collaboration channel showing sales team coordination in response to signals</li><li>Dark mode and responsive design for mobile-first workflows</li></ul></div><h2 style="margin-bottom:16px">Key Signals Demonstrated</h2><div style="margin-bottom:32px"><div style="display:flex;gap:12px;margin-bottom:8px;padding:8px;border-radius:var(--rs);background:var(--ert)"><div style="color:var(--er);margin-top:2px">⚠</div><span><strong>Organizational Changes:</strong> Layoffs, leadership departures, strategic shifts that impact your contacts</span></div><div style="display:flex;gap:12px;margin-bottom:8px;padding:8px;border-radius:var(--rs);background:var(--alt)"><div style="color:var(--al);margin-top:2px">📈</div><span><strong>Financial Performance:</strong> Earnings beats, revenue growth, division performance — upsell opportunities</span></div><div style="display:flex;gap:12px;margin-bottom:8px;padding:8px;border-radius:var(--rs);background:var(--tut)"><div style="color:var(--tu);margin-top:2px">🎯</div><span><strong>Competitive Activity:</strong> Competitor meetings, RFPs, expansion plans — retention/growth risk</span></div><div style="display:flex;gap:12px;padding:8px;border-radius:var(--rs);background:var(--okt)"><div style="color:var(--ok);margin-top:2px">📊</div><span><strong>Volume Trends:</strong> Decline signals + peer benchmarks = coaching recommendations</span></div></div></div></div>`}
