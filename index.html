@@ -395,6 +395,7 @@ tr:hover{background:var(--s2);transition:background-color 200ms}
   <div id="view-dashboard" class="view"></div>
   <div id="view-detail" class="view"></div>
   <div id="view-audit" class="view"></div>
+  <div id="view-collaboration" class="view"></div>
   <div id="view-settings" class="view"></div>
 </main>
 <div id="correctModal" class="modal-ov hidden" onclick="if(event.target===this)closeModal()">
@@ -487,7 +488,7 @@ function showKbdHints(){
 
 function buildNav(){
   document.getElementById("navTabs").innerHTML=[
-    {v:"overview",l:"Problem Overview",c:null},{v:"dashboard",l:"Alert Queue",c:"cq"},{v:"audit",l:"Audit Log",c:"ca"},{v:"settings",l:"⚙ About",c:null}
+    {v:"overview",l:"Problem Overview",c:null},{v:"dashboard",l:"Alert Queue",c:"cq"},{v:"audit",l:"Audit Log",c:"ca"},{v:"collaboration",l:"Collaboration",c:null},{v:"settings",l:"⚙ About",c:null}
   ].map(t=>`<button class="nav-tab" data-view="${t.v}" onclick="showView('${t.v}')">${t.l}${t.c?`<span class="tcnt m" id="${t.c}">0</span>`:""}</button>`).join("");
   updateCounts();
 }
@@ -506,6 +507,7 @@ function showView(n){
   if(n==="overview")renderOverview();
   if(n==="audit")renderAudit();
   if(n==="dashboard")renderDash();
+  if(n==="collaboration")renderCollaboration();
   if(n==="settings")renderSettings();
 }
 
@@ -835,6 +837,73 @@ function renderAudit(){
   <button class="btn b-cn" style="font-size:11px;padding:6px 12px;color:var(--er)" onclick="clearLog()">Clear log</button>
 </div>`}
 </div>`;
+}
+
+function renderCollaboration(){
+  const messages=[
+    {sender:"Fraud Triage Bot",avatar:"FTB",color:"#7C3AED",timestamp:"9:02 AM",isBot:true,content:"🚨 <strong>High Priority Alert</strong> — ALT-0042 flagged as Account Takeover (97% confidence). Russian IP, MFA bypassed, $2,100 transaction initiated 4 min after credential change. Recommended action: BLOCK. @Sarah Chen please review."},
+    {sender:"Sarah Chen",avatar:"SC",color:"#3B82F6",timestamp:"9:04 AM",isBot:false,content:"On it. Pulling up the full signal now."},
+    {sender:"Fraud Triage Bot",avatar:"FTB",color:"#7C3AED",timestamp:"9:05 AM",isBot:true,content:"📋 <strong>ALT-0042 Detail</strong>: 7 failed logins in 24h → password change → email change → immediate $2,100 transfer. IP: 185.xx.xx.xx (Moscow). Device: NEW_DEVICE. This matches the ATO pattern we've been tracking since Tuesday."},
+    {sender:"Sarah Chen",avatar:"SC",color:"#3B82F6",timestamp:"9:08 AM",isBot:false,content:"Confirmed as ATO. Account locked. Reversed credential changes. Customer notified via secondary contact. Filing incident report now."},
+    {sender:"Fraud Triage Bot",avatar:"FTB",color:"#7C3AED",timestamp:"9:08 AM",isBot:true,content:"✅ ALT-0042 confirmed by Sarah Chen. Action: BLOCK. Logged to audit trail. Compliance notification queued (24hr breach escalation)."},
+    {sender:"Mike Torres",avatar:"MT",color:"#10B981",timestamp:"9:12 AM",isBot:false,content:"Good catch. Seeing similar pattern on ALT-0048 — Chinese IP on a UK business account. Want me to take that one?"},
+    {sender:"Sarah Chen",avatar:"SC",color:"#3B82F6",timestamp:"9:13 AM",isBot:false,content:"Yes please. That one's £8,900 so needs the step-up auth first before we block."},
+    {sender:"Fraud Triage Bot",avatar:"FTB",color:"#7C3AED",timestamp:"9:15 AM",isBot:true,content:"📊 <strong>Morning Summary</strong>: 8 alerts in queue. 2 critical (ATO), 2 high (CNP + IDV), 2 medium (Synth ID + First Party), 2 low (auto-resolve candidates). Current AI accuracy: 94%. Avg triage time: 8 seconds."},
+    {sender:"David Park",avatar:"DP",color:"#F59E0B",timestamp:"9:18 AM",isBot:false,content:"The two low-priority ones (ALT-0044, ALT-0047) — both known devices, 3DS authenticated, amounts in normal range. I'm comfortable auto-resolving those. Anyone object?"},
+    {sender:"Sarah Chen",avatar:"SC",color:"#3B82F6",timestamp:"9:19 AM",isBot:false,content:"No objection. Both look clean."},
+    {sender:"Fraud Triage Bot",avatar:"FTB",color:"#7C3AED",timestamp:"9:20 AM",isBot:true,content:"✅ ALT-0044 and ALT-0047 auto-resolved by David Park. Logged to audit trail."},
+    {sender:"Fraud Triage Bot",avatar:"FTB",color:"#7C3AED",timestamp:"9:25 AM",isBot:true,content:"⚠️ <strong>Regulatory Flag</strong>: ALT-0041 involves cross-border transaction over £3,000 (GB → NG). AML documentation required. @David Park — please ensure decision rationale is captured for compliance."},
+    {sender:"David Park",avatar:"DP",color:"#F59E0B",timestamp:"9:27 AM",isBot:false,content:"Noted. Adding AML notes now. This one's a clear block — IP risk 0.91, new device, 32x average spend."}
+  ];
+
+  document.getElementById("view-collaboration").innerHTML=`
+<div style="display:flex;flex-direction:column;height:calc(100vh - var(--nh));background:#F5F5F5;position:relative">
+  <div style="background:var(--s1);border-bottom:1px solid var(--bd);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <div>
+      <h1 style="font-size:18px;font-weight:700;margin:0;margin-bottom:4px">#fraud-ops-triage</h1>
+      <p style="font-size:12px;color:var(--t2);margin:0;font-weight:500">Team collaboration channel · 7 members online</p>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center">
+      <button class="btn-ic" title="Pin message" style="opacity:0.6">📌</button>
+      <button class="btn-ic" title="Settings" style="opacity:0.6">⚙</button>
+    </div>
+  </div>
+
+  <div id="msgContainer" style="flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:12px;background:linear-gradient(to bottom,#FAFBFC,#F5F6F8)">
+    ${messages.map((m,idx)=>`
+    <div style="animation:fade-in 300ms ease-out backwards;animation-delay:${idx*30}ms;display:flex;gap:12px;align-items:flex-start">
+      <div style="width:40px;height:40px;border-radius:50%;background:${m.color};color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;font-family:monospace">${m.avatar}</div>
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+          <span style="font-weight:700;color:var(--t1);font-size:13px">${m.sender}</span>
+          ${m.isBot?'<span style="background:var(--tu);color:white;font-size:9px;padding:2px 8px;border-radius:3px;font-weight:700;letter-spacing:.03em">BOT</span>':''}
+          <span style="font-size:12px;color:var(--t3);font-family:monospace">${m.timestamp}</span>
+        </div>
+        <div style="background:white;border-radius:8px;padding:12px 14px;color:var(--t1);font-size:13px;line-height:1.5;word-wrap:break-word;${m.isBot?'border-left:3px solid var(--tu)':''}">${m.content}</div>
+      </div>
+    </div>
+    `).join("")}
+  </div>
+
+  <div style="background:var(--s1);border-top:1px solid var(--bd);padding:16px 24px;animation:fade-in 400ms ease-out">
+    <div style="display:flex;gap:12px;margin-bottom:8px;align-items:center">
+      <div style="width:32px;height:32px;border-radius:50%;background:#A0A9B8;flex-shrink:0"></div>
+      <div style="flex:1">
+        <div style="font-weight:600;color:var(--t1);font-size:12px">Fraud Triage Bot</div>
+        <div style="font-size:11px;color:var(--t3)">is typing…</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;padding:12px 14px;background:var(--s2);border-radius:24px;border:1px solid var(--bd)">
+      <input type="text" placeholder="Type a message..." disabled style="flex:1;background:transparent;border:none;outline:none;color:var(--t3);font-size:13px;font-family:'Inter',system-ui" />
+      <button class="btn-ic" style="opacity:0.4;pointer-events:none">📎</button>
+    </div>
+  </div>
+</div>`;
+
+  setTimeout(()=>{
+    const container=document.getElementById("msgContainer");
+    if(container)container.scrollTop=container.scrollHeight;
+  },100);
 }
 
 function renderSettings(){
