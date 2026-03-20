@@ -285,7 +285,94 @@ tr:hover{background:var(--s2);transition:background-color 200ms}
   .tow{bottom:16px;right:16px}
   .toast{max-width:calc(100vw - 32px)}
 }
-  </style>
+  
+/* Overview Problem Cards */
+.overview-headline { margin-bottom: 56px; animation: slideUp 0.5s ease-out; }
+.overview-overline { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--tu); text-transform: uppercase; margin-bottom: 16px; opacity: 0.9; }
+.overview-h1 { font-size: 48px; font-weight: 800; color: var(--t1); line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
+.overview-sub { font-size: 16px; color: var(--t3); line-height: 1.7; max-width: 680px; font-weight: 400; }
+
+.problem-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px; margin-bottom: 56px;
+}
+
+.problem-card {
+  background: var(--s1); padding: 28px;
+  border: 1px solid var(--bd); border-radius: 12px;
+  box-shadow: var(--sh);
+  transition: all 0.3s ease-out;
+  position: relative;
+  overflow: hidden;
+  animation: slideUp 0.5s ease-out backwards;
+}
+
+.problem-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(0,168,203,0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.problem-card:nth-child(1) { animation-delay: 0.1s; }
+.problem-card:nth-child(2) { animation-delay: 0.15s; }
+.problem-card:nth-child(3) { animation-delay: 0.2s; }
+.problem-card:nth-child(4) { animation-delay: 0.25s; }
+.problem-card:nth-child(5) { animation-delay: 0.3s; }
+
+.problem-card:hover {
+  border-color: var(--tu);
+  box-shadow: 0 16px 40px rgba(0,168,203,0.15);
+  transform: translateY(-6px);
+}
+
+.problem-card:hover::before { opacity: 1; }
+
+.problem-card-icon {
+  width: 32px; height: 32px; color: var(--tu);
+  margin-bottom: 16px; display: block;
+  transition: transform 0.3s ease-out;
+}
+
+.problem-card:hover .problem-card-icon { transform: scale(1.15) rotate(5deg); }
+
+.problem-card-title { font-size: 17px; font-weight: 700; color: var(--t1); margin-bottom: 12px; }
+.problem-card-body { font-size: 14px; color: var(--t3); line-height: 1.6; margin-bottom: 20px; }
+.problem-card-stat { font-size: 32px; font-weight: 800; color: var(--tu); margin-bottom: 6px; letter-spacing: -0.5px; }
+.problem-card-stat-label { font-size: 12px; color: var(--t2); font-weight: 600; letter-spacing: 0.3px; }
+
+.case-callout {
+  background: linear-gradient(135deg, rgba(0,168,203,0.08), rgba(51,188,218,0.04));
+  border: 2px solid var(--tu);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 40px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(0,168,203,0.1);
+  animation: slideUp 0.5s ease-out 0.35s backwards;
+}
+
+.case-callout-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--tu); text-transform: uppercase; margin-bottom: 12px; opacity: 0.9; }
+.case-callout-text { font-size: 16px; color: var(--t2); line-height: 1.7; }
+
+.problem-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: slideUp 0.5s ease-out 0.4s backwards;
+}
+
+.problem-cta-sub { font-size: 13px; color: var(--t3); font-weight: 500; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+</style>
 </head>
 <body>
 <nav class="nav">
@@ -304,6 +391,7 @@ tr:hover{background:var(--s2);transition:background-color 200ms}
   </div>
 </nav>
 <main class="main">
+  <div id="view-overview" class="view"></div>
   <div id="view-dashboard" class="view"></div>
   <div id="view-detail" class="view"></div>
   <div id="view-audit" class="view"></div>
@@ -371,7 +459,7 @@ function init(){
   try{S.alerts=JSON.parse(localStorage.getItem("tu_a"))||dc(SAMPLE)}catch{S.alerts=dc(SAMPLE)}
   try{S.log=JSON.parse(localStorage.getItem("tu_l"))||[]}catch{S.log=[]}
   if(S.darkMode)document.documentElement.classList.add("dark");
-  buildNav();renderDash();showView("dashboard");
+  buildNav();renderOverview();showView("overview");
   updateThemeToggle();
   document.addEventListener("keydown",handleKeyboardShortcuts);
 }
@@ -399,7 +487,7 @@ function showKbdHints(){
 
 function buildNav(){
   document.getElementById("navTabs").innerHTML=[
-    {v:"dashboard",l:"Alert Queue",c:"cq"},{v:"audit",l:"Audit Log",c:"ca"},{v:"settings",l:"⚙ About",c:null}
+    {v:"overview",l:"Problem Overview",c:null},{v:"dashboard",l:"Alert Queue",c:"cq"},{v:"audit",l:"Audit Log",c:"ca"},{v:"settings",l:"⚙ About",c:null}
   ].map(t=>`<button class="nav-tab" data-view="${t.v}" onclick="showView('${t.v}')">${t.l}${t.c?`<span class="tcnt m" id="${t.c}">0</span>`:""}</button>`).join("");
   updateCounts();
 }
@@ -415,9 +503,77 @@ function showView(n){
   document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
   document.getElementById("view-"+n).classList.add("active");
   document.querySelectorAll(".nav-tab").forEach(t=>t.classList.toggle("active",t.dataset.view===n));
+  if(n==="overview")renderOverview();
   if(n==="audit")renderAudit();
   if(n==="dashboard")renderDash();
   if(n==="settings")renderSettings();
+}
+
+function renderOverview(){
+  document.getElementById("view-overview").innerHTML=`
+<div class="wrap">
+  <div class="overview-headline">
+    <div class="overview-overline">The Challenge</div>
+    <h1 class="overview-h1">Fraud Signals at Scale</h1>
+    <p class="overview-sub">Every day, 10,000+ fraud detection signals flood in. Analysts manually review each one. Most are false alarms. Real fraud hides in the noise.</p>
+  </div>
+
+  <div class="problem-cards">
+    <div class="problem-card">
+      <svg class="problem-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      <div class="problem-card-title">Alert Volume Overwhelms Analysts</div>
+      <div class="problem-card-body">10,000+ fraud signals per day across multiple detection engines. Every one requires manual review. Most are false positives. Capacity is the bottleneck.</div>
+      <div class="problem-card-stat">10K+</div>
+      <div class="problem-card-stat-label">alerts per day</div>
+    </div>
+
+    <div class="problem-card">
+      <svg class="problem-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <div class="problem-card-title">False Positives Drain Productivity</div>
+      <div class="problem-card-body">Up to 85% of flagged transactions are legitimate. Time spent clearing false positives is time not spent catching real fraud. Analyst fatigue sets in.</div>
+      <div class="problem-card-stat">85%</div>
+      <div class="problem-card-stat-label">false positive rate</div>
+    </div>
+
+    <div class="problem-card">
+      <svg class="problem-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      <div class="problem-card-title">Inconsistent Decisions Under Pressure</div>
+      <div class="problem-card-body">Different analysts. Different shifts. Different outcomes for identical signals. No standardised decision framework. Outcomes vary 3× across equivalent cases.</div>
+      <div class="problem-card-stat">3×</div>
+      <div class="problem-card-stat-label">variance in shift outcomes</div>
+    </div>
+
+    <div class="problem-card">
+      <svg class="problem-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+      <div class="problem-card-title">No Audit Trail for Regulators</div>
+      <div class="problem-card-body">When regulators ask "why was this flagged?" or "why was this cleared?" — there's no systematic record. Compliance gaps grow. Risk exposure increases.</div>
+      <div class="problem-card-stat">Zero</div>
+      <div class="problem-card-stat-label">systematic decision logs</div>
+    </div>
+
+    <div class="problem-card">
+      <svg class="problem-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+      <div class="problem-card-title">Delayed Response = Financial Loss</div>
+      <div class="problem-card-body">Every minute a fraudulent transaction isn't blocked, exposure grows. Manual triage creates a dangerous bottleneck. Annual fraud loss accumulates rapidly.</div>
+      <div class="problem-card-stat">$4.2M</div>
+      <div class="problem-card-stat-label">avg annual fraud loss</div>
+    </div>
+  </div>
+
+  <div class="case-callout">
+    <div class="case-callout-label">What You'll See Today</div>
+    <div class="case-callout-text">
+      We'll walk through 8 live fraud alerts — from Card Not Present to Account Takeover to Synthetic Identity. Watch how AI classifies each signal, analysts confirm or correct, and every decision is logged for regulatory audit.
+    </div>
+  </div>
+
+  <div class="problem-cta">
+    <button class="btn b-cl" style="padding: 14px 32px; font-size: 15px; font-weight: 600;" onclick="showView('dashboard')">
+      Enter the Triage Queue →
+    </button>
+    <div class="problem-cta-sub">8 live alerts · AI classification · analyst review · full audit trail</div>
+  </div>
+</div>`;
 }
 
 function renderDash(){
