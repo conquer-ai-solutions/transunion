@@ -285,6 +285,92 @@ tr:hover{background:var(--s2);transition:background-color 200ms}
   .tow{bottom:16px;right:16px}
   .toast{max-width:calc(100vw - 32px)}
 }
+
+/* Teams Collaboration Styles */
+.teams-container{display:flex;height:calc(100vh - var(--nh));background:#FFFFFF}
+.teams-sidebar{width:260px;background:#FFFFFF;border-right:1px solid #E8E8E8;display:flex;flex-direction:column;overflow-y:auto;font-family:'Segoe UI','Inter',system-ui,sans-serif;flex-shrink:0}
+.teams-sidebar-section{padding:16px 0;border-bottom:1px solid #F0F0F0}
+.teams-sidebar-header{padding:12px 16px;font-size:11px;font-weight:700;text-transform:uppercase;color:#6B7280;letter-spacing:0.5px}
+.teams-channel-list{list-style:none;margin:0;padding:0}
+.teams-channel-item{padding:8px 16px;font-size:13px;color:#424242;cursor:pointer;transition:all 150ms;display:flex;align-items:center;gap:8px;position:relative}
+.teams-channel-item::before{content:'#';font-weight:700;color:#9CA3AF}
+.teams-channel-item:hover{background:#F5F5F5;color:#424242}
+.teams-channel-item.active{background:linear-gradient(135deg,rgba(98,100,167,0.1),transparent);color:#6264A7;font-weight:600}
+.teams-channel-unread{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#E74C3C;color:white;border-radius:50%;font-size:10px;font-weight:700;margin-left:auto;flex-shrink:0}
+.teams-main{flex:1;display:flex;flex-direction:column;background:#FFFFFF}
+.teams-header{background:#FFFFFF;border-bottom:1px solid #E8E8E8;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.teams-header-left{display:flex;align-items:center;gap:16px}
+.teams-channel-name{font-size:16px;font-weight:600;color:#424242}
+.teams-member-count{font-size:12px;color:#6B7280;font-weight:400}
+.teams-tabs{display:flex;gap:24px;margin-left:16px;border-bottom:1px solid #E8E8E8;padding-bottom:0}
+.teams-tab{padding:8px 0;font-size:13px;color:#6B7280;cursor:pointer;border-bottom:2px solid transparent;transition:all 150ms;font-weight:500}
+.teams-tab.active{color:#6264A7;border-bottom-color:#6264A7}
+.teams-header-right{display:flex;gap:8px;align-items:center}
+.teams-icon-btn{width:32px;height:32px;border:none;background:transparent;color:#6B7280;cursor:pointer;font-size:16px;border-radius:4px;transition:all 150ms;display:flex;align-items:center;justify-content:center}
+.teams-icon-btn:hover{background:#F0F0F0;color:#424242}
+.teams-messages{flex:1;overflow-y:auto;padding:16px 24px;display:flex;flex-direction:column;background:#FFFFFF;gap:0}
+.teams-message-group{display:flex;gap:12px;margin-bottom:12px;animation:fadeInUp 300ms ease-out forwards;opacity:0}
+.teams-message-group.skeleton{animation:none;opacity:1}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.teams-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:white;flex-shrink:0;position:relative;font-family:monospace}
+.teams-avatar.bot{background:linear-gradient(135deg,#6264A7,#7A7EBA);font-size:11px}
+.teams-avatar::after{content:'';position:absolute;bottom:-1px;right:-1px;width:12px;height:12px;border-radius:50%;border:2px solid white;background:#31A24C;opacity:0}
+.teams-avatar.away::after{background:#F7B500;opacity:1}
+.teams-avatar.bot::after{opacity:0}
+.teams-content{flex:1;min-width:0}
+.teams-message-header{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.teams-sender{font-weight:600;font-size:13px;color:#424242}
+.teams-badge{display:inline-flex;align-items:center;padding:2px 6px;background:#6264A7;color:white;font-size:9px;font-weight:700;border-radius:3px;text-transform:uppercase;letter-spacing:0.5px}
+.teams-timestamp{font-size:12px;color:#9CA3AF;font-family:monospace}
+.teams-message-text{font-size:13px;color:#424242;line-height:1.5;word-wrap:break-word}
+.teams-adaptive-card{background:#F5F5F5;border-left:4px solid #6264A7;border-radius:4px;padding:12px;margin-top:4px;font-size:12px}
+.teams-card-title{font-weight:700;color:#424242;margin-bottom:8px;font-size:13px}
+.teams-card-content{color:#6B7280;margin-bottom:8px;line-height:1.5}
+.teams-card-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:11px}
+.teams-card-table tr{border-bottom:1px solid #EFEFEF}
+.teams-card-table td{padding:6px;color:#6B7280}
+.teams-card-table td:first-child{font-weight:600;width:40%;color:#424242}
+.teams-card-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.teams-action-btn{padding:4px 12px;border:1px solid #D0D0D0;background:white;color:#6264A7;border-radius:3px;font-size:11px;font-weight:600;cursor:pointer;transition:all 150ms;white-space:nowrap}
+.teams-action-btn:hover{background:#6264A7;color:white}
+.teams-status-pill{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600;margin:4px 0}
+.teams-status-critical{background:#FCE4E6;color:#C41C3B}
+.teams-status-review{background:#FFF3CD;color:#997404}
+.teams-status-cleared{background:#D4EDDA;color:#155724}
+.teams-progress-bar{height:4px;background:#EFEFEF;border-radius:2px;overflow:hidden;margin:6px 0}
+.teams-progress-fill{height:100%;background:linear-gradient(90deg,#6264A7,#7A7EBA);border-radius:2px;transition:width 1s ease-out}
+.teams-reactions{display:flex;gap:8px;margin-top:6px;font-size:12px;flex-wrap:wrap}
+.teams-reaction{background:white;border:1px solid #D0D0D0;border-radius:12px;padding:2px 8px;display:flex;align-items:center;gap:4px;cursor:pointer;transition:all 150ms}
+.teams-reaction:hover{border-color:#6264A7;background:#F5F5F5}
+.teams-reaction-count{color:#6B7280;font-weight:600;font-size:11px}
+.teams-threads{display:flex;align-items:center;gap:4px;margin-top:6px;font-size:11px;color:#6264A7;cursor:pointer;transition:all 150ms}
+.teams-threads:hover{text-decoration:underline}
+.teams-thread-avatars{display:flex;margin-right:4px}
+.teams-thread-avatar{width:16px;height:16px;border-radius:50%;border:1px solid white;margin-right:-6px;font-size:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+.teams-typing{display:flex;gap:8px;align-items:center;padding:8px 12px;background:#F5F5F5;border-radius:4px;margin-top:4px}
+.teams-typing-dot{width:6px;height:6px;border-radius:50%;background:#6B7280;animation:typingBounce 1.4s infinite}
+.teams-typing-dot:nth-child(2){animation-delay:0.2s}
+.teams-typing-dot:nth-child(3){animation-delay:0.4s}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:0.7}30%{transform:translateY(-8px);opacity:1}}
+.teams-new-messages{display:flex;align-items:center;justify-content:center;height:32px;margin:16px 0;position:relative}
+.teams-new-messages-line{flex:1;height:1px;background:#E8E8E8}
+.teams-new-messages-dot{width:8px;height:8px;border-radius:50%;background:#E74C3C;margin:0 12px}
+.teams-compose{background:#FFFFFF;border-top:1px solid #E8E8E8;padding:16px 24px}
+.teams-compose-toolbar{display:flex;gap:8px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #F0F0F0}
+.teams-toolbar-btn{width:28px;height:28px;border:none;background:transparent;color:#6B7280;cursor:pointer;font-size:14px;border-radius:4px;transition:all 150ms;display:flex;align-items:center;justify-content:center}
+.teams-toolbar-btn:hover{background:#F0F0F0;color:#6264A7}
+.teams-toolbar-btn:disabled{opacity:0.5;cursor:not-allowed;color:#9CA3AF}
+.teams-compose-input{width:100%;border:1px solid #D0D0D0;border-radius:4px;padding:10px 12px;font-size:13px;font-family:'Segoe UI','Inter',system-ui;color:#424242;resize:vertical;background:#F5F5F5}
+.teams-compose-input:disabled{background:#F5F5F5;cursor:not-allowed;opacity:0.7}
+.teams-compose-input::placeholder{color:#9CA3AF}
+.teams-placeholder{text-align:center;padding:40px 20px;color:#9CA3AF;font-size:13px}
+.skeleton-loading{background:linear-gradient(90deg,#EFEFEF 0%,#F5F5F5 50%,#EFEFEF 100%);background-size:200% 100%;animation:skeletonShimmer 1.5s infinite}
+@keyframes skeletonShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skeleton-msg{height:60px;margin-bottom:12px;border-radius:4px}
+.teams-message-hover{position:relative}
+.teams-message-hover:hover{background:#F5F5F5}
+.teams-message-hover-actions{position:absolute;top:-28px;right:0;background:white;border:1px solid #D0D0D0;border-radius:4px;display:flex;gap:2px;padding:4px;opacity:0;pointer-events:none;transition:all 150ms;z-index:10}
+.teams-message-hover:hover .teams-message-hover-actions{opacity:1;pointer-events:auto}
   
 /* Overview Problem Cards */
 .overview-headline { margin-bottom: 56px; animation: slideUp 0.5s ease-out; }
@@ -841,69 +927,223 @@ function renderAudit(){
 
 function renderCollaboration(){
   const messages=[
-    {sender:"Fraud Triage Bot",avatar:"FTB",color:"#7C3AED",timestamp:"9:02 AM",isBot:true,content:"🚨 <strong>High Priority Alert</strong> — ALT-0042 flagged as Account Takeover (97% confidence). Russian IP, MFA bypassed, $2,100 transaction initiated 4 min after credential change. Recommended action: BLOCK. @Sarah Chen please review."},
-    {sender:"Sarah Chen",avatar:"SC",color:"#3B82F6",timestamp:"9:04 AM",isBot:false,content:"On it. Pulling up the full signal now."},
-    {sender:"Fraud Triage Bot",avatar:"FTB",color:"#7C3AED",timestamp:"9:05 AM",isBot:true,content:"📋 <strong>ALT-0042 Detail</strong>: 7 failed logins in 24h → password change → email change → immediate $2,100 transfer. IP: 185.xx.xx.xx (Moscow). Device: NEW_DEVICE. This matches the ATO pattern we've been tracking since Tuesday."},
-    {sender:"Sarah Chen",avatar:"SC",color:"#3B82F6",timestamp:"9:08 AM",isBot:false,content:"Confirmed as ATO. Account locked. Reversed credential changes. Customer notified via secondary contact. Filing incident report now."},
-    {sender:"Fraud Triage Bot",avatar:"FTB",color:"#7C3AED",timestamp:"9:08 AM",isBot:true,content:"✅ ALT-0042 confirmed by Sarah Chen. Action: BLOCK. Logged to audit trail. Compliance notification queued (24hr breach escalation)."},
-    {sender:"Mike Torres",avatar:"MT",color:"#10B981",timestamp:"9:12 AM",isBot:false,content:"Good catch. Seeing similar pattern on ALT-0048 — Chinese IP on a UK business account. Want me to take that one?"},
-    {sender:"Sarah Chen",avatar:"SC",color:"#3B82F6",timestamp:"9:13 AM",isBot:false,content:"Yes please. That one's £8,900 so needs the step-up auth first before we block."},
-    {sender:"Fraud Triage Bot",avatar:"FTB",color:"#7C3AED",timestamp:"9:15 AM",isBot:true,content:"📊 <strong>Morning Summary</strong>: 8 alerts in queue. 2 critical (ATO), 2 high (CNP + IDV), 2 medium (Synth ID + First Party), 2 low (auto-resolve candidates). Current AI accuracy: 94%. Avg triage time: 8 seconds."},
-    {sender:"David Park",avatar:"DP",color:"#F59E0B",timestamp:"9:18 AM",isBot:false,content:"The two low-priority ones (ALT-0044, ALT-0047) — both known devices, 3DS authenticated, amounts in normal range. I'm comfortable auto-resolving those. Anyone object?"},
-    {sender:"Sarah Chen",avatar:"SC",color:"#3B82F6",timestamp:"9:19 AM",isBot:false,content:"No objection. Both look clean."},
-    {sender:"Fraud Triage Bot",avatar:"FTB",color:"#7C3AED",timestamp:"9:20 AM",isBot:true,content:"✅ ALT-0044 and ALT-0047 auto-resolved by David Park. Logged to audit trail."},
-    {sender:"Fraud Triage Bot",avatar:"FTB",color:"#7C3AED",timestamp:"9:25 AM",isBot:true,content:"⚠️ <strong>Regulatory Flag</strong>: ALT-0041 involves cross-border transaction over £3,000 (GB → NG). AML documentation required. @David Park — please ensure decision rationale is captured for compliance."},
-    {sender:"David Park",avatar:"DP",color:"#F59E0B",timestamp:"9:27 AM",isBot:false,content:"Noted. Adding AML notes now. This one's a clear block — IP risk 0.91, new device, 32x average spend."}
+    {sender:"Fraud Triage Bot",avatar:"FTB",initials:"FTB",color:"#6264A7",timestamp:"9:02 AM",isBot:true,type:"card",content:"High Priority Alert",data:{alert:"ALT-0042",risk:"Account Takeover",confidence:97,status:"critical",details:[{label:"Threat",value:"Credential Compromise"},{label:"Location",value:"Moscow, Russia"},{label:"Device",value:"NEW_DEVICE"},{label:"Action",value:"MFA Bypass"},{label:"Transaction",value:"$2,100"}]},actionText:"@Sarah Chen please review"},
+    {sender:"Sarah Chen",avatar:"SC",initials:"SC",color:"#3B82F6",timestamp:"9:04 AM",isBot:false,content:"On it. Pulling up the full signal now.",reactions:[{emoji:"👍",count:1}]},
+    {sender:"Fraud Triage Bot",avatar:"FTB",initials:"FTB",color:"#6264A7",timestamp:"9:05 AM",isBot:true,type:"card",content:"ALT-0042 Detail",data:{sequence:"7 failed logins (24h) → password change → email change → $2.1K transfer",ipLocation:"185.xx.xx.xx (Moscow)",timestamp:"4 min after credential change",pattern:"ATO pattern tracked since Tuesday"},actionText:""},
+    {sender:"Sarah Chen",avatar:"SC",initials:"SC",color:"#3B82F6",timestamp:"9:08 AM",isBot:false,content:"Confirmed as ATO. Account locked. Reversed credential changes. Customer notified via secondary contact. Filing incident report now.",reactions:[{emoji:"👍",count:2},{emoji:"❤️",count:1}]},
+    {sender:"Fraud Triage Bot",avatar:"FTB",initials:"FTB",color:"#6264A7",timestamp:"9:08 AM",isBot:true,type:"card",content:"ALT-0042 Confirmed",data:{alert:"ALT-0042",action:"BLOCK",status:"cleared",logs:["Decision logged to audit trail","Compliance notification queued","24hr breach escalation triggered"]},actionText:""},
+    {sender:"Mike Torres",avatar:"MT",initials:"MT",color:"#10B981",timestamp:"9:12 AM",isBot:false,content:"Good catch. Seeing similar pattern on ALT-0048 — Chinese IP on a UK business account. Want me to take that one?"},
+    {sender:"Sarah Chen",avatar:"SC",initials:"SC",color:"#3B82F6",timestamp:"9:13 AM",isBot:false,content:"Yes please. That one's £8,900 so needs the step-up auth first before we block.",threads:3},
+    {sender:"Fraud Triage Bot",avatar:"FTB",initials:"FTB",color:"#6264A7",timestamp:"9:15 AM",isBot:true,type:"summary",content:"Morning Summary",data:{alerts:8,critical:2,high:2,medium:2,low:2,accuracy:94,triageTime:8},actionText:""},
+    {sender:"David Park",avatar:"DP",initials:"DP",color:"#F59E0B",timestamp:"9:18 AM",isBot:false,content:"The two low-priority ones (ALT-0044, ALT-0047) — both known devices, 3DS authenticated, amounts in normal range. I'm comfortable auto-resolving those. Anyone object?"},
+    {sender:"Sarah Chen",avatar:"SC",initials:"SC",color:"#3B82F6",timestamp:"9:19 AM",isBot:false,content:"No objection. Both look clean.",reactions:[{emoji:"👍",count:3}]},
+    {sender:"Fraud Triage Bot",avatar:"FTB",initials:"FTB",color:"#6264A7",timestamp:"9:20 AM",isBot:true,type:"card",content:"Auto-Resolved",data:{alerts:["ALT-0044","ALT-0047"],status:"cleared",resolvedBy:"David Park"},actionText:""},
+    {sender:"Fraud Triage Bot",avatar:"FTB",initials:"FTB",color:"#6264A7",timestamp:"9:25 AM",isBot:true,type:"card",content:"Regulatory Flag",data:{alert:"ALT-0041",type:"Cross-Border Transaction",amount:"£3,000",route:"GB → NG",requirement:"AML Documentation Required",risk:"HIGH"},actionText:"@David Park — ensure decision rationale captured"},
+    {sender:"David Park",avatar:"DP",initials:"DP",color:"#F59E0B",timestamp:"9:27 AM",isBot:false,content:"Noted. Adding AML notes now. This one's a clear block — IP risk 0.91, new device, 32x average spend."}
   ];
 
-  document.getElementById("view-collaboration").innerHTML=`
-<div style="display:flex;flex-direction:column;height:calc(100vh - var(--nh));background:#F5F5F5;position:relative">
-  <div style="background:var(--s1);border-bottom:1px solid var(--bd);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
-    <div>
-      <h1 style="font-size:18px;font-weight:700;margin:0;margin-bottom:4px">#fraud-ops-triage</h1>
-      <p style="font-size:12px;color:var(--t2);margin:0;font-weight:500">Team collaboration channel · 7 members online</p>
-    </div>
-    <div style="display:flex;gap:12px;align-items:center">
-      <button class="btn-ic" title="Pin message" style="opacity:0.6">📌</button>
-      <button class="btn-ic" title="Settings" style="opacity:0.6">⚙</button>
+  const html=`
+<div class="teams-container">
+  <!-- Sidebar -->
+  <div class="teams-sidebar">
+    <div class="teams-sidebar-section" style="flex-shrink:0">
+      <div class="teams-sidebar-header">Channels</div>
+      <ul class="teams-channel-list">
+        <li class="teams-channel-item active">
+          fraud-ops-triage
+          <div class="teams-channel-unread">3</div>
+        </li>
+        <li class="teams-channel-item" style="opacity:0.5">general</li>
+        <li class="teams-channel-item" style="opacity:0.5">compliance-alerts</li>
+      </ul>
     </div>
   </div>
 
-  <div id="msgContainer" style="flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:12px;background:linear-gradient(to bottom,#FAFBFC,#F5F6F8)">
-    ${messages.map((m,idx)=>`
-    <div style="animation:fade-in 300ms ease-out backwards;animation-delay:${idx*30}ms;display:flex;gap:12px;align-items:flex-start">
-      <div style="width:40px;height:40px;border-radius:50%;background:${m.color};color:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;font-family:monospace">${m.avatar}</div>
-      <div style="flex:1;min-width:0">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-          <span style="font-weight:700;color:var(--t1);font-size:13px">${m.sender}</span>
-          ${m.isBot?'<span style="background:var(--tu);color:white;font-size:9px;padding:2px 8px;border-radius:3px;font-weight:700;letter-spacing:.03em">BOT</span>':''}
-          <span style="font-size:12px;color:var(--t3);font-family:monospace">${m.timestamp}</span>
+  <!-- Main Chat Area -->
+  <div class="teams-main">
+    <!-- Header -->
+    <div class="teams-header">
+      <div class="teams-header-left">
+        <div>
+          <div class="teams-channel-name">#fraud-ops-triage</div>
+          <div class="teams-member-count">Team collaboration channel · 7 members online</div>
         </div>
-        <div style="background:white;border-radius:8px;padding:12px 14px;color:var(--t1);font-size:13px;line-height:1.5;word-wrap:break-word;${m.isBot?'border-left:3px solid var(--tu)':''}">${m.content}</div>
+      </div>
+      <div class="teams-tabs">
+        <div class="teams-tab active">Posts</div>
+        <div class="teams-tab">Files</div>
+        <div class="teams-tab">Wiki</div>
+      </div>
+      <div class="teams-header-right">
+        <button class="teams-icon-btn" title="Call">📞</button>
+        <button class="teams-icon-btn" title="Video">📹</button>
       </div>
     </div>
-    `).join("")}
-  </div>
 
-  <div style="background:var(--s1);border-top:1px solid var(--bd);padding:16px 24px;animation:fade-in 400ms ease-out">
-    <div style="display:flex;gap:12px;margin-bottom:8px;align-items:center">
-      <div style="width:32px;height:32px;border-radius:50%;background:#A0A9B8;flex-shrink:0"></div>
-      <div style="flex:1">
-        <div style="font-weight:600;color:var(--t1);font-size:12px">Fraud Triage Bot</div>
-        <div style="font-size:11px;color:var(--t3)">is typing…</div>
+    <!-- Messages -->
+    <div class="teams-messages" id="teams-msg-container">
+      <div class="teams-placeholder" style="padding-top:60px">Loading conversation...</div>
+    </div>
+
+    <!-- Compose -->
+    <div class="teams-compose">
+      <div class="teams-compose-toolbar">
+        <button class="teams-toolbar-btn" title="Format" disabled>A̲</button>
+        <button class="teams-toolbar-btn" title="Attach" disabled>📎</button>
+        <button class="teams-toolbar-btn" title="Emoji" disabled>😊</button>
+        <button class="teams-toolbar-btn" title="GIF" disabled>GIF</button>
+        <button class="teams-toolbar-btn" title="Stickers" disabled>✨</button>
+        <button class="teams-toolbar-btn" title="Schedule" disabled>⏱</button>
       </div>
-    </div>
-    <div style="display:flex;gap:10px;align-items:center;padding:12px 14px;background:var(--s2);border-radius:24px;border:1px solid var(--bd)">
-      <input type="text" placeholder="Type a message..." disabled style="flex:1;background:transparent;border:none;outline:none;color:var(--t3);font-size:13px;font-family:'Inter',system-ui" />
-      <button class="btn-ic" style="opacity:0.4;pointer-events:none">📎</button>
+      <textarea class="teams-compose-input" placeholder="Type a new message..." disabled></textarea>
     </div>
   </div>
-</div>`;
+</div>
+  `;
 
+  document.getElementById("view-collaboration").innerHTML=html;
+
+  // Simulate loading skeleton
+  const container=document.getElementById("teams-msg-container");
+  container.innerHTML='<div class="skeleton-msg skeleton-loading"></div><div class="skeleton-msg skeleton-loading"></div>';
+
+  // Load messages with stagger
   setTimeout(()=>{
-    const container=document.getElementById("msgContainer");
-    if(container)container.scrollTop=container.scrollHeight;
-  },100);
+    let html='';
+    messages.forEach((m,idx)=>{
+      const isGrouped=idx>0&&messages[idx-1].sender===m.sender;
+      const hasReactions=m.reactions&&m.reactions.length>0;
+      const hasThreads=m.threads>0;
+      const statusMap={critical:"teams-status-critical",review:"teams-status-review",cleared:"teams-status-cleared"};
+
+      let cardHtml='';
+      if(m.type==='card'&&m.data){
+        if(m.data.alert||m.data.details){
+          const status=m.data.status||'review';
+          const statusEmoji={critical:'🔴',review:'🟡',cleared:'🟢'}[status]||'◯';
+          cardHtml=`
+            <div class="teams-adaptive-card">
+              <div class="teams-card-title">${m.content}</div>
+              <div class="teams-status-pill ${statusMap[status] || 'teams-status-review'}">${statusEmoji} ${status.toUpperCase()}</div>
+              <table class="teams-card-table">
+                ${m.data.details?m.data.details.map(d=>`<tr><td>${d.label}</td><td>${d.value}</td></tr>`).join(''):''}
+                ${m.data.alert?`<tr><td>Alert ID</td><td style="font-family:monospace;font-weight:700">${m.data.alert}</td></tr>`:''}
+                ${m.data.confidence?`<tr><td>Confidence</td><td>${m.data.confidence}%</td></tr>`:''}
+                ${m.data.risk?`<tr><td>Risk Type</td><td>${m.data.risk}</td></tr>`:''}
+                ${m.data.sequence?`<tr><td>Sequence</td><td>${m.data.sequence}</td></tr>`:''}
+                ${m.data.ipLocation?`<tr><td>IP Location</td><td>${m.data.ipLocation}</td></tr>`:''}
+                ${m.data.action?`<tr><td>Recommended</td><td>${m.data.action}</td></tr>`:''}
+                ${m.data.type?`<tr><td>Type</td><td>${m.data.type}</td></tr>`:''}
+                ${m.data.amount?`<tr><td>Amount</td><td>${m.data.amount}</td></tr>`:''}
+                ${m.data.route?`<tr><td>Route</td><td>${m.data.route}</td></tr>`:''}
+                ${m.data.requirement?`<tr><td>Requirement</td><td>${m.data.requirement}</td></tr>`:''}
+              </table>
+              ${m.data.logs?`<div style="font-size:11px;color:#6B7280;margin:6px 0">${m.data.logs.map(l=>'✓ '+l).join('<br>')}</div>`:''}
+              ${m.data.alerts?`<div style="margin:6px 0"><strong>Resolved:</strong> ${m.data.alerts.join(', ')}</div>`:''}
+              ${m.data.accuracy?`<div class="teams-progress-bar"><div class="teams-progress-fill" style="width:${m.data.accuracy}%"></div></div><div style="font-size:11px;color:#6B7280">AI Accuracy: ${m.data.accuracy}% • Avg Triage Time: ${m.data.triageTime}s</div>`:''}
+              <div class="teams-card-actions">
+                <button class="teams-action-btn">View Details</button>
+                <button class="teams-action-btn">Escalate</button>
+                <button class="teams-action-btn">Dismiss</button>
+              </div>
+            </div>`;
+        }
+      }
+
+      if(m.type==='summary'&&m.data){
+        cardHtml=`
+          <div class="teams-adaptive-card">
+            <div class="teams-card-title">📊 ${m.content}</div>
+            <table class="teams-card-table">
+              <tr><td>Total Alerts</td><td>${m.data.alerts}</td></tr>
+              <tr><td>🔴 Critical</td><td>${m.data.critical}</td></tr>
+              <tr><td>🟡 High</td><td>${m.data.high}</td></tr>
+              <tr><td>Medium</td><td>${m.data.medium}</td></tr>
+              <tr><td>🟢 Low</td><td>${m.data.low}</td></tr>
+            </table>
+            <div class="teams-progress-bar"><div class="teams-progress-fill" style="width:${m.data.accuracy}%"></div></div>
+            <div style="font-size:11px;color:#6B7280;margin-top:6px">AI Accuracy: ${m.data.accuracy}% • Avg Triage: ${m.data.triageTime}s</div>
+          </div>`;
+      }
+
+      html+=`
+        <div class="teams-message-group teams-message-hover" style="animation-delay:${idx*80}ms;margin-bottom:${hasReactions||hasThreads?8:0}px">
+          <div class="teams-avatar ${m.isBot?'bot':''}${m.avatar==='SC'?' away':''}" style="background:${m.isBot?'':'linear-gradient(135deg,'+m.color+','+m.color+'dd)'}">
+            ${m.initials || m.avatar}
+          </div>
+          <div class="teams-content">
+            ${!isGrouped?`
+              <div class="teams-message-header">
+                <span class="teams-sender">${m.sender}</span>
+                ${m.isBot?'<span class="teams-badge">BOT</span>':''}
+                <span class="teams-timestamp">${m.timestamp}</span>
+              </div>
+            `:''}
+            <div class="teams-message-text">${m.content}</div>
+            ${m.actionText?'<div style="font-size:12px;color:#6264A7;margin-top:4px;font-weight:500">'+m.actionText+'</div>':''}
+            ${cardHtml}
+            ${hasReactions?`
+              <div class="teams-reactions">
+                ${m.reactions.map(r=>`
+                  <div class="teams-reaction">
+                    <span>${r.emoji}</span>
+                    <span class="teams-reaction-count">${r.count}</span>
+                  </div>
+                `).join('')}
+              </div>
+            `:''}
+            ${hasThreads?`
+              <div class="teams-threads">
+                <div class="teams-thread-avatars">
+                  <div class="teams-thread-avatar" style="background:#3B82F6">SC</div>
+                  <div class="teams-thread-avatar" style="background:#10B981">MT</div>
+                </div>
+                <span>${m.threads} replies</span>
+              </div>
+            `:''}
+          </div>
+          <div class="teams-message-hover-actions">
+            <button class="teams-toolbar-btn" title="React">👍</button>
+            <button class="teams-toolbar-btn" title="Love">❤️</button>
+            <button class="teams-toolbar-btn" title="Wow">😮</button>
+            <button class="teams-toolbar-btn" title="Reply">💬</button>
+            <button class="teams-toolbar-btn" title="More">⋯</button>
+          </div>
+        </div>
+      `;
+    });
+
+    // Add new messages divider
+    html+=`<div class="teams-new-messages" style="margin:20px 0"><div class="teams-new-messages-line"></div><div class="teams-new-messages-dot"></div><div class="teams-new-messages-line"></div></div>`;
+
+    // Add typing indicator
+    html+=`
+      <div class="teams-message-group" style="animation-delay:${messages.length*80+200}ms">
+        <div class="teams-avatar bot">
+          FTB
+        </div>
+        <div class="teams-content">
+          <div class="teams-message-header">
+            <span class="teams-sender">Fraud Triage Bot</span>
+            <span class="teams-badge">BOT</span>
+            <span class="teams-timestamp">typing...</span>
+          </div>
+          <div class="teams-typing">
+            <div class="teams-typing-dot"></div>
+            <div class="teams-typing-dot"></div>
+            <div class="teams-typing-dot"></div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    container.innerHTML=html;
+
+    // Scroll to bottom
+    setTimeout(()=>{
+      container.scrollTop=container.scrollHeight;
+    },50);
+  },800);
 }
 
 function renderSettings(){
