@@ -708,8 +708,8 @@ function renderCollaboration(){
   setTimeout(()=>{
     container.innerHTML='';
     let delay=0;
-    const baseDelay=600;
-    const typingDuration=900;
+    const baseDelay=1800;
+    const typingDuration=2200;
 
     messages.forEach((m,idx)=>{
       // Show typing indicator
@@ -733,17 +733,19 @@ function renderCollaboration(){
               container.appendChild(divider);
               setTimeout(()=>divider.classList.add('visible'),30);
               container.scrollTop=container.scrollHeight;
-            },200);
+            },400);
           }
-        },typingDuration);
+        },typingDuration+(m.type?800:0));
       },delay);
-      delay+=baseDelay+typingDuration+(m.type?400:200);
+      // Human messages: shorter pause. Bot cards: longer pause. Vary slightly for realism.
+      const humanPause=m.isBot?0:Math.random()*600;
+      delay+=baseDelay+typingDuration+(m.type?1400:500)+humanPause;
     });
 
     // Final typing indicator that stays
     setTimeout(()=>{
       showTypingIndicator("Sales Intelligence Bot","SIB","#6264A7",true);
-    },delay+300);
+    },delay+800);
   },1200);
 }
 
